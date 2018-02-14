@@ -9,33 +9,21 @@ class PostsController extends Controller
 {
     public function index()
     {
-      return view('posts.index');
-    }
+      $posts = Post::latest()->get();
 
+      return view('posts.index', compact('posts'));
+    }
 
     public function create ()
   {
       return view ('posts.create');
-
   }
 
     public function store ()
     {
-    //  dd(request()->all());
+      Post::create(request(['title', 'body', 'category']));
 
-      $post = new Post;
-
-      $post->title = request('title');
-      $post->body = request ('body');
-      $post->category = request ('category');
-
-      //create new post using the request databases
-
-      $post->save();
-      //save it to the databases
       return redirect ('/');
-      //redirect to homepage
-
     }
 
 }
