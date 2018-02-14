@@ -6,6 +6,12 @@
 
     </head>
     <body>
-      @yield('content')
+
+      @include ('layouts.header')
+
+      <div class='container'>
+        @yield('content')
+      </div>
+
     </body>
 </html>
