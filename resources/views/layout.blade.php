@@ -2,10 +2,10 @@
 <html>
     <head>
 
-        <title>My Application</title>
+        <title>The Title</title>
 
     </head>
     <body>
-        @yield('content')
+      @yield('content')
     </body>
 </html>
