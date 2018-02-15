@@ -10,8 +10,8 @@ class PostsController extends Controller
     public function index()
     {
       $posts = Post::latest()->get();
-
-      return view('posts.index', compact('posts'));
+      $categories = Post::select('category')->distinct()->get();
+      return view('posts.index', compact('posts', 'categories'));
     }
 
     public function create ()
@@ -25,5 +25,13 @@ class PostsController extends Controller
 
       return redirect ('/');
     }
+
+    public function sort($category)
+    {
+      $posts = Post::latest()->where('category', $category)->get();
+
+      return view('posts.category', compact('posts'));
+    }
+
 
 }
