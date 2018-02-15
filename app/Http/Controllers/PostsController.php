@@ -29,7 +29,7 @@ class PostsController extends Controller
     public function sort($category)
     {
       $posts = Post::latest()->where('category', $category)->get();
-       $categories = Post::select('category')->distinct()->get();
+      $categories = Post::select('category')->distinct()->get();
       return view('posts.category', compact('posts', 'categories'));
     }
 
