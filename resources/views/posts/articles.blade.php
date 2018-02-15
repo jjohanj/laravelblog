@@ -1,5 +1,5 @@
 
-<h3> {{$post->title}} </h3>
+<h3> <a href="/posts/show/{{$post->id}}">{{$post->title}}</a>  </h3>
 
 <div class='articles'>{{$post->body}} </div>
 

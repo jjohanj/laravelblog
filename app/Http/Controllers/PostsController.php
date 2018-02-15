@@ -14,6 +14,13 @@ class PostsController extends Controller
       return view('posts.index', compact('posts', 'categories'));
     }
 
+    public function show($id)
+    {
+      $posts = Post::where('id', $id)->get();
+      
+      return view('posts.show', compact('posts'));
+    }
+
     public function create ()
   {
       return view ('posts.create');
