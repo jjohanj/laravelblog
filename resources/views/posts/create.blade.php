@@ -2,7 +2,7 @@
 @extends ('layout')
 
 @section ('content')
-
+  <a href="/">BACK TO HOME PAGE</a><br />  
 <div id="form">
 <form action="/posts" method="POST">
   {{ csrf_field() }}
