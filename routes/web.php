@@ -15,3 +15,6 @@ Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 route::get('posts/create/category', 'PostsController@createcategory');
 
 route::post('posts/create/category', 'PostsController@storecategory');
+
+Route::get('posts/delete/{id}', 'CommentsController@delete');
+

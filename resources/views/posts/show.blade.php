@@ -19,8 +19,8 @@
 	<ul class="list-group">
 	@foreach ($post->comments as $comment)
 	<li class="list-group-item">
-		<strong> {{$comment->created_at->diffForHumans()}}:&nbsp</strong>
-		{{$comment->body}}
+		 {{$comment->created_at->diffForHumans()}}:&nbsp
+		{{$comment->body}} &nbsp <a href="/posts/delete/{{$comment->id}}" style="color:red"><small> Delete comment </small></a><br />
 	</li>
 	@endforeach
 </ul>
