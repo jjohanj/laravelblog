@@ -31,7 +31,8 @@ class PostsController extends Controller
 
      public function store ()
     {
-      Post::create(request(['title', 'body', 'category']));
+
+      Post::create(request(['title', 'body', 'category','disable_comments']));
 
       return redirect ('/');
     }

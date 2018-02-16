@@ -14,8 +14,8 @@
 @endforeach
 
 <hr>
-
-<div class="comments">
+@if ($post->disable_comments == 'no')
+ <div class="comments">
 	<ul class="list-group">
 	@foreach ($post->comments as $comment)
 	<li class="list-group-item">
@@ -52,6 +52,8 @@
 
 
 </div>
+
+@endif
 
 </div>
 
