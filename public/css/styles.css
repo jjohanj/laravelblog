@@ -93,6 +93,14 @@ button {
   margin-right: 5em;
 }
 
+#textexpander{
+  margin-top: 4px;
+  width: 100%;
+  height: auto;
+  background-color:  #fbfffc;
+  padding: 4px;
+}
+
 @media screen and (max-width: 799px) {
 
   #container {

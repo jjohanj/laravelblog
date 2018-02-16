@@ -14,13 +14,48 @@
     Categorie:<br>
 
     @foreach ($categories as $category)
-     <input type="radio" name="category" value="{{$category->name}}" checked>{{$category->name}}<br> 
+     <input type="radio" name="category" value="{{$category->name}}" checked>{{$category->name}}<br>
 @endforeach
-   
-    <textarea rows="20" placeholder="Blog tekst" name="body" type="text" required></textarea></br>
+
+    <textarea rows="20" placeholder="Blog tekst" name="body" type="text" id='textarea' required></textarea></br>
     <button type="submit">Plaats blog op de website!</button></br>
-  </div>
 </form>
+</div>
+
+<div id='textexpander'>
+  Textexpander shortcuts: <br><hr>
+  mc = Maine Coon <br>
+  trn = toernooi <br>
+  tlg = the Last Guardian <br>
+  tgs = tegenstander
+<div>
+
+<script>
+
+shortcuts = {
+    "mc" : "Maine Coon",
+    "trn" : "toernooi",
+    "tlg" : "the Last Guardian",
+    "tgs" : "tegenstander"
+}
+
+window.onload = function() {
+    var ta = document.getElementById("textarea");
+    var timer = 0;
+    var re = new RegExp("\\b(" + Object.keys(shortcuts).join("|") + ")\\b", "g");
+
+    update = function() {
+        ta.value = ta.value.replace(re, function($0, $1) {
+            return shortcuts[$1.toLowerCase()];
+        });
+    }
+
+    ta.onkeydown = function() {
+        clearTimeout(timer);
+        timer = setTimeout(update, 200);
+    }
+}
+</script>
 
 </div>
 @endsection
