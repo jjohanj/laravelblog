@@ -18,7 +18,6 @@ textarea {
 h3 {
   font-size: 18px;
   background-color: #97b498;
-  opacity: 0.8;
   padding: 2px;
 }
 
@@ -94,11 +93,19 @@ button {
 }
 
 #textexpander{
-  margin-top: 4px;
+  margin-top: 8px;
   width: 100%;
   height: auto;
   background-color:  #fbfffc;
   padding: 4px;
+  border: 1px solid #97b498;
+}
+
+ul {
+    list-style-type: none;
+    margin: 6px;
+    padding: 6px;
+    font-size: 14px;
 }
 
 @media screen and (max-width: 799px) {
@@ -117,12 +124,15 @@ button {
 
   }
   .menu {
+
     margin-left: 0px;
     padding-left: 9px;
     width: 97%;
-    height: auto;
     padding-top: 0px;
     padding-bottom: 4px;
+    border: 0px;
+
+
   }
 
 }
