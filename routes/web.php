@@ -9,4 +9,9 @@ Route::post('/posts', 'PostsController@store');
 Route::get('posts/{category}', 'PostsController@sort');
 
 Route::get('posts/show/{id}', 'PostsController@show');
+
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
+
+route::get('posts/create/category', 'PostsController@createcategory');
+
+route::post('posts/create/category', 'PostsController@storecategory');
