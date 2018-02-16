@@ -29,6 +29,12 @@ a {
   color: #435b4a;
   text-decoration: none;
 }
+ul {
+    list-style-type: none;
+    margin: 6px;
+    padding: 6px;
+    font-size: 14px;
+}
 
 button {
   background-color: #97b498;
@@ -78,6 +84,14 @@ button {
   padding-bottom: 20px;
 }
 
+.commentsdel {
+  background-color: #fbfffc;
+  color: red;
+  float: right;
+  font-size:10px;
+}
+
+
 #title {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -101,12 +115,6 @@ button {
   border: 1px solid #97b498;
 }
 
-ul {
-    list-style-type: none;
-    margin: 6px;
-    padding: 6px;
-    font-size: 14px;
-}
 
 @media screen and (max-width: 799px) {
 

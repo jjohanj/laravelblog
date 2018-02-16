@@ -21,11 +21,11 @@
 	<li class="list-group-item">
 
 		{{$comment->created_at->diffForHumans()}}:&nbsp
-		<strong>{{$comment->body}} &nbsp</strong> 
+		<strong>{{$comment->body}} &nbsp</strong>
 <form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
     <input type="hidden" name="_method" value="delete" />
     {!! csrf_field() !!}
-    <button class="btn btn-default">Delete</button>
+    <button class="commentsdel">Delete</button>
 </form><br />
 
 
