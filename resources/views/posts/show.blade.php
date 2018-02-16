@@ -21,7 +21,14 @@
 	<li class="list-group-item">
 
 		{{$comment->created_at->diffForHumans()}}:&nbsp
-		<strong>{{$comment->body}} &nbsp</strong> <a href="/posts/delete/{{$comment->id}}" style="color:red"><small> Delete comment </small></a><br />
+		<strong>{{$comment->body}} &nbsp</strong> 
+<form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    {!! csrf_field() !!}
+    <button class="btn btn-default">Delete</button>
+</form><br />
+
+
 
 	</li>
 	@endforeach

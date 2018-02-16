@@ -16,5 +16,8 @@ route::get('posts/create/category', 'PostsController@createcategory');
 
 route::post('posts/create/category', 'PostsController@storecategory');
 
-Route::get('posts/delete/{id}', 'CommentsController@delete');
+Route::delete('/posts/delete/{id}', [
+    'as' => 'delete_comment_path', 
+    'uses' => 'CommentsController@delete'
+]);
 
