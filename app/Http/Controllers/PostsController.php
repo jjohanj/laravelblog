@@ -18,14 +18,14 @@ class PostsController extends Controller
     public function show($id)
     {
       $posts = Post::where('id', $id)->get();
-      
+
       return view('posts.show', compact('posts'));
     }
 
     public function create ()
   {
     $categories = Category::get();
-    
+
       return view ('posts.create', compact('categories'));
   }
 
@@ -40,15 +40,15 @@ class PostsController extends Controller
 public function createcategory ()
   {
     $categories = Category::get();
-    
+
       return view ('posts.createcategory', compact('categories'));
   }
 
   public function storecategory ()
   {
     Category::create(request(['name']));
-    
-     return redirect ('http://testsite.test/posts/create');
+
+     return redirect ('/posts/create');
   }
 
     public function sort($category)

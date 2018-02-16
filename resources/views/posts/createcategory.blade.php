@@ -16,10 +16,10 @@
 
   <div id="inputfield"></div>
     <input placeholder="category" name="name" type="name" id="title" required></br>
-    
+
     <button type="submit">Add category!</button></br>
   </div>
 </form>
-s
+
 </div>
 @endsection
