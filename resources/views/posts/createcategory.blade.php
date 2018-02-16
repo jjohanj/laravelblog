@@ -3,7 +3,10 @@
 
 @section ('content')
   <a href="/">BACK TO HOME PAGE</a><br />
-  <a href="/posts/create">Submit a post</a><br />
+  <a href="/posts/create">SUBMIT A POST</a><br />
+
+  <br>
+  Existing categories:
 <div id="form">
   <ul>
 @foreach ($categories as $category)

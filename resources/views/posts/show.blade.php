@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section ('content')
-<a href="/">Back to main menu</a><br />
+<a href="/">BACK TO MAIN MENU</a><br />
 
 <div class='main'>
 @foreach ($posts as $post)
@@ -19,8 +19,8 @@
 	<ul class="list-group">
 	@foreach ($post->comments as $comment)
 	<li class="list-group-item">
-		<strong> {{$comment->created_at->diffForHumans()}}:&nbsp</strong>
-		{{$comment->body}}
+		{{$comment->created_at->diffForHumans()}}:&nbsp
+		<strong>{{$comment->body}}</strong>
 	</li>
 	@endforeach
 </ul>
@@ -36,12 +36,10 @@
 				<button type="submit" class="btn btn-primary">Add comment</button>
 			</div>
 
-
-
 		</form>
 
 	</div>
-	
+
 
 
 </div>
