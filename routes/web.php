@@ -21,3 +21,7 @@ Route::delete('/posts/delete/{id}', [
     'uses' => 'CommentsController@delete'
 ]);
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
