@@ -33,7 +33,12 @@
 	</li>
 	@endforeach
 </ul>
+
+
 </div>
+
+@if(Auth::check())
+
 <div class="card">
 	<div class="card-block">
 		<form method="POST" action="/posts/show/{{$post->id}}/comments">
@@ -52,6 +57,8 @@
 
 
 </div>
+@endif
+
 
 @endif
 

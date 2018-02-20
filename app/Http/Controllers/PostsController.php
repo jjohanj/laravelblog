@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use Auth;
 
 class PostsController extends Controller
 {
+
+  public function __construct()
+  {
+
+
+    $this->middleware('auth')->except(['index', 'show', 'sort']);
+  }
     public function index()
     {
       $posts = Post::latest()->get();
@@ -31,8 +39,22 @@ class PostsController extends Controller
 
      public function store ()
     {
+      $user= Auth::user()->id;
+      $disable_comments = request('disable_comments');
+     
+    
+      Post::create([
+        'user_id' => $user,
 
-      Post::create(request(['title', 'body', 'category','disable_comments']));
+        'title' => request('title'),
+
+        'body' => request('body'),
+
+        'category' => request('category'),
+
+        'disable_comments' => $disable_comments
+        
+      ]);
 
       return redirect ('/');
     }

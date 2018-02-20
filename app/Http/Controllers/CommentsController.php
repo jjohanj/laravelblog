@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use Auth;
 
 class CommentsController extends Controller
 {
+
+    public function __construct()
+  {
+
+
+    $this->middleware('auth');
+  }
     public function store($id)
     {
-
+        $user= Auth::user()->id;
     	Comment::create([
     		'body' => request('body'),
-    		'post_id' => $id
+    		'post_id' => $id,
+            'user_id' => $user
     	]);
 
     	return back();

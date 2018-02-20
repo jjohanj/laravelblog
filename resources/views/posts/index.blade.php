@@ -2,6 +2,15 @@
 
 @section ('content')
 <a href="posts/create">NEW BLOG POST</a><br />
+<a href="/login"> login</a><br />
+
+@if(Auth::check())
+
+<a href="/logout">logout</a><br />
+<a href="#">Hello {{Auth::user()->name}}</a><br />
+@endif
+
+
 <div class='menu'>
 @foreach ($categories as $category)
   <a href="posts/{{$category->category}}">{{$category->category}}</a><br />
