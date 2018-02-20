@@ -1,3 +1,5 @@
+
+
 <script src="{{URL::to('js/tinymce/js/tinymce/jquery.tinymce.min.js')}}"></script>
 <script src="{{URL::to('js/tinymce/js/tinymce/tinymce.min.js')}}"></script>
 <script>
