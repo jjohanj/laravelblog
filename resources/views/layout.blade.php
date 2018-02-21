@@ -15,6 +15,7 @@
 <a href="#">Hello {{Auth::user()->name}}</a><br />
 @else
 <a href="/login"> login</a><br />
+<a href="/register"> Register</a><br />
 @endif
 
         @yield('content')
