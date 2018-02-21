@@ -11,7 +11,7 @@
       "searchreplace wordcount visualblocks visualchars code fullscreen",
       "insertdatetime media nonbreaking save table contextmenu directionality",
       "emoticons template paste textcolor colorpicker textpattern codesample",
-      "fullpage toc imagetools help",
+      "toc imagetools help",
       "mention"
     ],
     mentions: {
