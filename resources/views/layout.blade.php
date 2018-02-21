@@ -8,7 +8,7 @@
     <body>
       <div id='container'>
       @include ('layouts.header')
-
+<a href="/">Home</a><br />
   @if(Auth::check())
 
 <a href="/logout">logout</a><br />

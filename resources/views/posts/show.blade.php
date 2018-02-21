@@ -20,8 +20,8 @@
 	@foreach ($post->comments as $comment)
 	<li class="list-group-item">
 
-		{{$comment->created_at->diffForHumans()}}:&nbsp
-		<strong>{{$comment->body}} &nbsp</strong>
+		<strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong>
+		{{$comment->body}} &nbsp
 @if(Auth::check())
 <form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
     <input type="hidden" name="_method" value="delete" />

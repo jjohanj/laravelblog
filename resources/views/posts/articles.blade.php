@@ -7,6 +7,6 @@
 
 <div class='category'>category: {{$post->category}} </div>
 
-<div class='postdate'>Posted at: {{$post->created_at}} </div>
+<div class='postdate'><strong>{{$post->user->name}} </strong>posted on {{$post->created_at}} </div>
 <br>
 <hr>
