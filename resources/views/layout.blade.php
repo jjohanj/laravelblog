@@ -9,9 +9,9 @@
       <div id='container'>
       @include ('layouts.header')
 
-
-
         @yield('content')
+
+        @yield('scripts')
 
       </div>
 

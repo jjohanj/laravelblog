@@ -37,8 +37,9 @@ ul {
 }
 
 button {
-  background-color: #97b498;
-  border: none;
+  background-color: SeaGreen;
+  border: 2px groove grey;
+  border-radius: 5px;
   color: white;
   padding: 5px;
   text-align: center;
@@ -54,6 +55,12 @@ button {
 .articles {
   font-size: 16px;
   padding-bottom: 8px;
+}
+
+.postdate {
+  float:left;
+  font-size: 13px;
+  color: grey;
 }
 
 .category {
@@ -91,7 +98,6 @@ button {
   font-size:10px;
 }
 
-
 #title {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -107,12 +113,13 @@ button {
 }
 
 #textexpander{
+  float: right;
   margin-top: 8px;
-  width: 100%;
+  width: 35%;
   height: auto;
-  background-color:  #fbfffc;
+  background-color:  #97b498;
   padding: 4px;
-  border: 1px solid #97b498;
+  border: 1px solid #c8e6c9;
 }
 
 
