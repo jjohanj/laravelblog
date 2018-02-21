@@ -3,7 +3,7 @@
 @section ('content')
 <a href="posts/create">NEW BLOG POST</a><br />
 
-include ('layouts.sidebar')
+@include ('layouts.sidebar')
 
 <div class='main'>
 
