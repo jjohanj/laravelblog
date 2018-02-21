@@ -18,6 +18,12 @@ class CommentsController extends Controller
   }
     public function store($id)
     {
+        
+        $this->validate(request(), [
+      
+      'body' => 'required'
+      
+     ]);
         $user= Auth::user()->id;
     	Comment::create([
     		'body' => request('body'),
