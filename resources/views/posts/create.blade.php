@@ -17,7 +17,7 @@
   {{ csrf_field() }}
 
   <div id="inputfield"></div>
-    <input placeholder="Title" name="title" type="text" id="title" required></br>
+    <input placeholder="Title" name="title" type="text" id="title" ></br>
     <br>
     @foreach ($categories as $category)
      <input type="radio" name="category" value="{{$category->name}}" checked>{{$category->name}}<br>
@@ -26,9 +26,9 @@
        Tip: typ '@' in het tekstveld om de text expander te gebruiken
      </div>
      <br><br>
-    <textarea rows="20" placeholder="Blog tekst" name="body" type="text" required></textarea></br>
+    <textarea rows="20" placeholder="Blog tekst" name="body" type="text"></textarea></br>
 
-
+<input type='hidden' value='no' name='disable_comments'><br/>
   <input type='checkbox' value='yes' name='disable_comments'> Disable comments <br/>
 
     <button type="submit">Plaats blog op de website!</button></br>
