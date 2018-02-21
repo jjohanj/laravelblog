@@ -19,8 +19,7 @@ class PostsController extends Controller
     public function index()
     {
       $posts = Post::latest()->get();
-      // $categories = Post::select('category')->distinct()->get();
-      return view('posts.index', compact('posts', 'categories'));
+      return view('posts.index', compact('posts'));
     }
 
     public function show($id)
@@ -45,7 +44,6 @@ class PostsController extends Controller
       $this->validate(request(), [
        'title' => 'required|max:255',
        'body' => 'required',
-       // 'category' => 'required'
       ]);
 
       Post::create([
@@ -54,8 +52,6 @@ class PostsController extends Controller
         'title' => request('title'),
 
         'body' => request('body'),
-
-        // 'category' => request('category'),
 
         'disable_comments' => $disable_comments
 
@@ -79,11 +75,5 @@ public function createcategory ()
      return redirect ('/posts/create');
   }
 
-    public function sort($category)
-    {
-      $posts = Post::latest()->where('category', $category)->get();
-      $categories = Post::select('category')->distinct()->get();
-      return view('posts.category', compact('posts', 'categories'));
-    }
 
 }
