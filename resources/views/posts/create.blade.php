@@ -14,6 +14,7 @@
 
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
+
 @include ('layouts.errors')
 
 <strong>Enter Blog post here</strong>
@@ -25,7 +26,11 @@
   <div id="inputfield"></div>
     <input placeholder="Title" name="title" type="text" id="title" ></br>
     <br>
-  
+    Category/categories <br/>
+  @foreach ($categories as $category)
+     
+      <input type='checkbox' value='{{$category->id}}' name='category[]'> {{$category->name}} <br/>
+@endforeach 
      <div id='textexpander'>
        Tip: typ '@' in het tekstveld om de text expander te gebruiken
      </div>

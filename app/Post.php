@@ -32,12 +32,16 @@ class Post extends Model
 
             $query->whereYear('created_at', $filters['year']);
         }
+        if (isset($filters['user_id'])) {
 
-        if (isset($filters['category'])) {
-
-            $query->where('category', $filters['category']);
+            $query->where('user_id', $filters['user']);
         }
+
+        
     }
+
+
+
 
 	public function categories()
 		{

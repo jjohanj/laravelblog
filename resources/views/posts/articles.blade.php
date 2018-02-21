@@ -9,6 +9,8 @@
   {{ $post->categories->pluck('name') }}
 </div>
 
-<div class='postdate'><strong>{{$post->user->name}} </strong>posted on {{$post->created_at}} </div>
+<div class='postdate'><a href="/?user={{ $post->user->id }}"><strong>{{$post->user->name}} </strong></a> posted on {{$post->created_at}} </div>
+
+
 <br>
 <hr>
