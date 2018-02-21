@@ -25,7 +25,7 @@ class PostsController extends Controller
     ->filter(request()->only(['month', 'year','category']))
     ->get();
 
-    $categories = Post::select('category')->distinct()->get();
+    // $categories = Post::select('category')->distinct()->get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
@@ -41,9 +41,9 @@ class PostsController extends Controller
 
         // 'category' => request('category'),
 
-        'disable_comments' => $disable_comments
+        // 'disable_comments' => $disable_comments
 
-      ]);
+
 
     return view ('posts.create', compact('categories'));
   }

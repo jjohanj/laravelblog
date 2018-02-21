@@ -12,12 +12,14 @@ Route::get('posts/show/{id}', 'PostsController@show');
 
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 
+Route::get('/posts/categories/{category}', 'CategoriesController@index');
+
 Route::get('posts/create/category', 'PostsController@createcategory');
 
 Route::post('posts/create/category', 'PostsController@storecategory');
 
 Route::delete('/posts/delete/{id}', [
-    'as' => 'delete_comment_path', 
+    'as' => 'delete_comment_path',
     'uses' => 'CommentsController@delete'
 ]);
 
