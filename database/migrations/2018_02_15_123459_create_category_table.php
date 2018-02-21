@@ -15,10 +15,18 @@ class CreateCategoryTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
         Schema::dropIfExists('table');
+
+        Schema::create('category_post', function (Blueprint $table) {
+            $table->integer('category_id');
+            $table->integer('post_id');
+            $table->primary(['category_id', 'post_id']);
+        });
+        Schema::dropIfExists('table');
+
     }
 
     /**
