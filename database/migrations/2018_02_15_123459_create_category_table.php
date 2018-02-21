@@ -18,14 +18,12 @@ class CreateCategoryTable extends Migration
             $table->string('name')->unique();
             $table->timestamps();
         });
-        Schema::dropIfExists('table');
 
         Schema::create('category_post', function (Blueprint $table) {
-            $table->integer('category_id');
             $table->integer('post_id');
-            $table->primary(['category_id', 'post_id']);
+            $table->integer('category_id');
+            $table->primary(['post_id', 'category_id']);
         });
-        Schema::dropIfExists('table');
 
     }
 
@@ -36,6 +34,8 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table');
+        Schema::dropIfExists('categories');
+
+        Schema::dropIfExists('category_post');
     }
 }

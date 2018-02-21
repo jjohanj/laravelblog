@@ -12,8 +12,8 @@
 
 
 <div class='menu'>
-@foreach ($categories as $category)
-  <a href="posts/{{$category->category}}">{{$category->category}}</a><br />
+@foreach ($posts as $post)
+  <a href="posts/{{$post->categories->pluck('id')}}">{{$post->categories->pluck('name')}}</a><br />
 @endforeach
 </div>
 <div class='main'>

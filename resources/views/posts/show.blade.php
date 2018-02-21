@@ -9,7 +9,11 @@
 
 <div class='articles'>{!!$post->body!!} </div>
 
-<div class='category'>category: {{$post->category}} </div>
+<div class='category'>
+  @foreach ($posts as $post)
+  {{ $post->categories->pluck('name') }}
+  @endforeach
+</div>
 
 @endforeach
 
