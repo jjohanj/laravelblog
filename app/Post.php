@@ -7,16 +7,8 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
-<<<<<<< HEAD
-	Protected $fillable =['user_id', 'title','category','body','disable_comments']; 
-=======
-	//protected $guarded= ['id'];
-<<<<<<< HEAD
-	Protected $fillable =['user_id', 'title','category','body','disable_comments'];
->>>>>>> MultipleCats
-=======
+
 	Protected $fillable =['user_id', 'title','body','disable_comments'];
->>>>>>> MultipleCats
 
 	public function comments()
 	{

@@ -15,25 +15,12 @@ class PostsController extends Controller
   {
     $this->middleware('auth')->except(['index', 'show', 'sort']);
   }
-<<<<<<< HEAD
-  
-  
-=======
-    public function index()
-    {
-      $posts = Post::latest()->get();
-      return view('posts.index', compact('posts'));
-    }
 
-    public function show($id)
-    {
-      $posts = Post::where('id', $id)->get();
->>>>>>> MultipleCats
+
 
 
   public function index()
   {
-<<<<<<< HEAD
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year','category']))
     ->get();
@@ -44,52 +31,19 @@ class PostsController extends Controller
       ->orderByRaw('min(created_at)')
       ->get()
       ->toArray();
-    
+
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
-=======
-    $categories = Category::get();
-
-      return view ('posts.create', compact('categories'));
-  }
-
-     public function store ()
-    {
-      $user= Auth::user()->id;
-      $disable_comments = request('disable_comments');
-
-      $this->validate(request(), [
-       'title' => 'required|max:255',
-       'body' => 'required',
-      ]);
-
-      Post::create([
-        'user_id' => $user,
-
-        'title' => request('title'),
->>>>>>> MultipleCats
 
   public function show($id)
   {
     $posts = Post::where('id', $id)->get();
 
-<<<<<<< HEAD
-    return view('posts.show', compact('posts'));
-  }
-
-<<<<<<< HEAD
-  public function create ()
-  {
-    $categories = Category::get();
-=======
         // 'category' => request('category'),
 
-=======
->>>>>>> MultipleCats
         'disable_comments' => $disable_comments
 
       ]);
->>>>>>> MultipleCats
 
     return view ('posts.create', compact('categories'));
   }
@@ -103,14 +57,14 @@ class PostsController extends Controller
     ]);
 
     auth()->user()->publish(new Post(request(['title', 'body', 'category', 'disable_comments','disable_comments'])));
-      
+
     return redirect ('/');
   }
 
   public function createcategory ()
   {
     $categories = Category::get();
-    
+
     return view ('posts.createcategory', compact('categories'));
   }
 
@@ -121,17 +75,4 @@ class PostsController extends Controller
     return redirect ('/posts/create');
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    public function sort($category)
-    {
-      $posts = Post::latest()->where('category', $category)->get();
-      $categories = Post::select('category')->distinct()->get();
-      return view('posts.category', compact('posts', 'categories'));
-    }
-=======
->>>>>>> MultipleCats
-
->>>>>>> MultipleCats
 }
