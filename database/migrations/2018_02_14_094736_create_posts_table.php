@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->integer('user_id');
             $table->string('title');
             $table->text('body');
-            $table->string('category');
             $table->string('disable_comments');
             $table->timestamps();
         });

@@ -3,12 +3,18 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+@section('scripts')
+  @include ('layouts.texteditexpand')
+@endsection
+
 @extends ('layout')
 
 @section ('content')
   <a href="/">BACK TO HOME PAGE</a><br>
 
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
+
+@include ('layouts.errors')
 
 <strong>Enter Blog post here</strong>
 
@@ -19,9 +25,9 @@
   <div id="inputfield"></div>
     <input placeholder="Title" name="title" type="text" id="title" ></br>
     <br>
-    @foreach ($categories as $category)
+    <!-- @foreach ($categories as $category)
      <input type="radio" name="category" value="{{$category->name}}" checked>{{$category->name}}<br>
-     @endforeach
+     @endforeach -->
      <div id='textexpander'>
        Tip: typ '@' in het tekstveld om de text expander te gebruiken
      </div>
@@ -36,8 +42,4 @@
 </form>
 </div>
 
-@endsection
-
-@section('scripts')
-  @include ('layouts.texteditexpand')
 @endsection

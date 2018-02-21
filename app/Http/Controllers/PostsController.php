@@ -15,12 +15,26 @@ class PostsController extends Controller
   {
     $this->middleware('auth')->except(['index', 'show', 'sort']);
   }
+<<<<<<< HEAD
   
   
+=======
+    public function index()
+    {
+      $posts = Post::latest()->get();
+      // $categories = Post::select('category')->distinct()->get();
+      return view('posts.index', compact('posts', 'categories'));
+    }
+
+    public function show($id)
+    {
+      $posts = Post::where('id', $id)->get();
+>>>>>>> MultipleCats
 
 
   public function index()
   {
+<<<<<<< HEAD
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year','category']))
     ->get();
@@ -34,17 +48,47 @@ class PostsController extends Controller
     
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
+=======
+    $categories = Category::get();
+
+      return view ('posts.create', compact('categories'));
+  }
+
+     public function store ()
+    {
+      $user= Auth::user()->id;
+      $disable_comments = request('disable_comments');
+
+      $this->validate(request(), [
+       'title' => 'required|max:255',
+       'body' => 'required',
+       // 'category' => 'required'
+      ]);
+
+      Post::create([
+        'user_id' => $user,
+
+        'title' => request('title'),
+>>>>>>> MultipleCats
 
   public function show($id)
   {
     $posts = Post::where('id', $id)->get();
 
+<<<<<<< HEAD
     return view('posts.show', compact('posts'));
   }
 
   public function create ()
   {
     $categories = Category::get();
+=======
+        // 'category' => request('category'),
+
+        'disable_comments' => $disable_comments
+
+      ]);
+>>>>>>> MultipleCats
 
     return view ('posts.create', compact('categories'));
   }
@@ -76,4 +120,14 @@ class PostsController extends Controller
     return redirect ('/posts/create');
   }
 
+<<<<<<< HEAD
+=======
+    public function sort($category)
+    {
+      $posts = Post::latest()->where('category', $category)->get();
+      $categories = Post::select('category')->distinct()->get();
+      return view('posts.category', compact('posts', 'categories'));
+    }
+
+>>>>>>> MultipleCats
 }

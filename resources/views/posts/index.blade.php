@@ -7,9 +7,14 @@
 
 
 <div class='menu'>
+<<<<<<< HEAD
 	<h2> Categories </h2>
 @foreach ($categories as $category)
   <a href="/?category={{$category->category}}">{{$category->category}}</a><br />
+=======
+@foreach ($posts as $post)
+  <a href="posts/{{$post->categories->pluck('id')}}">{{$post->categories->pluck('name')}}</a><br />
+>>>>>>> MultipleCats
 @endforeach
 
 <h2> Archives </h2>

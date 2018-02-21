@@ -9,18 +9,18 @@
   Existing categories:
 <div id="form">
   <ul>
-@foreach ($categories as $category)
+<!-- @foreach ($categories as $category)
      <li> {{$category->name}}</li>
-@endforeach
+@endforeach -->
 <ul>
 
 <form action="/posts/create/category" method="POST">
   {{ csrf_field() }}
 
   <div id="inputfield"></div>
-    <input placeholder="category" name="name" type="name" id="title" required></br>
+    <!-- <input placeholder="category" name="name" type="name" id="title" required></br>
 
-    <button type="submit">Add category!</button></br>
+    <button type="submit">Add category!</button></br> -->
   </div>
 </form>
 

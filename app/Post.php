@@ -7,7 +7,12 @@ use Carbon\Carbon;
 
 class Post extends Model
 {
+<<<<<<< HEAD
 	Protected $fillable =['user_id', 'title','category','body','disable_comments']; 
+=======
+	//protected $guarded= ['id'];
+	Protected $fillable =['user_id', 'title','category','body','disable_comments'];
+>>>>>>> MultipleCats
 
 	public function comments()
 	{
@@ -38,5 +43,9 @@ class Post extends Model
         }
     }
 
+	public function categories()
+		{
+			return $this->belongsToMany(Category::class);
+		}
 
 }

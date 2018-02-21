@@ -100,8 +100,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'body' => [
+            'required' => 'Oops! Your blog post is empty.',
+        ],
+        'title' => [
+            'required' => 'Oops! Your blog post does not have a title.',
         ],
     ],
 
