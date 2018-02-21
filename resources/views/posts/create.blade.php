@@ -29,12 +29,8 @@
     <textarea rows="20" placeholder="Blog tekst" name="body" type="text" required></textarea></br>
 
 
-<<<<<<< HEAD
-  <input type="hidden" value ="no" name="disable_comments">   
-=======
->>>>>>> texteditor
   <input type='checkbox' value='yes' name='disable_comments'> Disable comments <br/>
-  
+
     <button type="submit">Plaats blog op de website!</button></br>
 
 </form>
