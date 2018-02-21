@@ -14,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('layouts.sidebar', function ($view) {
-          $view->with('categories', \App\Category::pluck('name'));
 
+          $view->with('categories', \App\Category::pluck('name'));
 
         });
     }

@@ -42,9 +42,10 @@ class PostsController extends Controller
         // 'category' => request('category'),
 
         // 'disable_comments' => $disable_comments
+      }
 
-
-
+  public function create ()
+  {
     return view ('posts.create', compact('categories'));
   }
 

@@ -25,9 +25,7 @@
   <div id="inputfield"></div>
     <input placeholder="Title" name="title" type="text" id="title" ></br>
     <br>
-    <!-- @foreach ($categories as $category)
-     <input type="radio" name="category" value="{{$category->name}}" checked>{{$category->name}}<br>
-     @endforeach -->
+  
      <div id='textexpander'>
        Tip: typ '@' in het tekstveld om de text expander te gebruiken
      </div>
