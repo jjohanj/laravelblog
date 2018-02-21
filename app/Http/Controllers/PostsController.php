@@ -41,8 +41,13 @@ class PostsController extends Controller
     {
       $user= Auth::user()->id;
       $disable_comments = request('disable_comments');
-     
-    
+
+      $this->validate(request(), [
+       'title' => 'required|max:255',
+       'body' => 'required',
+       'category' => 'required'
+      ]);
+
       Post::create([
         'user_id' => $user,
 
@@ -53,7 +58,7 @@ class PostsController extends Controller
         'category' => request('category'),
 
         'disable_comments' => $disable_comments
-        
+
       ]);
 
       return redirect ('/');
