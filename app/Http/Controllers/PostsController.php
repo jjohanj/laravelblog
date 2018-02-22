@@ -56,7 +56,7 @@ public function search($searchTerm)
     $userid = $user->id;
     $posts = User::find($userid)->posts()->get();
      
-$categories = Category::get();
+    $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
