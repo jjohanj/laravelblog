@@ -1,7 +1,7 @@
 
 <div class='menu'>
 
-	<h2> Search: <h2>
+	
 		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
             
             <div class="input-group">

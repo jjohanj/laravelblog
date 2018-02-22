@@ -55,6 +55,7 @@ public function search($searchTerm)
     $user = User::where('name' , '=', $username)->first();
     $userid = $user->id;
     $posts = User::find($userid)->posts()->get();
+     //Auth::user()->id == $userid;
      
 $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')

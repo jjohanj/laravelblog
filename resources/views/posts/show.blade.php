@@ -27,11 +27,14 @@
 		<strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong>
 		{{$comment->body}} &nbsp
 @if(Auth::check())
+@if (Auth::user()->id == $post->user_id)
+
 <form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
     <input type="hidden" name="_method" value="delete" />
     {!! csrf_field() !!}
     <button class="commentsdel">Delete</button>
 </form><br />
+@endif
 @endif
 
 
@@ -71,3 +74,6 @@
 
 
 @endsection
+
+
+ 
