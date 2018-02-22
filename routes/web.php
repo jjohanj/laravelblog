@@ -28,7 +28,7 @@ Route::delete('/posts/delete/{id}', [
 
 Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
 Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
-
+Route::get('/{profileId}/show', 'ProfileController@show');
 Route::get('/logout', 'SessionsController@destroy');
 Auth::routes();
 

@@ -36,11 +36,33 @@ $user->followers()->detach(auth()->user()->id);
 return redirect()->back()->with('success', 'Successfully unfollowed the user.');
 }
 
-public function show(int $userId)
+public function show($userId)
 {
     $user = User::find($userId);
     $followers = $user->followers;
-    $followings = $user->followings;
-    return view('user.show', compact('user', 'followers' , 'followings'));
+    $followings = $user->followings()->get();
+
+    $posts = array();
+
+    foreach ($followings as $following){
+    	$tempPosts = $following->posts()->latest()->get();;
+    	
+    	foreach ($tempPosts as $tempPost){
+    		$posts[]=$tempPost;
+    	}
+    }
+
+    $categories = Category::get();
+    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+      ->groupBy('year', 'month')
+      ->orderByRaw('min(created_at)')
+      ->get()
+      ->toArray();
+
+     
+
+    return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+
 }
 }
+

@@ -2,6 +2,7 @@
 
 @section ('content')
 <a href="posts/create">NEW BLOG POST</a><br />
+<a href="/{{ Auth::user()->id}}/show"><strong>following </strong></a> 
 
 @include ('layouts.sidebar')
 
