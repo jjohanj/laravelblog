@@ -2,7 +2,7 @@
 
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
-@include ('layouts.sidebar')
+
 <div class='main'>
 @foreach ($posts as $post)
  <h3> {{$post->title}}</h3>
