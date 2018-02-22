@@ -11,7 +11,7 @@ Route::post('/posts', 'PostsController@store');
 Route::get('posts/show/{id}', 'PostsController@show');
 Route::get('posts/user/{id}', 'PostsController@FromUser');
 
-
+Route::post('/posts/search/', 'PostsController@search' );
 
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 

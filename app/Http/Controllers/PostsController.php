@@ -16,14 +16,18 @@ class PostsController extends Controller
   {
     $this->middleware('auth')->except(['index', 'show', 'sort']);
   }
+public function search($searchTerm)
+  {
+    $posts = Post::search($searchTerm)->get();
+  }
 
-
+    
 
 
   public function index()
   {
     $posts = Post::latest()
-    ->filter(request()->only(['month', 'year', 'user']))
+    ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
 
     $categories = Category::get();
@@ -40,10 +44,12 @@ class PostsController extends Controller
 
   public function show($id)
   {
-    $posts = Post::where('id', $id)->get();
 
+    $posts = Post::where('id', $id)->get();
+    return view ('posts.show', compact('posts')); 
        
       }
+
 public function FromUser($id)
   {
     

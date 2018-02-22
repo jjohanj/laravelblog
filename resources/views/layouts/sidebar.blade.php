@@ -1,8 +1,19 @@
 
 <div class='menu'>
+
+	<h2> Search: <h2>
+		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
+            
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Search for..." value="{{ isset($search) ? $search : '' }}">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="submit">Search</button>
+                </span>
+            </div>
+        </form>
 	<h2> Categories </h2>
 
-@foreach ($categories as $category)
+	@foreach ($categories as $category)
   <a href="/posts/categories/{{ $category }}">
     {{ $category }}
   </a><br />

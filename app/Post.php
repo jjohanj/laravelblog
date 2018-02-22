@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
+
 class Post extends Model
-{
+{   
+
 
 	Protected $fillable =['user_id', 'title','body','disable_comments'];
 
@@ -36,6 +38,12 @@ class Post extends Model
 
             $query->where('user_id', $filters['user']);
         }
+        if (isset($filters['search'])) {
+
+            $query->where('title','LIKE','%'.$filters['search'].'%')->orWhere('body','LIKE','%'.$filters['search'].'%');  
+        }
+
+        
 
         
     }
