@@ -15,7 +15,7 @@ Route::post('/posts/search/', 'PostsController@search' );
 
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 
-Route::get('/posts/categories/{category}', 'CategoriesController@index');
+Route::get('/categories/{category}', 'CategoriesController@index');
 
 Route::get('posts/create/category', 'CategoriesController@create');
 

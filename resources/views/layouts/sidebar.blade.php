@@ -1,7 +1,7 @@
 
 <div class='menu'>
 
-	<h2> Search: <h2>
+	
 		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
             
             <div class="input-group">
@@ -14,7 +14,7 @@
 	<h2> Categories </h2>
 
 	@foreach ($categories as $category)
-  <a href="/posts/categories/{{ $category }}">
+  <a href="/categories/{{ $category }}">
     {{ $category }}
   </a><br />
 @endforeach

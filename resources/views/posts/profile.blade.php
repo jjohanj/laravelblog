@@ -6,6 +6,7 @@
 <div class='main'>
 @foreach ($posts as $post)
  <h3> {{$post->title}}</h3>
+ <p> The edit and delete functions will be here soonTM</p>
 
 <div class='articles'>{!!$post->body!!} </div>
 
