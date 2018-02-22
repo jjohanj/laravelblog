@@ -22,7 +22,7 @@ Route::get('posts/create/category', 'CategoriesController@create');
 Route::post('posts/create/category', 'CategoriesController@store');
 
 Route::get('/edit/post/{id}','PostsController@edit');
-Route::post('/edit/post/{id}','PostsController@update');
+Route::patch('/edit/post/{id}','PostsController@update');
 
 Route::delete('/posts/delete/{id}', [
     'as' => 'delete_comment_path',

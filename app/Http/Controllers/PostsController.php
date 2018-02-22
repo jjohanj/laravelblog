@@ -134,4 +134,18 @@ public function search($searchTerm)
 
     }
 
+    public function update(Request $request, $id)
+    {
+        // $post = new Post();
+        // $data = $this
+        request()->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+
+        Post::find($id)->update($request->all());
+        return redirect('/');
+
+      }
+
 }
