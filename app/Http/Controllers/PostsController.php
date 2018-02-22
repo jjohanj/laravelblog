@@ -22,9 +22,6 @@ public function search($searchTerm)
     $posts = Post::search($searchTerm)->get();
   }
 
-
-
-
   public function index()
   {
     $posts = Post::latest()
@@ -37,8 +34,6 @@ public function search($searchTerm)
       ->orderByRaw('min(created_at)')
       ->get()
       ->toArray();
-
-
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
@@ -60,7 +55,7 @@ public function search($searchTerm)
 
     $posts = User::find($userid)->posts()->get();
      //Auth::user()->id == $userid;
-     
+
     $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
@@ -71,23 +66,11 @@ public function search($searchTerm)
       if (Auth::user()->id == $userid) {
          //add delete and edit options
       return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-        
-    } 
+
+    }
 
     return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-
-      
-
-     
-
-
-
-    
-
       }
-
-
-
 
   public function create ()
   {
@@ -105,7 +88,7 @@ public function search($searchTerm)
     ]);
     $user_id = Auth::user()->id;
     $title=request('title');
-    
+
     // $post = new Post;
     //
     // $post->title = request('title');
@@ -134,6 +117,29 @@ public function search($searchTerm)
     return view ('posts.createcategory', compact('categories'));
   }
 
+  public function edit($id)
+    {
 
+    $post = Post::where('user_id', auth()->user()->id)
+                    ->where('id', $id)
+                    ->first();
+
+    return view('posts.edit', compact('post', 'id'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        // $post = new Post();
+        // $data = $this
+        request()->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+        ]);
+
+        Post::find($id)->update($request->all());
+        return redirect('/');
+
+      }
 
 }
