@@ -31,12 +31,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+    public function followers()
+{
+    return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id')->withTimestamps();
+}
 
-    public function publish(Post $post)
-    {
-        $this->posts()->save($post);
+/**
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+ */
+public function followings()
+{
+    return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
+}
 
-        
-
-    }
+   
 }

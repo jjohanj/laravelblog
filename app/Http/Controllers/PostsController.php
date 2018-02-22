@@ -70,11 +70,11 @@ public function search($searchTerm)
 
       if (Auth::user()->id == $userid) {
          //add delete and edit options
-      return view('posts.profile', compact('posts', 'categories', 'archives'));
+      return view('posts.profile', compact('posts', 'categories', 'archives','user'));
         
     } 
 
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+    return view('posts.profile', compact('posts', 'categories', 'archives','user'));
 
       
 

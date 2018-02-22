@@ -2,6 +2,16 @@
 
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
+<form action="{{ route('user.follow', $user->id) }}" method="post">
+      {!! csrf_field() !!}
+    <button class="profilefollow">Follow {{$user->name}}</button>
+</form><br />
+
+<form action="{{ route('user.unfollow', $user->id) }}" method="post">
+       {!! csrf_field() !!}
+    <button class="profileunfollow">unfollow {{$user->name}}</button>
+</form><br />
+
 
 <div class='main'>
 @foreach ($posts as $post)
