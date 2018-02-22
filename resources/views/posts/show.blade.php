@@ -3,8 +3,10 @@
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
 
+
 <div class='main'>
 @foreach ($posts as $post)
+
  <h3> {{$post->title}}</h3>
 
 <div class='articles'>{!!$post->body!!} </div>
@@ -16,7 +18,7 @@
 </div>
 
 @endforeach
-
+<a href="/edit/post/{{ $post->id }}"> Edit this Post</a><br />
 <hr>
 @if ($post->disable_comments == 'no')
  <div class="comments">

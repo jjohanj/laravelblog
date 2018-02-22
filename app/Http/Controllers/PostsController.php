@@ -55,7 +55,7 @@ public function search($searchTerm)
     $user = User::where('name' , '=', $username)->first();
     $userid = $user->id;
     $posts = User::find($userid)->posts()->get();
-     
+
     $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
@@ -67,11 +67,11 @@ public function search($searchTerm)
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
 
-   
 
 
 
-    
+
+
 
       }
 
@@ -94,7 +94,7 @@ public function search($searchTerm)
     ]);
     $user_id = Auth::user()->id;
     $title=request('title');
-    
+
     // $post = new Post;
     //
     // $post->title = request('title');
@@ -123,6 +123,15 @@ public function search($searchTerm)
     return view ('posts.createcategory', compact('categories'));
   }
 
+  public function edit($id)
+    {
 
+    $post = Post::where('user_id', auth()->user()->id)
+                    ->where('id', $id)
+                    ->first();
+
+    return view('posts.edit', compact('post', 'id'));
+
+    }
 
 }
