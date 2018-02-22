@@ -22,9 +22,6 @@ public function search($searchTerm)
     $posts = Post::search($searchTerm)->get();
   }
 
-
-
-
   public function index()
   {
     $posts = Post::latest()
@@ -37,8 +34,6 @@ public function search($searchTerm)
       ->orderByRaw('min(created_at)')
       ->get()
       ->toArray();
-
-
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
@@ -59,12 +54,8 @@ public function search($searchTerm)
 
 
     $posts = User::find($userid)->posts()->get();
-<<<<<<< HEAD
      //Auth::user()->id == $userid;
-     
-=======
 
->>>>>>> updatepost
     $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
@@ -75,27 +66,11 @@ public function search($searchTerm)
       if (Auth::user()->id == $userid) {
          //add delete and edit options
       return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-        
-    } 
+
+    }
 
     return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-
-      
-
-<<<<<<< HEAD
-     
-=======
->>>>>>> updatepost
-
-
-
-
-
-
       }
-
-
-
 
   public function create ()
   {
