@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
@@ -49,13 +50,32 @@ public function search($searchTerm)
     return view ('posts.show', compact('posts'));
 
       }
-
-public function FromUser($id)
+  public function fromUser($username)
   {
+    $user = User::where('name' , '=', $username)->first();
+    $userid = $user->id;
+    $posts = User::find($userid)->posts()->get();
+     
+$categories = Category::get();
+    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+      ->groupBy('year', 'month')
+      ->orderByRaw('min(created_at)')
+      ->get()
+      ->toArray();
 
 
+
+    return view('posts.index', compact('posts', 'categories', 'archives'));
+
+   
+
+
+
+    
 
       }
+
+
 
 
   public function create ()
