@@ -21,7 +21,7 @@ public function search($searchTerm)
     $posts = Post::search($searchTerm)->get();
   }
 
-    
+
 
 
   public function index()
@@ -46,15 +46,15 @@ public function search($searchTerm)
   {
 
     $posts = Post::where('id', $id)->get();
-    return view ('posts.show', compact('posts')); 
-       
+    return view ('posts.show', compact('posts'));
+
       }
 
 public function FromUser($id)
   {
-    
 
-           
+
+
       }
 
 
@@ -64,14 +64,9 @@ public function FromUser($id)
     return view ('posts.create', compact('categories'));
   }
 
-  public function store ()
+  public function store (Request $request)
   {
 
-     $categories = request('category');
-
-   
-
-    $user_id = Auth::user()->id;
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
@@ -80,27 +75,25 @@ public function FromUser($id)
     $user_id = Auth::user()->id;
     $title=request('title');
     
-    Post::create([
+    // $post = new Post;
+    //
+    // $post->title = request('title');
+    // $post->body = request('body');
+    // $post->user_id = Auth()->id();
+    //
+    // $post->save();
+
+    $categories = $request->category;
+
+    $post = Post::create([
         'title' => request('title'),
         'body' => request('body'),
         'disable_comments' => request('disable_comments'),
         'user_id' => $user_id
-      ]);
+      ])->categories()->attach($categories);;
 
+    return redirect('/');
 
-    $postid = Post::where('title', $title)->pluck('id');
-  
-    foreach ($categories as $category){ 
-
-      DB::table('category_post')->insert([
-        [
-            'post_id'      => $postid,
-            'category_id'  => $category
-        ]
-    ]);
-}
-
-   
   }
 
   public function createcategory ()
@@ -110,6 +103,6 @@ public function FromUser($id)
     return view ('posts.createcategory', compact('categories'));
   }
 
-  
+
 
 }
