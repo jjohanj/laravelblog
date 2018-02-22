@@ -15,7 +15,7 @@ Route::post('/posts/search/', 'PostsController@search' );
 
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 
-Route::get('/posts/categories/{category}', 'CategoriesController@index');
+Route::get('/categories/{category}', 'CategoriesController@index');
 
 Route::get('posts/create/category', 'CategoriesController@create');
 
@@ -26,6 +26,9 @@ Route::delete('/posts/delete/{id}', [
     'uses' => 'CommentsController@delete'
 ]);
 
+Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
+Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
+Route::get('/{profileId}/show', 'ProfileController@show');
 Route::get('/logout', 'SessionsController@destroy');
 Auth::routes();
 

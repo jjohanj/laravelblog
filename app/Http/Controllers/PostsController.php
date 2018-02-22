@@ -54,7 +54,12 @@ public function search($searchTerm)
   {
     $user = User::where('name' , '=', $username)->first();
     $userid = $user->id;
+
+
+
+
     $posts = User::find($userid)->posts()->get();
+     //Auth::user()->id == $userid;
      
     $categories = Category::get();
     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
@@ -63,11 +68,17 @@ public function search($searchTerm)
       ->get()
       ->toArray();
 
+      if (Auth::user()->id == $userid) {
+         //add delete and edit options
+      return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+        
+    } 
 
+    return view('posts.profile', compact('posts', 'categories', 'archives','user'));
 
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+      
 
-   
+     
 
 
 
