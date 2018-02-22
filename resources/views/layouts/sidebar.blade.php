@@ -14,7 +14,7 @@
 	<h2> Categories </h2>
 
 	@foreach ($categories as $category)
-  <a href="/posts/categories/{{ $category }}">
+  <a href="/categories/{{ $category }}">
     {{ $category }}
   </a><br />
 @endforeach

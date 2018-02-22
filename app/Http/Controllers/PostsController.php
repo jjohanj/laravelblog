@@ -54,6 +54,10 @@ public function search($searchTerm)
   {
     $user = User::where('name' , '=', $username)->first();
     $userid = $user->id;
+
+
+
+
     $posts = User::find($userid)->posts()->get();
      //Auth::user()->id == $userid;
      
@@ -64,11 +68,17 @@ $categories = Category::get();
       ->get()
       ->toArray();
 
-
+      if (Auth::user()->id == $userid) {
+         //add delete and edit options
+      return view('posts.profile', compact('posts', 'categories', 'archives'));
+        
+    } 
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
 
-   
+      
+
+     
 
 
 
