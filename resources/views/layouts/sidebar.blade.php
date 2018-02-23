@@ -1,6 +1,6 @@
 
 <div class='menu'>
-
+@if (Auth::check())
 	 <a href="/all">
    Show All
   </a><br />
@@ -13,7 +13,7 @@
                 </span>
             </div>
         </form>
-
+@endif
         
 	<h2> Categories </h2>
 

@@ -1,7 +1,10 @@
 @extends ('layout')
 
 @section ('content')
+
+@if (Auth::check())
 <a href="posts/create">NEW BLOG POST</a><br />
+@endif
 @if(Auth::check())
 <a href="/{{ Auth::user()->id}}/show"><strong>following </strong></a> 
 @endif
