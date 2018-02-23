@@ -1,17 +1,15 @@
 
-@extends ('layout')
-@section ('content')
- <a href="/">BACK TO ALL POSTS</a><br />
- <!-- <div class='menu'>
-
- @foreach ($categories as $category)
-   <a href="/posts/{{$category->category}}">{{$category->category}}</a><br />
- @endforeach
- </div> -->
- <div class='main'>
 @foreach ($posts as $post)
-  @include ('posts.articles')
-@endforeach
+<h3> <a href="/posts/show/{{$post->id}}">{{$post->title}}</a>  </h3>
+
+<div class='articles'>{!!$post->body!!} </div>
+
+<div class='category'>
+  {{ $post->categories->pluck('name') }}
 </div>
 
-@endsection
+<div class='postdate'> <a href="/user/{{ $post->user->name}}"><strong>{{$post->user->name}} </strong></a> Posted on {{$post->created_at}} </div>
+<br>
+<hr id="theline">
+
+@endforeach
