@@ -13,12 +13,8 @@ class CategoriesController extends Controller
     {
 
       $posts = $category->posts;
-
-      $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-      ->groupBy('year', 'month')
-      ->orderByRaw('min(created_at)')
-      ->get()
-      ->toArray();
+$archives = $this->archives();
+      
 
       return view ('posts.category', compact('posts'));
     }
@@ -37,5 +33,21 @@ class CategoriesController extends Controller
     return redirect ('/posts/create');
   }
 
-
+private function archives() 
+    {
+        return Post::orderBy('created_at', 'desc')
+            ->whereNotNull('created_at')
+            ->get()
+            ->groupBy(function(Post $post) {
+                return $post->created_at->format('F');
+            })
+            ->map(function ($item) {
+                return $item
+                    ->sortByDesc('created_at')
+                    ->groupBy( function ( $item ) {
+                        return $item->created_at->format('Y');
+                    });
+                
+            });
+    }
 }
