@@ -24,6 +24,37 @@ public function search($searchTerm)
 
   public function index()
   {
+
+    if(Auth::check()) {
+
+    $user = User::find($userId);
+    $followers = $user->followers;
+    $followings = $user->followings()->get();
+
+    $posts = array();
+
+    foreach ($followings as $following){
+      $tempPosts = $following->posts()->latest()->get();;
+      
+      foreach ($tempPosts as $tempPost){
+        $posts[]=$tempPost;
+      }
+    }
+
+    $categories = Category::get();
+    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+      ->groupBy('year', 'month')
+      ->orderByRaw('min(created_at)')
+      ->get()
+      ->toArray();
+
+     
+
+    return view('posts.index', compact('posts', 'categories', 'archives','user'));
+
+
+
+    }
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
