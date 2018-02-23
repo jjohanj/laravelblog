@@ -49,11 +49,7 @@ $user = User::where('name' , '=', $username)->first();
        $posts = User::find($userid)->posts()->latest()
     ->filter(request()->only(['month', 'year']))
     ->get();
-     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-      ->groupBy('year', 'month')
-      ->orderByRaw('min(created_at)')
-      ->get()
-      ->toArray();
+      $archives = $this->archives();
      if(Auth::check()){
 
     $follower=  Auth::user();
@@ -89,5 +85,22 @@ $user = User::where('name' , '=', $username)->first();
      }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
 
       }
+      private function archives() 
+    {
+        return Post::orderBy('created_at', 'desc')
+            ->whereNotNull('created_at')
+            ->get()
+            ->groupBy(function(Post $post) {
+                return $post->created_at->format('F');
+            })
+            ->map(function ($item) {
+                return $item
+                    ->sortByDesc('created_at')
+                    ->groupBy( function ( $item ) {
+                        return $item->created_at->format('Y');
+                    });
+                
+            });
+    }
 
 }

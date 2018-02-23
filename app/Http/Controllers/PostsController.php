@@ -42,11 +42,16 @@ $userid = Auth::user()->id;
     }
 
     $categories = Category::get();
-    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+    $archives = $this->archives();
+    /*$archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
       ->get()
-      ->toArray();
+      ->toArray(); */
+
+
+
+        
 
 
 
@@ -60,11 +65,13 @@ $userid = Auth::user()->id;
     ->get();
 
     $categories = Category::get();
-    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+
+     $archives = $this->archives();
+    /*$archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
       ->get()
-      ->toArray();
+      ->toArray(); */
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
@@ -75,11 +82,12 @@ $posts = Post::latest()
     ->get();
 
     $categories = Category::get();
-    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+     $archives = $this->archives();
+    /*$archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
       ->get()
-      ->toArray();
+      ->toArray(); */
 
     return view('posts.index', compact('posts', 'categories', 'archives'));
 
@@ -91,52 +99,6 @@ $posts = Post::latest()
     $posts = Post::where('id', $id)->get();
     return view ('posts.show', compact('posts'));
 
-      }
-  public function fromUser($username)
-  {
-$user = User::where('name' , '=', $username)->first();
-
-    $userid = $user->id;
-    $posts = User::find($userid)->posts()->get();
-     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-      ->groupBy('year', 'month')
-      ->orderByRaw('min(created_at)')
-      ->get()
-      ->toArray();
-     if(Auth::check()){
- 
-    $follower=  Auth::user();
-    $followings = $follower->followings()->pluck('leader_id');;
-    $followed=array();
-    $isfollowing=FALSE;
-    foreach ($followings as $following){
-        $followed[]=$following;
-      }
-
-
-    if (in_array($userid, $followed)) {
-    $isfollowing=TRUE;
-    }
-
-
-
-    $posts = User::find($userid)->posts()->get();
-     //Auth::user()->id == $userid;
-
-    $categories = Category::get();
-   
-
-
-      if (Auth::user()->id == $userid) {
-         //add delete and edit options
-      return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-
-    }
-
-    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing'));
-
-     }return view('posts.profile', compact('posts', 'categories', 'archives','user'));
-   
       }
 
   public function create ()
@@ -156,13 +118,7 @@ $user = User::where('name' , '=', $username)->first();
     $user_id = Auth::user()->id;
     $title=request('title');
 
-    // $post = new Post;
-    //
-    // $post->title = request('title');
-    // $post->body = request('body');
-    // $post->user_id = Auth()->id();
-    //
-    // $post->save();
+    
 
     $categories = $request->category;
 
@@ -217,5 +173,21 @@ $user = User::where('name' , '=', $username)->first();
         return redirect('/')
                       ->with('success','Blogpost deleted successfully');
       }
-
+private function archives() 
+    {
+        return Post::orderBy('created_at', 'desc')
+            ->whereNotNull('created_at')
+            ->get()
+            ->groupBy(function(Post $post) {
+                return $post->created_at->format('F');
+            })
+            ->map(function ($item) {
+                return $item
+                    ->sortByDesc('created_at')
+                    ->groupBy( function ( $item ) {
+                        return $item->created_at->format('Y');
+                    });
+                
+            });
+    }
 }

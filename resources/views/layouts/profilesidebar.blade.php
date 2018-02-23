@@ -37,12 +37,15 @@
 </div style="max-height: 100px; overflow: scroll;">
 <h2> Archives </h2>
 
-@foreach ($archives as $archive)
-  <a href="?month={{ $archive['month'] }}&year={{ $archive['year'] }}">
-
-  {{$archive['month'] . ' ' . $archive['year']}}
-
-</a><br />
+@foreach($archives as $year => $months)
+    <h6 class="mb-0">
+      <a href="?month={{$year}}">
+        {{ $year }}
+      </a><br>
+    </h6>
 @endforeach
+
+
+
 
 </div>
