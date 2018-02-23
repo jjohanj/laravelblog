@@ -21,14 +21,16 @@
         </form><br>
 
 
-<h2> Followers </h2>
+<h2> Followers: <small> {{count($sidebar_followers)}} </small></h2>
+
 <div>
 @foreach ($sidebar_followers as $sidebar_follower)
   <a href="/user/{{ $sidebar_follower->name}}"><strong>{{$sidebar_follower->name}} </strong></a> <br />
 @endforeach
 </div style="max-height: 100px; overflow-y: scroll;">
 <div>
-<h2> Following</h2>
+<h2> Following: <small>{{count($sidebar_followings)}}</small></h2>
+
 @foreach ($sidebar_followings as $sidebar_following)
   <a href="/user/{{ $sidebar_following}}"><strong>{{$sidebar_following}} </strong></a> <br />
 @endforeach
