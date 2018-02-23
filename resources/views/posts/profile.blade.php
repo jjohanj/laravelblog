@@ -28,11 +28,13 @@
 		@endif
 	@endif
 @else
+<div class="alert alert-info">
 <p> <a href="/login">
     Log in
   </a> or <a href="/register">
     register
   </a> to follow  {{$user->name}} </p>
+</div>
 @endif
 @include ('layouts.sidebar')
 <div class='main'>
