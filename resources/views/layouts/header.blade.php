@@ -1,8 +1,12 @@
 
 <div class="header clearfix">
 <nav>
-  <div class="nav nav-pills pull-left">
-  <h2>Julia en Johan's <sub> en Arend's </sub> Blog</h2>
+ <div class="nav nav-pills pull-left">
+  @if (@isset ($user))
+<h2>{{$user->blog_name}}</h2>
+@else
+<h2>Julia en Arend's Blog</h2>
+@endif
   </div>
   <ul class="nav nav-pills pull-right">
     @if(Auth::check())
