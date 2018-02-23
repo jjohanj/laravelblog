@@ -6,7 +6,7 @@
 	  @if(Auth::check())
 
     
-	<a href="/user/{{Auth::user()->name}}"><strong>Hello {{Auth::user()->name}}</strong></a>
+	<a href="/user/{{Auth::user()->name}}"><strong>Hello {{Auth::user()->name}}</strong></a><br />
 	<a href="posts/create"><em>Write a new Blogpost</em></a><br />
 	<a href="/all">Show All</a><br>
 	@else
