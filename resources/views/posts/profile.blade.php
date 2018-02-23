@@ -3,25 +3,34 @@
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
 
-@if ( Auth::user()->id  !=  $user->id)
+@if (Auth::check())
 
-@if ($isfollowing == FALSE )
+	@if ( Auth::user()->id  !=  $user->id)
+
+		@if ($isfollowing == FALSE )
 	
-<form action="{{ route('user.follow', $user->id) }}" method="post">
-      {!! csrf_field() !!}
-    <button class="profilefollow">Follow {{$user->name}}</button>
-</form><br />
+		<form action="{{ route('user.follow', $user->id) }}" method="post">
+		      {!! csrf_field() !!}
+		    <button class="profilefollow">Follow {{$user->name}}</button>
+		</form><br />
 
-@endif
+		@endif
 
-@if ($isfollowing == TRUE )
-	
-<form action="{{ route('user.unfollow', $user->id) }}" method="post">
-       {!! csrf_field() !!}
-    <button class="profileunfollow">unfollow {{$user->name}}</button>
-</form><br />	
+		@if ($isfollowing == TRUE )
+		
+		<form action="{{ route('user.unfollow', $user->id) }}" method="post">
+		       {!! csrf_field() !!}
+		    <button class="profileunfollow">unfollow {{$user->name}}</button>
+		</form><br />	
 
-@endif
+		@endif
+	@endif
+@else
+<p> <a href="/login">
+    Log in 
+  </a> or <a href="/register">
+    register
+  </a> to follow  {{$user->name}} </p>
 @endif
 
 

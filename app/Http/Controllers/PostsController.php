@@ -15,7 +15,7 @@ class PostsController extends Controller
 
   public function __construct()
   {
-    $this->middleware('auth')->except(['index', 'show', 'sort']);
+    $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
 public function search($searchTerm)
   {
@@ -94,9 +94,12 @@ $posts = Post::latest()
       }
   public function fromUser($username)
   {
-    $user = User::where('name' , '=', $username)->first();
-    
+$user = User::where('name' , '=', $username)->first();
+
     $userid = $user->id;
+    $posts = User::find($userid)->posts()->get();
+     if(Auth::check()){
+ 
     $follower=  Auth::user();
     $followings = $follower->followings()->pluck('leader_id');;
     $followed=array();
@@ -122,6 +125,7 @@ $posts = Post::latest()
       ->get()
       ->toArray();
 
+
       if (Auth::user()->id == $userid) {
          //add delete and edit options
       return view('posts.profile', compact('posts', 'categories', 'archives','user'));
@@ -129,6 +133,9 @@ $posts = Post::latest()
     }
 
     return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing'));
+
+     }return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+   
       }
 
   public function create ()
