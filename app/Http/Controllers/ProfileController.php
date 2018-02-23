@@ -41,7 +41,9 @@ public function show($username)
 
  
 $user = User::where('name' , '=', $username)->first();
-
+$followings = count($user ->followings()->get());
+    $followers = count($user ->followers()->get());
+  
     $userid = $user->id;
        $posts = User::find($userid)->posts()->latest()
     ->filter(request()->only(['month', 'year']))
@@ -54,7 +56,7 @@ $user = User::where('name' , '=', $username)->first();
      if(Auth::check()){
  
     $follower=  Auth::user();
-    $followings = $follower->followings()->pluck('leader_id');;
+    $followings = $follower->followings()->pluck('leader_id');
     $followed=array();
     $isfollowing=FALSE;
     foreach ($followings as $following){
@@ -77,13 +79,13 @@ $user = User::where('name' , '=', $username)->first();
 
       if (Auth::user()->id == $userid) {
          //add delete and edit options
-      return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+      return view('posts.profile', compact('posts', 'categories', 'archives','user','followings','followers'));
 
     }
 
-    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing'));
+    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'followings','followers'));
 
-     }return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+     }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'followings','followers'));
    
       }
 
