@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-   
+
 public function followUser($profileId)
-{ 
+{
   $user = User::find($profileId);
   if(! $user) {
-    
-     return redirect()->back()->with('error', 'User does not exist.'); 
+
+     return redirect()->back()->with('error', 'User does not exist.');
  }
 
 $user->followers()->attach(auth()->user()->id);
@@ -29,8 +29,8 @@ public function unFollowUser($profileId)
 {
   $user = User::find($profileId);
   if(! $user) {
-    
-     return redirect()->back()->with('error', 'User does not exist.'); 
+
+     return redirect()->back()->with('error', 'User does not exist.');
  }
 $user->followers()->detach(auth()->user()->id);
 return redirect()->back()->with('success', 'Successfully unfollowed the user.');
@@ -39,11 +39,11 @@ return redirect()->back()->with('success', 'Successfully unfollowed the user.');
 public function show($username)
   {
 
- 
+
 $user = User::where('name' , '=', $username)->first();
-$followings = count($user ->followings()->get());
+    $followings = count($user ->followings()->get());
     $followers = count($user ->followers()->get());
-  
+
     $userid = $user->id;
        $posts = User::find($userid)->posts()->latest()
     ->filter(request()->only(['month', 'year']))
@@ -54,7 +54,7 @@ $followings = count($user ->followings()->get());
       ->get()
       ->toArray();
      if(Auth::check()){
- 
+
     $follower=  Auth::user();
     $followings = $follower->followings()->pluck('leader_id');
     $followed=array();
@@ -74,7 +74,7 @@ $followings = count($user ->followings()->get());
      //Auth::user()->id == $userid;
 
     $categories = Category::get();
-   
+
 
 
       if (Auth::user()->id == $userid) {
@@ -86,8 +86,7 @@ $followings = count($user ->followings()->get());
     return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'followings','followers'));
 
      }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'followings','followers'));
-   
+
       }
 
 }
-

@@ -38,7 +38,7 @@
 </div>
 </div>
 @endif
-@include ('layouts.sidebar')
+@include ('layouts.profilesidebar')
 <div class='main'>
 
 @foreach ($posts as $post)
