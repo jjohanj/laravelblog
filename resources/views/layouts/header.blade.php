@@ -1,6 +1,8 @@
 <h2> 
-@if (@isset ($user->blogname))
-{{$user->blogname}}
+@if (@isset ($user->blog_name))
+{{$user->blog_name}}
+@else
+    	Julia en Johan's <sub> en Arend's </sub> Blog 
 @endif
-	Julia en Johan's <sub> en Arend's </sub> Blog 
+
 </h2>

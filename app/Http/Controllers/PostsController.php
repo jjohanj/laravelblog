@@ -95,7 +95,7 @@ $posts = Post::latest()
   public function fromUser($username)
   {
     $user = User::where('name' , '=', $username)->first();
-    return $user->blog_name;
+    
     $userid = $user->id;
     $follower=  Auth::user();
     $followings = $follower->followings()->pluck('leader_id');;
