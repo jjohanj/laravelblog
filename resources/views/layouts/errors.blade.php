@@ -2,7 +2,7 @@
 
 <div class="form-group">
 
-  <div class="alert alert-danger">
+  <div class="alert alert-warning">
 
     <ul>
 

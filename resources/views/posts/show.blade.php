@@ -18,7 +18,7 @@
 </div>
 
 @endforeach
-<a href="/edit/post/{{ $post->id }}"> Edit this Post</a><br />
+<a href="/edit/post/{{ $post->id }}"> Edit or Delete this Post</a><br />
 <hr>
 @if ($post->disable_comments == 'no')
  <div class="comments">
@@ -76,6 +76,3 @@
 
 
 @endsection
-
-
- 

@@ -11,4 +11,4 @@
 
 <div class='postdate'> <a href="/user/{{ $post->user->name}}"><strong>{{$post->user->name}} </strong></a> Posted on {{$post->created_at}} </div>
 <br>
-<hr>
+<hr id="theline">

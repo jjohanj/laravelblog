@@ -19,25 +19,40 @@
 <div id="form">
   <div id='form'>
     <form method="post" action="{{action('PostsController@update', $id)}}" >
-          {{csrf_field()}}
-          <input name="_method" type="hidden" value="PATCH">
-          <div id="inputfield"></div>
-              <input type="hidden" value="{{csrf_token()}}" name="_token" />
-              <label for="title">Title:</label>
-              <input type="text" class="form-control" name="title" value={{$post->title}} /></br>
-              <br>
-          </div>
-          <div class="form-group">
-              <label for="description">Content:</label>
-              <textarea cols="5" rows="5" class="form-control" name="body">{{$post->body}}</textarea>
-          </div>
+      {{csrf_field()}}
 
-<input type='hidden' value='no' name='disable_comments'><br/>
-  <input type='checkbox' value='yes' name='disable_comments'> Disable comments <br/>
+      <input name="_method" type="hidden" value="PATCH">
 
-    <button type="submit">Update</button></br>
+      <div id="inputfield"></div>
+
+        <input type="hidden" value="{{csrf_token()}}" name="_token" />
+
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" name="title" value={{$post->title}} /></br>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="description">Content:</label>
+        <textarea cols="5" rows="5" class="form-control" name="body">{{$post->body}}</textarea>
+
+      </div>
+
+      <input type='hidden' value='no' name='disable_comments'><br/>
+      <input type='checkbox' value='yes' name='disable_comments'> Disable comments <br/>
+
+    <button class="btn btn-primary" type="submit">Update</button></br>
 
 </form>
+  <form method="post" action="{{action('PostsController@destroy', $id)}}">
+    {{csrf_field()}}
+
+    <input name="_method" type="hidden" value="DELETE">
+
+    <button class='btn btn-danger' type="submit" >Delete</button>
+  </form>
+
 </div>
 
 

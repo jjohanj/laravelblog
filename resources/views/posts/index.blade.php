@@ -6,9 +6,14 @@
 <a href="posts/create">NEW BLOG POST</a><br />
 @endif
 @if(Auth::check())
-<a href="/{{ Auth::user()->id}}/show"><strong>following </strong></a> 
+
+<!-- <a href="/{{ Auth::user()->id}}/show">following</a> -->
+
 @endif
+
 @include ('layouts.sidebar')
+
+@include ('layouts.success')
 
 <div class='main'>
 
