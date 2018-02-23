@@ -22,14 +22,17 @@
 
 
 <h2> Followers </h2>
+<div>
 @foreach ($sidebar_followers as $sidebar_follower)
   <a href="/user/{{ $sidebar_follower->name}}"><strong>{{$sidebar_follower->name}} </strong></a> <br />
 @endforeach
+</div style="max-height: 100px; overflow-y: scroll;">
+<div>
 <h2> Following</h2>
 @foreach ($sidebar_followings as $sidebar_following)
   <a href="/user/{{ $sidebar_following}}"><strong>{{$sidebar_following}} </strong></a> <br />
 @endforeach
-
+</div style="max-height: 100px; overflow-y: scroll;">
 <h2> Archives </h2>
 
 @foreach ($archives as $archive)
