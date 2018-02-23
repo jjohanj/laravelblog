@@ -2,15 +2,30 @@
 
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
+
+
+
+@if ($isfollowing == FALSE )
+	
 <form action="{{ route('user.follow', $user->id) }}" method="post">
       {!! csrf_field() !!}
     <button class="profilefollow">Follow {{$user->name}}</button>
 </form><br />
 
+@endif
+
+@if ($isfollowing == TRUE )
+	
 <form action="{{ route('user.unfollow', $user->id) }}" method="post">
        {!! csrf_field() !!}
     <button class="profileunfollow">unfollow {{$user->name}}</button>
-</form><br />
+</form><br />	
+
+@endif
+
+
+
+
 
 
 <div class='main'>

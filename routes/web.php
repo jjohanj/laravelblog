@@ -3,6 +3,7 @@
 Route::get('/', 'PostsController@index');
 
 Route::get('/user/{username}', 'PostsController@fromUser');
+Route::get('/all', 'PostsController@showAll');
 
 Route::get('posts/create', 'PostsController@create');
 

@@ -27,7 +27,7 @@ public function search($searchTerm)
 
     if(Auth::check()) {
 $userid = Auth::user()->id;
-    $user = User::find($userId);
+    $user = User::find($userid);
     $followers = $user->followers;
     $followings = $user->followings()->get();
 
@@ -69,6 +69,22 @@ $userid = Auth::user()->id;
     return view('posts.index', compact('posts', 'categories', 'archives'));
   }
 
+  public function showAll(){
+$posts = Post::latest()
+    ->filter(request()->only(['month', 'year', 'user','search']))
+    ->get();
+
+    $categories = Category::get();
+    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+      ->groupBy('year', 'month')
+      ->orderByRaw('min(created_at)')
+      ->get()
+      ->toArray();
+
+    return view('posts.index', compact('posts', 'categories', 'archives'));
+
+  }
+
   public function show($id)
   {
 
@@ -80,7 +96,18 @@ $userid = Auth::user()->id;
   {
     $user = User::where('name' , '=', $username)->first();
     $userid = $user->id;
+    $follower=  Auth::user();
+    $followings = $follower->followings()->pluck('leader_id');;
+    $followed=array();
+    $isfollowing=FALSE;
+    foreach ($followings as $following){
+        $followed[]=$following;
+      }
 
+
+    if (in_array($userid, $followed)) {
+    $isfollowing=TRUE;
+    } 
 
 
 
@@ -100,7 +127,7 @@ $userid = Auth::user()->id;
 
     }
 
-    return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing'));
       }
 
   public function create ()

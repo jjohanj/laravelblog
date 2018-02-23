@@ -1,7 +1,9 @@
 
 <div class='menu'>
 
-	
+	 <a href="/all">
+   Show All
+  </a><br />
 		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
             
             <div class="input-group">
@@ -11,6 +13,8 @@
                 </span>
             </div>
         </form>
+
+        
 	<h2> Categories </h2>
 
 	@foreach ($categories as $category)
