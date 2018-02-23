@@ -25,6 +25,20 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="blog_name" class="col-md-4 col-form-label text-md-right">Name your Blog</label>
+
+                            <div class="col-md-6">
+                                <input id="blog_name" type="text" class="form-control{{ $errors->has('blog_name') ? ' is-invalid' : '' }}" name="blog_name" value="{{ old('blog_name') }}" required autofocus>
+
+                                @if ($errors->has('blog_name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('blog_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
