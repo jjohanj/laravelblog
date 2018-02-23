@@ -3,7 +3,7 @@
 @section ('content')
 <a href="/">BACK TO MAIN MENU</a><br />
 
-
+@if ( Auth::user()->id  !=  $user->id)
 
 @if ($isfollowing == FALSE )
 	
@@ -21,6 +21,7 @@
     <button class="profileunfollow">unfollow {{$user->name}}</button>
 </form><br />	
 
+@endif
 @endif
 
 
