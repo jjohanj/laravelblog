@@ -36,33 +36,56 @@ $user->followers()->detach(auth()->user()->id);
 return redirect()->back()->with('success', 'Successfully unfollowed the user.');
 }
 
-public function show($userId)
-{
-    $user = User::find($userId);
-    $followers = $user->followers;
-    $followings = $user->followings()->get();
+public function show($username)
+  {
 
-    $posts = array();
+ 
+$user = User::where('name' , '=', $username)->first();
 
-    foreach ($followings as $following){
-    	$tempPosts = $following->posts()->latest()->get();;
-    	
-    	foreach ($tempPosts as $tempPost){
-    		$posts[]=$tempPost;
-    	}
-    }
-
-    $categories = Category::get();
-    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+    $userid = $user->id;
+       $posts = User::find($userid)->posts()->latest()
+    ->filter(request()->only(['month', 'year']))
+    ->get();
+     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
       ->groupBy('year', 'month')
       ->orderByRaw('min(created_at)')
       ->get()
       ->toArray();
+     if(Auth::check()){
+ 
+    $follower=  Auth::user();
+    $followings = $follower->followings()->pluck('leader_id');;
+    $followed=array();
+    $isfollowing=FALSE;
+    foreach ($followings as $following){
+        $followed[]=$following;
+      }
 
-     
 
-    return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+    if (in_array($userid, $followed)) {
+    $isfollowing=TRUE;
+    }
 
-}
+
+
+    $posts = User::find($userid)->posts()->get();
+     //Auth::user()->id == $userid;
+
+    $categories = Category::get();
+   
+
+
+      if (Auth::user()->id == $userid) {
+         //add delete and edit options
+      return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+
+    }
+
+    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing'));
+
+     }return view('posts.profile', compact('posts', 'categories', 'archives','user'));
+   
+      }
+
 }
 

@@ -2,7 +2,7 @@
 
 Route::get('/', 'PostsController@index');
 
-Route::get('/user/{username}', 'PostsController@fromUser');
+Route::get('/user/{username}', 'ProfileController@show');
 Route::get('/all', 'PostsController@showAll');
 
 Route::get('posts/create', 'PostsController@create');

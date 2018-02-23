@@ -33,7 +33,7 @@
 <h2> Archives </h2>
 
 @foreach ($archives as $archive)
-  <a href="/?month={{ $archive['month'] }}&year={{ $archive['year'] }}">
+  <a href="?month={{ $archive['month'] }}&year={{ $archive['year'] }}">
 
   {{$archive['month'] . ' ' . $archive['year']}}
 
