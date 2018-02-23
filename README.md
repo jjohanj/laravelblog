@@ -3,7 +3,7 @@
 
 Link naar trello:
 
-https://trello.com/b/i2aJPbbp/laravel-blog-opdracht
+https://trello.com/b/NdrZDHLd/laravel
 
 Link naar Heroku:
 
