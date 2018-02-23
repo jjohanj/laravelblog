@@ -1,7 +1,7 @@
 @extends ('layout')
 
 @section ('content')
-<a href="/">BACK TO MAIN MENU</a><br />
+
 
 @if (Auth::check())
 
