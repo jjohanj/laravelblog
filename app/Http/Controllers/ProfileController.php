@@ -41,8 +41,9 @@ public function show($username)
 
 
 $user = User::where('name' , '=', $username)->first();
-    $followings = count($user ->followings()->get());
-    $followers = count($user ->followers()->get());
+    $sidebar_followings = $user ->followings()->pluck('name');
+    
+    $sidebar_followers = $user ->followers()->get();
 
     $userid = $user->id;
        $posts = User::find($userid)->posts()->latest()
@@ -79,13 +80,13 @@ $user = User::where('name' , '=', $username)->first();
 
       if (Auth::user()->id == $userid) {
          //add delete and edit options
-      return view('posts.profile', compact('posts', 'categories', 'archives','user','followings','followers'));
+      return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
 
     }
 
-    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'followings','followers'));
+    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
 
-     }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'followings','followers'));
+     }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
 
       }
 

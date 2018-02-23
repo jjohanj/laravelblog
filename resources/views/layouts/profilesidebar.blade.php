@@ -20,7 +20,15 @@
             </div>
         </form><br>
 
-Followers: {{$followers}} <br>
+
+<h2> Followers </h2>
+@foreach ($sidebar_followers as $sidebar_follower)
+  <a href="/user/{{ $sidebar_follower->name}}"><strong>{{$sidebar_follower->name}} </strong></a> <br />
+@endforeach
+<h2> Following</h2>
+@foreach ($sidebar_followings as $sidebar_following)
+  <a href="/user/{{ $sidebar_following}}"><strong>{{$sidebar_following}} </strong></a> <br />
+@endforeach
 
 <h2> Archives </h2>
 
