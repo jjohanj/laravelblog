@@ -10,7 +10,7 @@
 	<a href="/register">Register</a><br />
 	@endif
 	 <br />
-		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
+		 <form action="?search={{ isset($search) ? $search : '' }}" method="GET">
 
             <div class="input-group">
                 <input type="text" class="form-control" style="width: 100%" name="search" placeholder="Search for..." value="{{ isset($search) ? $search : '' }}">
