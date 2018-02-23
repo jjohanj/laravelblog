@@ -26,7 +26,7 @@ public function search($searchTerm)
   {
 
     if(Auth::check()) {
-
+$userid = Auth::user()->id;
     $user = User::find($userId);
     $followers = $user->followers;
     $followings = $user->followings()->get();
