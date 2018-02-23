@@ -35,7 +35,7 @@ $userid = Auth::user()->id;
 
     foreach ($followings as $following){
       $tempPosts = $following->posts()->latest()->get();;
-      
+
       foreach ($tempPosts as $tempPost){
         $posts[]=$tempPost;
       }
@@ -48,7 +48,7 @@ $userid = Auth::user()->id;
       ->get()
       ->toArray();
 
-     
+
 
     return view('posts.index', compact('posts', 'categories', 'archives','user'));
 
@@ -107,7 +107,7 @@ $posts = Post::latest()
 
     if (in_array($userid, $followed)) {
     $isfollowing=TRUE;
-    } 
+    }
 
 
 
@@ -164,7 +164,8 @@ $posts = Post::latest()
         'user_id' => $user_id
       ])->categories()->attach($categories);;
 
-    return redirect('/');
+    return redirect('/')
+                      ->with('success','Blogpost posted successfully');;
 
   }
 
@@ -196,8 +197,16 @@ $posts = Post::latest()
         ]);
 
         Post::find($id)->update($request->all());
-        return redirect('/');
+        return redirect('/')
+                      ->with('success','Blogpost updated successfully');
 
+      }
+
+      public function destroy($id)
+      {
+        Post::find($id)->delete();
+        return redirect('/')
+                      ->with('success','Blogpost deleted successfully');
       }
 
 }

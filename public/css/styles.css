@@ -1,5 +1,5 @@
 
-h2 {
+/* h2 {
   border: 1px solid #97b498;
   border-radius: 4px;
   padding-top: 12px;
@@ -7,17 +7,22 @@ h2 {
   padding-left: 8px;
   background-color: #fbfffc;
 
-}
+} */
 
 textarea {
   margin-top: 4px;
   width: 100%;
 }
 
+#theline {
+color: #245580;
+background-color: #245580;
+height: 2px;
+}
 
 h3 {
   font-size: 18px;
-  background-color: #97b498;
+  background-color: #fbfffc;
   padding: 2px;
 }
 
@@ -71,9 +76,10 @@ button {
 .menu {
   padding-top: 12px;
   padding-left: 4px;
+  padding-right: 4px;
   float: left;
   background-color: #fbfffc;
-  font-size: 20px;
+  font-size: 18px;
   width:19%;
   border: 1px solid #97b498;
   margin-top: 8px;
@@ -106,7 +112,6 @@ button {
 
 #container {
   width: 80%;
-  background-color: #c8e6c9;
   height: auto;
   margin-left:  5em;
   margin-right: 5em;
