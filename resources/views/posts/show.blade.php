@@ -18,7 +18,12 @@
 </div>
 
 @endforeach
+
+@if(Auth::check())
+@if (Auth::user()->id == $post->user_id)
 <a href="/edit/post/{{ $post->id }}"> Edit or Delete this Post</a><br />
+@endif
+@endif
 <hr>
 @if ($post->disable_comments == 'no')
  <div class="comments">

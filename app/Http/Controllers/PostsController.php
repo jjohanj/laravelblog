@@ -98,6 +98,11 @@ $user = User::where('name' , '=', $username)->first();
 
     $userid = $user->id;
     $posts = User::find($userid)->posts()->get();
+     $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+      ->groupBy('year', 'month')
+      ->orderByRaw('min(created_at)')
+      ->get()
+      ->toArray();
      if(Auth::check()){
  
     $follower=  Auth::user();
@@ -119,11 +124,7 @@ $user = User::where('name' , '=', $username)->first();
      //Auth::user()->id == $userid;
 
     $categories = Category::get();
-    $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-      ->groupBy('year', 'month')
-      ->orderByRaw('min(created_at)')
-      ->get()
-      ->toArray();
+   
 
 
       if (Auth::user()->id == $userid) {

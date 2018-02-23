@@ -4,7 +4,7 @@
 
 
 
-@include ('layouts.sidebar')
+
 
 @if (Auth::check())
 
@@ -34,7 +34,7 @@
     register
   </a> to follow  {{$user->name}} </p>
 @endif
-
+@include ('layouts.sidebar')
 <div class='main'>
 
 @foreach ($posts as $post)
