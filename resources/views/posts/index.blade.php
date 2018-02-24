@@ -1,12 +1,11 @@
 @extends ('layout')
 
 @section ('content')
-<a href="posts/create">NEW BLOG POST</a><br />
-<div class='menu'>
-@foreach ($categories as $category)
-  <a href="posts/{{$category->category}}">{{$category->category}}</a><br />
-@endforeach
-</div>
+
+@include ('layouts.sidebar')
+
+@include ('layouts.success')
+
 <div class='main'>
 
 @foreach ($posts as $post)

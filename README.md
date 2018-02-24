@@ -1,17 +1,10 @@
-"# laravelblog" 
+"# laravelblog"
 
 
-Link naar trello: 
+Link naar trello:
 
-https://trello.com/b/i2aJPbbp/laravel-blog-opdracht
+https://trello.com/b/NdrZDHLd/laravel
 
 Link naar Heroku:
 
-voorpagina: 
-
 http://secure-beyond-84289.herokuapp.com/
-
-Form om een blogentry te maken:
-
-https://secure-beyond-84289.herokuapp.com/posts/create
-
