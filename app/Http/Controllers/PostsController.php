@@ -30,23 +30,29 @@ public function search($searchTerm){
       $followers = $user->followers;
       $followings = $user->followings()->get();
 
-      $posts = array();
+      $postsarray = array();
 
       foreach ($followings as $following){
-        $tempPosts = $following->posts()->latest()->get();;
+        $tempPosts = $following->posts()->get();
 
         foreach ($tempPosts as $tempPost){
           $posts[]=$tempPost;
         }
+
       }
+    $posts = array_reverse(array_sort($posts, function ($value) {
+      return $value['created_at'];
+    }));
+
 
     $categories = Category::get();
     $archives = $this->archives();
     return view('posts.index', compact('posts', 'categories', 'archives','user'));
     }
-    
+
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year', 'user','search']))
+    ->latest()
     ->get();
 
     $categories = Category::get();
@@ -139,7 +145,7 @@ public function search($searchTerm){
                   ->groupBy( function ( $item ) {
                     return $item->created_at->format('Y');
                   });
-                
+
             });
   }
 }
