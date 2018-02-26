@@ -24,7 +24,7 @@
   Haven't posted 5 times yet? Please contact us!
 </div>
 @else
-  <h4> You have {{$postsLeft}} posts left (what is this?) </h4>
+  <h4> You have {{$postsLeft}} posts left (<a href="/info">what is this?</a>) </h4>
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
 

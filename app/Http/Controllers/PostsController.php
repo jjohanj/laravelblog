@@ -85,7 +85,9 @@ public function search($searchTerm){
   }
 
   public function store (Request $request){
-
+    $postTotal = Post::count();
+    //$userRole = Auth::user()->role;
+    if ($postTotal <5){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
@@ -104,6 +106,10 @@ public function search($searchTerm){
 
     return redirect('/')
       ->with('success','Blogpost posted successfully');;
+    }else {
+      redirect('/')
+        ->with('success','error, max posts reached');;
+    }
   }
 
   public function createcategory (){
