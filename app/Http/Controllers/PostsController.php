@@ -76,8 +76,12 @@ public function search($searchTerm){
   }
 
   public function create (){
+      $postTotal = Post::count();
+
+      $postsLeft = 5 - $postTotal ;
+
     $categories = Category::get();
-    return view ('posts.create', compact('categories'));
+    return view ('posts.create', compact('categories','postsLeft'));
   }
 
   public function store (Request $request){
@@ -148,4 +152,6 @@ public function search($searchTerm){
 
             });
   }
+
+
 }
