@@ -76,7 +76,8 @@ public function search($searchTerm){
   }
 
   public function create (){
-      $postTotal = Post::count();
+
+      $postTotal = Post::where('user_id', auth()->user()->id)->count();
 
       $postsLeft = 5 - $postTotal ;
 
@@ -85,7 +86,7 @@ public function search($searchTerm){
   }
 
   public function store (Request $request){
-    $postTotal = Post::count();
+    $postTotal = Post::where('user_id', auth()->user()->id)->count();
     //$userRole = Auth::user()->role;
     if ($postTotal <5){ //Or $userRole = "pay"
     $this->validate(request(), [
