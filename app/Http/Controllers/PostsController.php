@@ -30,7 +30,7 @@ public function search($searchTerm){
       $followers = $user->followers;
       $followings = $user->followings()->get();
 
-      $postsarray = array();
+      $posts = array();
 
       foreach ($followings as $following){
         $tempPosts = $following->posts()->get();
