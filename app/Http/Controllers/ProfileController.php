@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
-
+  public function info()
+  {
+      return view('info');
+  }
   public function followUser($profileId){
     $user = User::find($profileId);
     if(! $user) {
