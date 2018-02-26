@@ -88,14 +88,12 @@ public function search($searchTerm){
       'category' => 'required'
     ]);
 
-    $user_id = Auth::user()->id;
-    $title=request('title');
     $categories = $request->category;
     $post = Post::create([
         'title' => request('title'),
         'body' => request('body'),
         'disable_comments' => request('disable_comments'),
-        'user_id' => $user_id
+        'user_id' => auth()->id()
       ])->categories()->attach($categories);;
 
     return redirect('/')

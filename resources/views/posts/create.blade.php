@@ -14,7 +14,6 @@
 
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
-
 @include ('layouts.errors')
 
 <strong>Enter Blog post here</strong>
