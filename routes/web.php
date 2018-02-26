@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'PostsController@index');
+Route::get('settings', 'ProfileController@settings');
 
 Route::get('/user/{username}', 'ProfileController@show');
 Route::get('/all', 'PostsController@showAll');

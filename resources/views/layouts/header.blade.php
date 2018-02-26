@@ -10,6 +10,7 @@
   </div>
   <ul class="nav nav-pills pull-right">
     @if(Auth::check())
+      <li role="presentation"><a href="/settings"> Settings </a></li>
 	   <li role="presentation"><a href="/logout"> Logout </a></li>
 	  @else
 	 <li role="presentation"><a href="/login"> Login </a></li>

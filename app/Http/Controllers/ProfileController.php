@@ -38,7 +38,7 @@ class ProfileController extends Controller
     $sidebar_followings = $user ->followings()->pluck('name');
     $sidebar_followers = $user ->followers()->get();
     $userid = $user->id;
-    
+
     $posts = User::find($userid)->posts()->latest()
               ->filter(request()->only(['month', 'year']))
       ->get();
@@ -60,7 +60,7 @@ class ProfileController extends Controller
         $categories = Category::get();
 
         if (Auth::user()->id == $userid) {
-                
+
           return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
          }
 
@@ -70,7 +70,7 @@ class ProfileController extends Controller
     return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
 
   }
-      
+
   private function archives(){
         return Post::orderBy('created_at', 'desc')
             ->whereNotNull('created_at')
@@ -84,8 +84,14 @@ class ProfileController extends Controller
                     ->groupBy( function ( $item ) {
                         return $item->created_at->format('Y');
                     });
-                
+
             });
     }
+  public function settings(){
+    $user =  Auth::user();
+    return view ('settings', compact ('user'));
+
+
+  }
 
 }
