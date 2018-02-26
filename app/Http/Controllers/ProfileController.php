@@ -14,79 +14,64 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
 
-public function followUser($profileId)
-{
-  $user = User::find($profileId);
-  if(! $user) {
+  public function followUser($profileId){
+    $user = User::find($profileId);
+    if(! $user) {
+      return redirect()->back()->with('error', 'User does not exist.');
+    }
 
-     return redirect()->back()->with('error', 'User does not exist.');
- }
+    $user->followers()->attach(auth()->user()->id);
+    return redirect()->back()->with('success', 'Successfully followed the user.');
+  }
 
-$user->followers()->attach(auth()->user()->id);
-return redirect()->back()->with('success', 'Successfully followed the user.');
-}
-public function unFollowUser($profileId)
-{
-  $user = User::find($profileId);
-  if(! $user) {
+  public function unFollowUser($profileId){
+    $user = User::find($profileId);
+    if(! $user) {
+      return redirect()->back()->with('error', 'User does not exist.');
+    }
+    $user->followers()->detach(auth()->user()->id);
+    return redirect()->back()->with('success', 'Successfully unfollowed the user.');
+  }
 
-     return redirect()->back()->with('error', 'User does not exist.');
- }
-$user->followers()->detach(auth()->user()->id);
-return redirect()->back()->with('success', 'Successfully unfollowed the user.');
-}
-
-public function show($username)
-  {
-
-
-$user = User::where('name' , '=', $username)->first();
+  public function show($username) {
+    $user = User::where('name' , '=', $username)->first();
     $sidebar_followings = $user ->followings()->pluck('name');
-    
     $sidebar_followers = $user ->followers()->get();
-
     $userid = $user->id;
-       $posts = User::find($userid)->posts()->latest()
-    ->filter(request()->only(['month', 'year']))
-    ->get();
+    
+    $posts = User::find($userid)->posts()->latest()
+              ->filter(request()->only(['month', 'year']))
+      ->get();
       $archives = $this->archives();
      if(Auth::check()){
 
-    $follower=  Auth::user();
-    $followings = $follower->followings()->pluck('leader_id');
-    $followed=array();
-    $isfollowing=FALSE;
-    foreach ($followings as $following){
-        $followed[]=$following;
-      }
+      $follower=  Auth::user();
+      $followings = $follower->followings()->pluck('leader_id');
+      $followed=array();
+      $isfollowing=FALSE;
+        foreach ($followings as $following){
+          $followed[]=$following;
+        }
+        if (in_array($userid, $followed)) {
+          $isfollowing=TRUE;
+        }
 
+        $posts = User::find($userid)->posts()->get();
+        $categories = Category::get();
 
-    if (in_array($userid, $followed)) {
-    $isfollowing=TRUE;
-    }
+        if (Auth::user()->id == $userid) {
+                
+          return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
+         }
 
-
-
-    $posts = User::find($userid)->posts()->get();
-     //Auth::user()->id == $userid;
-
-    $categories = Category::get();
-
-
-
-      if (Auth::user()->id == $userid) {
-         //add delete and edit options
-      return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
-
-    }
-
-    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
-
-     }return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
+      return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
 
       }
-      private function archives() 
-    {
+    return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
+
+  }
+      
+  private function archives(){
         return Post::orderBy('created_at', 'desc')
             ->whereNotNull('created_at')
             ->get()

@@ -10,49 +10,43 @@ use Auth;
 class CommentsController extends Controller
 {
 
-    public function __construct()
+  public function __construct()
   {
-
-
     $this->middleware('auth');
   }
-    public function store($id)
-    {
-        
-        $this->validate(request(), [
-      
+    
+  public function store($id)
+  {
+    $this->validate(request(), [
       'body' => 'required'
-      
-     ]);
-        $user= Auth::user()->id;
-    	Comment::create([
-    		'body' => request('body'),
-    		'post_id' => $id,
-            'user_id' => $user
-    	]);
+    ]);
+    $user= Auth::user()->id;
+    
+    Comment::create([
+    	'body' => request('body'),
+    	'post_id' => $id,
+      'user_id' => $user
+    ]);
 
-    	return back();
+    return back();
+  }
 
-    }
+  public function delete($id)
+  {
+   $post_id = Comment::find($id)->post_id;
+   $user_id = Post::find($post_id)->user_id;
 
-    public function delete($id)
+   if (Auth::user()->id == $user_id) 
     {
+      $comment = Comment::find($id);
+      $commentStatus = $comment->delete();
     
-        $post_id = Comment::find($id)->post_id;
-      $user_id = Post::find($post_id)->user_id;
-
-     if (Auth::user()->id == $user_id) {
-         $comment = Comment::find($id);
-            $commentStatus = $comment->delete();
-    
-            if (!$commentStatus)
-            {
-            return back(); // return a view with a failed flash message
-            }
-    // if the article was deleted successfully
-        return back(); // return a view with a success flash message
-
-    } return back();
-    
-}
+      if (!$commentStatus)
+      {
+        return back(); 
+      }
+        return back(); 
+    } 
+    return back();
+  }
 }
