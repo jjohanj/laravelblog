@@ -8,6 +8,7 @@ use App\User;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\NewPost;
 use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
@@ -76,17 +77,29 @@ class PostsController extends Controller
   }
 
   public function create (){
+
+      $postTotal = Post::where('user_id', auth()->user()->id)->count();
+
+      $postsLeft = 5 - $postTotal ;
+
     $categories = Category::get();
-    return view ('posts.create', compact('categories'));
+    return view ('posts.create', compact('categories','postsLeft'));
   }
 
   public function store (Request $request){
-
+    $postTotal = Post::where('user_id', auth()->user()->id)->count();
+    //$userRole = Auth::user()->role;
+    if ($postTotal <5){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
       'category' => 'required'
     ]);
+
+    $user = Auth::user();
+    $user_id = Auth::user()->id;
+    $title=request('title');
+
 
     $categories = $request->category;
     $post = Post::create([
@@ -96,8 +109,20 @@ class PostsController extends Controller
         'user_id' => auth()->id()
       ])->categories()->attach($categories);;
 
+
+      $followers = $user ->followers()->get();
+      foreach ($followers as $follower){
+          \Mail::to($follower)->send(new NewPost($follower, $user));
+
+      }
+
+
     return redirect('/')
       ->with('success','Blogpost posted successfully');;
+    }else {
+      redirect('/')
+        ->with('success','error, max posts reached');;
+    }
   }
 
   public function createcategory (){
@@ -146,4 +171,6 @@ class PostsController extends Controller
 
             });
   }
+
+
 }

@@ -5,22 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Role;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\NewFollower;
 use Illuminate\Support\Facades\DB;
 
 
 class ProfileController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth')->except(['info', 'show']);
+  }
 
+  public function info()
+  {
+      return view('info');
+  }
   public function followUser($profileId){
     $user = User::find($profileId);
+    $follower=  Auth::user();
     if(! $user) {
       return redirect()->back()->with('error', 'User does not exist.');
     }
 
     $user->followers()->attach(auth()->user()->id);
+          \Mail::to($user)->send(new NewFollower($user , $follower));
     return redirect()->back()->with('success', 'Successfully followed the user.');
   }
 
@@ -34,6 +45,7 @@ class ProfileController extends Controller
   }
 
   public function show($username) {
+    $authuser = Auth::user();
     $user = User::where('name' , '=', $username)->first();
     $sidebar_followings = $user ->followings()->pluck('name');
     $sidebar_followers = $user ->followers()->get();
@@ -43,30 +55,31 @@ class ProfileController extends Controller
               ->filter(request()->only(['month', 'year']))
       ->get();
       $archives = $this->archives();
-     if(Auth::check()){
 
-      $follower=  Auth::user();
-      $followings = $follower->followings()->pluck('leader_id');
-      $followed=array();
-      $isfollowing=FALSE;
-        foreach ($followings as $following){
-          $followed[]=$following;
-        }
-        if (in_array($userid, $followed)) {
-          $isfollowing=TRUE;
-        }
+if(Auth::check()){
 
-        $posts = User::find($userid)->posts()->get();
-        $categories = Category::get();
+  $followings = $authuser->followings()->pluck('leader_id');
+  $followed=array();
+  $isfollowing=FALSE;
+    foreach ($followings as $following){
+      $followed[]=$following;
+    }
+    if (in_array($userid, $followed)) {
+      $isfollowing=TRUE;
+    }
 
-        if (Auth::user()->id == $userid) {
+    $posts = User::find($userid)->posts()->get();
+    $categories = Category::get();
 
-          return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
-         }
+    if ($authuser->id == $userid) {
 
-      return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
+      return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
+     }
 
-      }
+  return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
+
+  }
+
     return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
 
   }
@@ -89,7 +102,8 @@ class ProfileController extends Controller
     }
   public function settings(){
     $user =  Auth::user();
-    return view ('settings', compact ('user'));
+    $role = $user->roles->first();
+    return view ('settings', compact ('user', 'role'));
 
 
   }

@@ -5,10 +5,21 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+/*{
+
+  use EntrustUserTrait; // add this trait to your user model
+    ...
+} */
+
 class User extends Authenticatable
 {
     use Notifiable;
 
+      use EntrustUserTrait; // add this trait to your user model
+    //  use HasRole;
     /**
      * The attributes that are mass assignable.
      *
@@ -44,5 +55,9 @@ public function followings()
     return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
 }
 
-   
+
+
+
+
+
 }

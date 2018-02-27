@@ -1,5 +1,6 @@
 <?php
 
+
 //read/show posts
 Route::get('/', 'PostsController@index');
 
@@ -38,6 +39,8 @@ Route::delete('/posts/delete/{id}', [
 ]);
 
 //User
+Route::get('info', 'ProfileController@info');
+
 Route::get('settings', 'ProfileController@settings');
 
 Route::get('/changepassword', 'SessionsController@changepassword');
@@ -46,6 +49,13 @@ Route::post('/changepassword', 'RegistrationController@edit');
 
 Route::get('/logout', 'SessionsController@destroy');
 
+Route::get('/upgradesubscription', 'RoleController@showUpgrade');
+
+Route::post('/upgradesubscription', 'RoleController@upgrade');
+
+Route::get('/cancelsubscription', 'RoleController@showDowngrade');
+
+Route::post('/cancelsubscription', 'RoleController@downgrade');
 Auth::routes();
 
 //Users;followers
