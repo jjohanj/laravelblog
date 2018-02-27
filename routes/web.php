@@ -6,7 +6,7 @@ return new \App\Billing\Stripe(config('services.stripe.secret'));
 });
 
 $stripe = App::make('App\Billing\Stripe');
-dd($stripe);
+
 
 Route::get('/', 'PostsController@index');
 Route::get('settings', 'ProfileController@settings');
