@@ -6,17 +6,26 @@
 
 <h1> settings </h1>
 
-<h2> Account </h2>
+<h2> {{$user->name}} Account Settings</h2>
+<h3> You are a {{$role->display_name}} </h3>
 <ul>
-  <li>upgrade/downgrade account (more info)</li>
-  <li>change email adress</li>
+  @if ($role->name == 'free_user')
+  <li><a href="/upgradesubscription">upgrade account</a></li>
+  @else
+  <li><a href="/cancelsubscription">cancel your subscription</a></li>
+  @endif
+</ul>
+
+<ul>
+
   <li>change billing information </li>
   <li>Change header image</li>
   <li>Change blog name</li>
 </ul>
 <h2> Theme</h2>
-<h2>Email</h2>
+<h2>Email options</h2>
 <ul>
+  <li>current email adress: {{$user->email}} (change)</li>
   <li>disable comment mail</li>
   <li>disable follower mail</li>
   <li>disable new post mail</li>

@@ -1,7 +1,7 @@
-<h2> Monthly plan: <h2>
-<p> unlimited posts and custom themes, for $4,99/month </p>
+<h2> Cancel your subscription <h2>
+<p> Are you sure? </p>
 
-<form action="/upgradesubscription" method="POST">
+<form action="/cancelsubscription" method="POST">
   {{ csrf_field() }}
 
   <div id="inputfield"></div>
@@ -13,7 +13,7 @@
     <input placeholder="paypal email" name="paypal" type="text" id="paypal" ></br>
     <input placeholder="creditcard" name="creditcard" type="text" id="creditcard" ></br>
     <input type='hidden' value='no' name='agree'><br/>
-    <input type='checkbox' value='yes' name='agree'> I want to upgrade my account <br/>
-    <button class="btn btn-primary" type="submit">Upgrade my account!</button></br>
+
+    <button class="btn btn-primary" type="submit">Cancel my subscription!</button></br>
 
 </form>

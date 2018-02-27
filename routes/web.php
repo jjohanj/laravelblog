@@ -6,6 +6,11 @@ Route::get('info', 'ProfileController@info');
 Route::get('/user/{username}', 'ProfileController@show');
 Route::get('/all', 'PostsController@showAll');
 
+Route::get('/upgradesubscription', 'RoleController@showUpgrade');
+Route::post('/upgradesubscription', 'RoleController@upgrade');
+Route::get('/cancelsubscription', 'RoleController@showDowngrade');
+Route::post('/cancelsubscription', 'RoleController@downgrade');
+
 Route::get('posts/create', 'PostsController@create');
 
 Route::post('/posts', 'PostsController@store');
