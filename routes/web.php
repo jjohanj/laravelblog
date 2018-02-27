@@ -49,7 +49,6 @@ Route::post('/changepassword', 'RegistrationController@edit');
 
 Route::get('/logout', 'SessionsController@destroy');
 
-<<<<<<< HEAD
 Route::get('/upgradesubscription', 'RoleController@showUpgrade');
 
 Route::post('/upgradesubscription', 'RoleController@upgrade');
@@ -57,12 +56,11 @@ Route::post('/upgradesubscription', 'RoleController@upgrade');
 Route::get('/cancelsubscription', 'RoleController@showDowngrade');
 
 Route::post('/cancelsubscription', 'RoleController@downgrade');
-=======
+
 Route::get('/profile/image', 'ProfileController@setImage');
 
 Route::patch('/profile/image', 'ProfileController@update');
 
->>>>>>> [W6-013] blog header afbeelding
 Auth::routes();
 
 //Users;followers
