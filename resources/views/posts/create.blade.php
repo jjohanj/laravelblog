@@ -27,7 +27,6 @@
   <h4> You have {{$postsLeft}} posts left (<a href="/info">what is this?</a>) </h4>
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
-
 @include ('layouts.errors')
 
 <strong>Enter Blog post here</strong>

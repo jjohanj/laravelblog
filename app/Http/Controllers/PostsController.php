@@ -18,7 +18,7 @@ class PostsController extends Controller
     $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
 
-public function search($searchTerm){
+  public function search($searchTerm){
     $posts = Post::search($searchTerm)->get();
   }
 
@@ -95,15 +95,18 @@ public function search($searchTerm){
       'body' => 'required',
       'category' => 'required'
     ]);
+
     $user = Auth::user();
     $user_id = Auth::user()->id;
     $title=request('title');
+
+
     $categories = $request->category;
     $post = Post::create([
         'title' => request('title'),
         'body' => request('body'),
         'disable_comments' => request('disable_comments'),
-        'user_id' => $user_id
+        'user_id' => auth()->id()
       ])->categories()->attach($categories);;
 
 
