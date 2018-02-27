@@ -8,6 +8,7 @@ use App\User;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\NewPost;
 use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
@@ -94,7 +95,7 @@ public function search($searchTerm){
       'body' => 'required',
       'category' => 'required'
     ]);
-
+    $user = Auth::user();
     $user_id = Auth::user()->id;
     $title=request('title');
     $categories = $request->category;
@@ -104,6 +105,14 @@ public function search($searchTerm){
         'disable_comments' => request('disable_comments'),
         'user_id' => $user_id
       ])->categories()->attach($categories);;
+
+
+      $followers = $user ->followers()->get();
+      foreach ($followers as $follower){
+          \Mail::to($follower)->send(new NewPost($follower, $user));
+
+      }
+
 
     return redirect('/')
       ->with('success','Blogpost posted successfully');;
