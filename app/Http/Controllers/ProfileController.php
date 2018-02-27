@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Role;
 use App\Category;
 use Auth;
 use Carbon\Carbon;
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth')->except(['info', 'show']);
+  }
+
   public function info()
   {
       return view('info');
@@ -92,7 +97,10 @@ class ProfileController extends Controller
     }
   public function settings(){
     $user =  Auth::user();
-    return view ('settings', compact ('user'));
+    $role = $user->roles->first();
+
+
+    return view ('settings', compact ('user', 'role'));
 
 
   }
