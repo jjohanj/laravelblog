@@ -23,5 +23,11 @@ class RoleTableSeeder extends Seeder
       $premium_user->display_name = 'Premium User'; // optional
       $premium_user->description  = 'A user who has subscribed'; // optional
       $premium_user->save();
+
+      $admin_user = new Role();
+      $admin_user->name         = 'admin';
+      $admin_user->display_name = 'admin'; // optional
+      $admin_user->description  = 'admin'; // optional
+      $admin_user->save();
     }
 }
