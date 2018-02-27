@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('blog_name')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('role')->default('free');
             $table->rememberToken();
             $table->timestamps();
         });
