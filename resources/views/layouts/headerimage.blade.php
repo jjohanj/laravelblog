@@ -1,6 +1,3 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="{{URL::to('js/tinymce/js/tinymce/jquery.tinymce.min.js')}}"></script>
-<script src="{{URL::to('js/tinymce/js/tinymce/tinymce.min.js')}}"></script>
 
 <div class="col-sm-8">
 
@@ -12,7 +9,7 @@
     <input name="_method" type="hidden" value="PATCH">
 
     <div class="form-group">
-      <label for="email">Set Your Blog's Header Image (it will be set to 150x150px)</label>
+      <label for="email">Set Your Blog's Header Image (it will be set to 150x150)</label>
       <input id="image" type="text"
         class="form-control"
         name="blogimage" placeholder="Example: 'clipart-library.com/images/8cAbXKoXi.png'" required>
@@ -24,13 +21,3 @@
         </div>
       </form>
   </div>
-
-<script>
-tinymce.init({
-selector: "textarea",  // change this value according to your HTML
-plugins: "image",
-menubar: "insert",
-toolbar: "image",
-});
-
-</script>
