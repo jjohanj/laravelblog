@@ -19,12 +19,12 @@
       <label for="new-password">Current Password</label>
       <input id="current-password" type="password" class="form-control"
           name="current-password" required>
-          <br>
+          <br><br>
     <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
       <label for="new-password">New Password</label>
       <input id="new-password" type="password" class="form-control"
           name="new-password" required>
-
+          <br>
     <div class="form-group{{ $errors->has('new-password-confirm') ? ' has-error' : '' }}">
       <label for="new-password-confirm">Confirm new Password</label>
       <input id="new-password-confirm" type="password" class="form-control"
@@ -32,7 +32,7 @@
           <br>
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">Change Password</button>
           </div>
         </div>
   <div>

@@ -10,7 +10,7 @@
 
     @include ('layouts.errors')
 
-    <form method="POST" action="/register">
+    <form method="POST" action="/signup">
     {{csrf_field()}}
 
     <div class="form-group">

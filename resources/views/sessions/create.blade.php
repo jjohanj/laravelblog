@@ -10,7 +10,7 @@
 
     @include ('layouts.errors')
 
-    <form method="POST" action="/login">
+    <form method="POST" action="/logon">
     {{csrf_field()}}
 
     <div class="form-group">
@@ -32,6 +32,14 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </div>
         </div>
+
+  <div class="form-group row mb-0">
+      <div class="col-md-6 offset-md-4">
+        <a href='/password/reset'>
+          <p>Forgot Your Password?
+          </a></p>
+        </div>
+      </div>
   <div>
 
 @endsection

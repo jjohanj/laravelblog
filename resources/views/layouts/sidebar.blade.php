@@ -10,7 +10,7 @@
 	<a href="/posts/create"><em>Write a new Blogpost</em></a><br />
 	<a href="/all">Show All</a><br>
 	@else
-	<a href="/register">Register</a><br />
+	<a href="signup">Register</a><br />
 	@endif
 	 <br />
 		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">

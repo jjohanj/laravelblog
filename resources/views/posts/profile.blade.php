@@ -30,9 +30,9 @@
 @else
 <div id="infobar">
 <div class="alert alert-info">
-<p> <a href="/login">
+<p> <a href="/logon">
     Log in
-  </a> or <a href="/register">
+  </a> or <a href="/signup">
     register
   </a> to follow  {{$user->name}} </p>
 </div>

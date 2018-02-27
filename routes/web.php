@@ -39,13 +39,13 @@ Route::delete('/posts/delete/{id}', [
 ]);
 
 //Users;registration/login
-Route::get('/register', 'RegistrationController@create');
+Route::get('/signup', 'RegistrationController@create');
 
-Route::post('/register', 'RegistrationController@store');
+Route::post('/signup', 'RegistrationController@store');
 
-Route::get('/login', 'SessionsController@create');
+Route::get('/logon', 'SessionsController@create');
 
-Route::post('/login', 'SessionsController@store');
+Route::post('/logon', 'SessionsController@store');
 
 Route::get('/changepassword', 'SessionsController@changepassword');
 
@@ -60,7 +60,7 @@ Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name(
 
 Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
 
-//Auth::routes();
+Auth::routes();
 
 //Route::get('/login', 'LoginController@create');
 //Route::get('/register', 'RegistrationController@create');
