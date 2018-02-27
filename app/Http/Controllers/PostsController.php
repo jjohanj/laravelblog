@@ -17,7 +17,7 @@ class PostsController extends Controller
     $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
 
-public function search($searchTerm){
+  public function search($searchTerm){
     $posts = Post::search($searchTerm)->get();
   }
 

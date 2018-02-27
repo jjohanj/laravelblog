@@ -2,7 +2,6 @@
 
 //read/show posts
 Route::get('/', 'PostsController@index');
-Route::get('settings', 'ProfileController@settings');
 
 Route::get('/all', 'PostsController@showAll');
 
@@ -38,20 +37,16 @@ Route::delete('/posts/delete/{id}', [
     'uses' => 'CommentsController@delete'
 ]);
 
-//Users;registration/login
-Route::get('/signup', 'RegistrationController@create');
-
-Route::post('/signup', 'RegistrationController@store');
-
-Route::get('/logon', 'SessionsController@create');
-
-Route::post('/logon', 'SessionsController@store');
+//User
+Route::get('settings', 'ProfileController@settings');
 
 Route::get('/changepassword', 'SessionsController@changepassword');
 
 Route::post('/changepassword', 'RegistrationController@edit');
 
 Route::get('/logout', 'SessionsController@destroy');
+
+Auth::routes();
 
 //Users;followers
 Route::get('/user/{username}', 'ProfileController@show');
@@ -60,7 +55,7 @@ Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name(
 
 Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
 
-Auth::routes();
+
 
 //Route::get('/login', 'LoginController@create');
 //Route::get('/register', 'RegistrationController@create');
