@@ -13,6 +13,7 @@
   <li>change billing information </li>
   <li>Change header image</li>
   <li>Change blog name</li>
+  <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
 <h2> Theme</h2>
 <h2>Email</h2>
