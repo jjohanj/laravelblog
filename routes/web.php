@@ -38,7 +38,7 @@ Route::delete('/posts/delete/{id}', [
     'uses' => 'CommentsController@delete'
 ]);
 
-//Users
+//Users;registration/login
 Route::get('/register', 'RegistrationController@create');
 
 Route::post('/register', 'RegistrationController@store');
@@ -47,8 +47,13 @@ Route::get('/login', 'SessionsController@create');
 
 Route::post('/login', 'SessionsController@store');
 
+Route::get('/changepassword', 'SessionsController@changepassword');
+
+Route::post('/changepassword', 'RegistrationController@edit');
+
 Route::get('/logout', 'SessionsController@destroy');
 
+//Users;followers
 Route::get('/user/{username}', 'ProfileController@show');
 
 Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');

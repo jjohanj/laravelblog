@@ -8,7 +8,7 @@ class SessionsController extends Controller
 {
     public function __contruct()
     {
-      $this->middleware('guest', ['exept' => 'destroy']);
+      $this->middleware('guest', ['exept' => 'destroy', 'changepassword']);
     }
 
     public function create()
@@ -30,5 +30,10 @@ class SessionsController extends Controller
     {
       auth()->logout();
       return redirect ('/');
+    }
+
+    public function changepassword()
+    {
+      return view('sessions.change');
     }
 }

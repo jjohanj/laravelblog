@@ -17,7 +17,7 @@
       <label for="email">E-mail:</label>
       <input id="email" type="email"
         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-        name="email" value="{{ old('email') }}" required>
+        name="email" required>
     </div>
 
     <div class="form-group">
