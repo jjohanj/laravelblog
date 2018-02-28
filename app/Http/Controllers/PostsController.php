@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Category;
+use App\Role;
 use Auth;
 use Carbon\Carbon;
 use App\Mail\NewPost;
@@ -77,13 +78,21 @@ class PostsController extends Controller
   }
 
   public function create (){
+      $user = Auth::user();
+      $user_role = 'free';
+      if ($user->hasRole('premium_user')){
+        $user_role = "premium";
 
-      $postTotal = Post::where('user_id', auth()->user()->id)->count();
+      }
 
-      $postsLeft = 5 - $postTotal ;
+
+
+      $totalPosts = $user->total_blogposts;
+      $postsLeft = 5 - $totalPosts;
+
 
     $categories = Category::get();
-    return view ('posts.create', compact('categories','postsLeft'));
+    return view ('posts.create', compact('categories','postsLeft','user_role'));
   }
 
   public function store (Request $request){
@@ -99,7 +108,7 @@ class PostsController extends Controller
     $user = Auth::user();
     $user_id = Auth::user()->id;
     $title=request('title');
-
+    User::find($user_id)->increment('total_blogposts');
 
     $categories = $request->category;
     $post = Post::create([

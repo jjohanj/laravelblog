@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'blog_name' => $data['blog_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'total_blogposts' => 0,
         ]);
         $user->roles()->sync($free_user);
         \Mail::to($user)->send(new Welcome($user));

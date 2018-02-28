@@ -26,8 +26,8 @@ class RoleTableSeeder extends Seeder
 
       $admin_user = new Role();
       $admin_user->name         = 'admin';
-      $admin_user->display_name = 'admin'; // optional
-      $admin_user->description  = 'admin'; // optional
+      $admin_user->display_name = 'administrator'; // optional
+      $admin_user->description  = 'Administrator can manage datadumps, billings, etc.'; // optional
       $admin_user->save();
     }
 }

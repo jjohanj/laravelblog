@@ -11,20 +11,16 @@
 
 @section ('content')
 
-
-
-
   <a href="/">BACK TO HOME PAGE</a><br>
 
-  @if ($postsLeft < 1)
 
-<div>
-  Uh Oh, it looks like you've used all your free posts! <br/>
-  Please consider upgrading to our monthly plan for unlimited posts, and access to custom themes. <br/>
-  Haven't posted 5 times yet? Please contact us!
-</div>
-@else
+  @if ($postsLeft > 0)
+
+
+@if ($user_role == 'free')
   <h4> You have {{$postsLeft}} posts left (<a href="/info">what is this?</a>) </h4>
+@endif
+
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
 @include ('layouts.errors')
@@ -56,6 +52,13 @@
 
 </form>
 </div>
+@else
+<div>
+  Uh Oh, it looks like you've used all your free posts! <br/>
+  Please consider upgrading to our monthly plan for unlimited posts, and access to custom themes. <br/>
+  Haven't posted 5 times yet? Please contact us!
+</div>
+
   @endif
 
 @endsection

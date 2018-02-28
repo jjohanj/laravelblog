@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('blog_name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->integer('total_blogposts');
             $table->rememberToken();
             $table->timestamps();
         });
