@@ -21,7 +21,7 @@
 </ul>
 
 <ul>
-
+  <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
   <li>change billing information </li>
   <li id="setimage" onclick="sort()"><a>
   Set Your Blog's Header Image</a>
