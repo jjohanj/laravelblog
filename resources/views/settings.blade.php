@@ -32,13 +32,42 @@
 </ul>
 <h2> Theme</h2>
 <h2>Email options</h2>
-<ul>
-  <li>current email adress: {{$user->email}} (change)</li>
-  <li>disable comment mail</li>
-  <li>disable follower mail</li>
-  <li>disable new post mail</li>
-</ul>
-</div>
+
+
+
+
+
+
+  <p> current email adress: {{$user->email}} (change)</p>
+
+    <form action="/updateNotifications" method="POST">
+      {{ csrf_field() }}
+      @if($notification->enable_newcomment == "yes")
+    <input type='hidden' value='yes' name='enable_commentsmail'><br/>
+      <input type='checkbox' value='no' name='enable_commentsmail'> Disable comment mail <br/>
+    @else
+    <input type='hidden' value='no' name='enable_commentsmail'><br/>
+      <input type='checkbox' value='yes' name='enable_commentsmail'> enable new posts mail <br/>
+    @endif
+
+  @if($notification->enable_newfollower == "yes")
+  <input type='hidden' value='yes' name='enable_followersmail'><br/>
+    <input type='checkbox' value='no' name='enable_followersmail'> Disable new follower mail <br/>
+  @else
+  <input type='hidden' value='no' name='enable_followersmail'><br/>
+    <input type='checkbox' value='yes' name='enable_followersmail'> enable new follower mail <br/>
+  @endif
+
+  @if($notification->enable_newpost == "yes")
+  <input type='hidden' value='yes' name='enable_postsmail'><br/>
+    <input type='checkbox' value='no' name='enable_postsmail'> Disable new posts mail <br/>
+  @else
+  <input type='hidden' value='no' name='enable_postsmail'><br/>
+    <input type='checkbox' value='yes' name='enable_postsmail'> enable new follower mail <br/>
+  @endif
+<button class="btn btn-primary" type="submit">Update settings</button></br>
+</form>
+
 
 <div class="main">
 

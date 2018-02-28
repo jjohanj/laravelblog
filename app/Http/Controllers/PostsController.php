@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Category;
+use App\Role;
+use App\Setting;
 use Auth;
 use Carbon\Carbon;
 use App\Mail\NewPost;
@@ -77,19 +79,28 @@ class PostsController extends Controller
   }
 
   public function create (){
+      $user = Auth::user();
+      $user_role = 'free';
+      if ($user->hasRole('premium_user')){
+        $user_role = "premium";
 
-      $postTotal = Post::where('user_id', auth()->user()->id)->count();
+      }
 
-      $postsLeft = 5 - $postTotal ;
+
+
+      $totalPosts = $user->total_blogposts;
+      $postsLeft = 5 - $totalPosts;
+
 
     $categories = Category::get();
-    return view ('posts.create', compact('categories','postsLeft'));
+    return view ('posts.create', compact('categories','postsLeft','user_role'));
   }
 
   public function store (Request $request){
-    $postTotal = Post::where('user_id', auth()->user()->id)->count();
+    $user = Auth::user();
+    $totalPosts = $user->total_blogposts;
     //$userRole = Auth::user()->role;
-    if ($postTotal <5){ //Or $userRole = "pay"
+    if ($totalPosts <5){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
@@ -99,7 +110,7 @@ class PostsController extends Controller
     $user = Auth::user();
     $user_id = Auth::user()->id;
     $title=request('title');
-
+    User::find($user_id)->increment('total_blogposts');
 
     $categories = $request->category;
     $post = Post::create([
@@ -112,7 +123,20 @@ class PostsController extends Controller
 
       $followers = $user ->followers()->get();
       foreach ($followers as $follower){
+
+        $settings = Setting::where('user_id', $follower->id)->get();
+        $notification = "";
+        foreach ($settings as $setting){
+        $notification = $setting;
+        }
+
+        if ($notification->enable_newpost == 'yes'){
           \Mail::to($follower)->send(new NewPost($follower, $user));
+            };
+
+
+
+
 
       }
 

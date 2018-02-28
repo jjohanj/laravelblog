@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Setting;
 use App\Role;
 use App\Category;
 use Auth;
@@ -31,7 +32,15 @@ class ProfileController extends Controller
     }
 
     $user->followers()->attach(auth()->user()->id);
+    $settings = Setting::where('user_id', $user->id)->get();
+    $notification = "";
+foreach ($settings as $setting){
+  $notification = $setting;
+}
+
+if ($notification->enable_newfollower == 'yes'){
           \Mail::to($user)->send(new NewFollower($user , $follower));
+        };
     return redirect()->back()->with('success', 'Successfully followed the user.');
   }
 
@@ -102,8 +111,16 @@ if(Auth::check()){
     }
   public function settings(){
     $user =  Auth::user();
+    $settings = Setting::where('user_id', $user->id)->get();
+    $notification = "";
+foreach ($settings as $setting){
+  $notification = $setting;
+}
+
+
+
     $role = $user->roles->first();
-    return view ('settings', compact ('user', 'role'));
+    return view ('settings', compact ('user', 'role', 'notification'));
 
   }
 

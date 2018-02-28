@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'blog_name', 'email', 'password',
+        'name', 'blog_name', 'email', 'password' , 'total_blogposts', 'user_id'
     ];
 
     /**
@@ -55,7 +55,10 @@ public function followings()
     return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
 }
 
-
+public function settings()
+{
+    return $this->hasMany(Setting::class);
+}
 
 
 
