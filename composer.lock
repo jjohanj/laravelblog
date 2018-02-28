@@ -4,11 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "45b38efdabe2ad7948123a9ef5bf638f",
-=======
-    "content-hash": "24f6c23c714af5b7953d238fea3190c3",
->>>>>>> [W7-004] genereer excel bestand
+    
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",

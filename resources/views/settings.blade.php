@@ -68,6 +68,7 @@
 <button class="btn btn-primary" type="submit">Update settings</button></br>
 </form>
 
+</div>
 
 <div class="main">
 
