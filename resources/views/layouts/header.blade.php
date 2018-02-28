@@ -4,6 +4,15 @@
  <div class="nav nav-pills pull-left">
   @if (@isset ($user))
 <h2>{{$user->blog_name}}</h2>
+
+  @if (!empty ($user->blogimage))
+  <img src="{{$user->blogimage}}" alt="Header Image" height="150" width="150">
+  @else
+  <img src="http://www.pixempire.com/images/preview/new-user-icon.jpg" alt="anon" width="150" height="151">
+  @endif
+
+
+
 @else
 <h2>Julia en Arend's Blog</h2>
 @endif

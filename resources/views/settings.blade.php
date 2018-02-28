@@ -1,6 +1,10 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 @extends ('layout')
 
 @section ('content')
+
+<div class="menu">
 
 <a href="/">Home</a>
 
@@ -19,12 +23,16 @@
 <ul>
 
   <li>change billing information </li>
+  <li id="setimage" onclick="sort()"><a>
+  Set Your Blog's Header Image</a>
+  <li><br />
   <li>Change header image</li>
   <li>Change blog name</li>
   <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
 <h2> Theme</h2>
 <h2>Email options</h2>
+
 
 
 
@@ -60,4 +68,21 @@
 <button class="btn btn-primary" type="submit">Update settings</button></br>
 </form>
 
+
+<div class="main">
+
+</div>
 @endsection
+
+<script>
+function sort(){
+$.ajax({
+		url: '/profile/image',
+		type: "GET", // not POST, laravel won't allow it
+		success: function(data){
+			$data = $(data); // the HTML content your controller has produced
+			$('.main').fadeOut().html($data).fadeIn();
+			}
+	});
+};
+</script>

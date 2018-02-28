@@ -56,6 +56,11 @@ Route::post('/upgradesubscription', 'RoleController@upgrade');
 Route::get('/cancelsubscription', 'RoleController@showDowngrade');
 
 Route::post('/cancelsubscription', 'RoleController@downgrade');
+
+Route::get('/profile/image', 'ProfileController@setImage');
+
+Route::patch('/profile/image', 'ProfileController@update');
+
 Auth::routes();
 
 //User settings

@@ -122,7 +122,25 @@ foreach ($settings as $setting){
     $role = $user->roles->first();
     return view ('settings', compact ('user', 'role', 'notification'));
 
+  }
 
+  public function setImage()
+  {
+    return view('layouts.headerimage');
+  }
+
+  public function update()
+  {
+      request()->validate([
+        'blogimage' => 'required',
+      ]);
+
+      $user = Auth::user();
+      $user->blogimage = request('blogimage');
+      $user->save();
+
+      return redirect('/')
+             ->with('success','Blog image set');
   }
 
 }
