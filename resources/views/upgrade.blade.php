@@ -4,10 +4,10 @@
 
 @section ('content')
 
-<a href="/">Home</a>
+<a href="/settings">back to settings</a>
 
-<h2> Monthly plan: <h2>
-<p> unlimited posts and custom themes, for $4,99/month </p>
+<h2> unlimited posts, for just $9,99. <h2>
+
 
 
 <form action="/upgradesubscription" method="post" id="payment-form">
@@ -34,10 +34,11 @@
 
     </div>
 
-  <button>Submit Payment</button>
+  <button>PAY UP</button>
     {{ csrf_field() }}
-
 </form>
+
+
 
 
 

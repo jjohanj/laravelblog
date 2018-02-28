@@ -55,7 +55,7 @@
 @else
 <div>
   Uh Oh, it looks like you've used all your free posts! <br/>
-  Please consider upgrading to our monthly plan for unlimited posts, and access to custom themes. <br/>
+  Upgrade your account via the <a href="/settings">settings</a> menu, for unlimited posts! <br/>
   Haven't posted 5 times yet? Please contact us!
 </div>
 
