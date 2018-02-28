@@ -41,7 +41,7 @@ Route::delete('/posts/delete/{id}', [
 //User
 Route::get('info', 'ProfileController@info');
 
-Route::get('settings', 'ProfileController@settings');
+
 
 Route::get('/changepassword', 'SessionsController@changepassword');
 
@@ -57,6 +57,11 @@ Route::get('/cancelsubscription', 'RoleController@showDowngrade');
 
 Route::post('/cancelsubscription', 'RoleController@downgrade');
 Auth::routes();
+
+//User settings
+Route::get('settings', 'ProfileController@settings');
+
+Route::post('/updateNotifications', 'SettingsController@updatemail');
 
 //Users;followers
 Route::get('/user/{username}', 'ProfileController@show');

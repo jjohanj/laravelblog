@@ -32,7 +32,15 @@ class ProfileController extends Controller
     }
 
     $user->followers()->attach(auth()->user()->id);
+    $settings = Setting::where('user_id', $user->id)->get();
+    $notification = "";
+foreach ($settings as $setting){
+  $notification = $setting;
+}
+
+if ($notification->enable_newfollower == 'yes'){
           \Mail::to($user)->send(new NewFollower($user , $follower));
+        };
     return redirect()->back()->with('success', 'Successfully followed the user.');
   }
 
@@ -103,11 +111,16 @@ if(Auth::check()){
     }
   public function settings(){
     $user =  Auth::user();
-    $settings = $user->settings()->get();
-    
+    $settings = Setting::where('user_id', $user->id)->get();
+    $notification = "";
+foreach ($settings as $setting){
+  $notification = $setting;
+}
+
+
 
     $role = $user->roles->first();
-    return view ('settings', compact ('user', 'role', 'settings'));
+    return view ('settings', compact ('user', 'role', 'notification'));
 
 
   }

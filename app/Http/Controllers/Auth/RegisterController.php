@@ -80,7 +80,7 @@ class RegisterController extends Controller
         $user_id = $user->id;
         $settings = Setting::create([
               'user_id' => $user_id,
-              'enable_newcomment' => $'yes',
+              'enable_newcomment' => 'yes',
               'enable_newfollower' => 'yes',
               'enable_newpost' => 'yes',
 

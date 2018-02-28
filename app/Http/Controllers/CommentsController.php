@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Comment;
+use App\Setting;
 use Auth;
 use App\Mail\NewComment;
 class CommentsController extends Controller
@@ -34,7 +35,21 @@ class CommentsController extends Controller
     ]);
 
 $content = $comment->body;
-    \Mail::to($poster)->send(new NewComment($poster, $post, $comment, $content));
+
+
+$settings = Setting::where('user_id', $poster_id)->get();
+$notification = "";
+foreach ($settings as $setting){
+$notification = $setting;
+}
+
+if ($notification->enable_newcomment == 'yes'){
+\Mail::to($poster)->send(new NewComment($poster, $post, $comment, $content));
+    };
+
+
+
+
     return back();
   }
 

@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use App\Category;
 use App\Role;
+use App\Setting;
 use Auth;
 use Carbon\Carbon;
 use App\Mail\NewPost;
@@ -122,7 +123,20 @@ class PostsController extends Controller
 
       $followers = $user ->followers()->get();
       foreach ($followers as $follower){
+
+        $settings = Setting::where('user_id', $follower->id)->get();
+        $notification = "";
+        foreach ($settings as $setting){
+        $notification = $setting;
+        }
+
+        if ($notification->enable_newpost == 'yes'){
           \Mail::to($follower)->send(new NewPost($follower, $user));
+            };
+
+
+
+
 
       }
 
