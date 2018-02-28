@@ -26,10 +26,28 @@
 <h2> Theme</h2>
 <h2>Email options</h2>
 <ul>
+
+
   <li>current email adress: {{$user->email}} (change)</li>
-  <li>disable comment mail</li>
-  <li>disable follower mail</li>
-  <li>disable new post mail</li>
+    @if($settings->enable_newcomment = "yes")
+
+      <li>disable comment mail</li>
+    @else
+      <li>enable comment mail</li>
+    @endif
+
+  @if($settings->enable_newcomment = "yes")
+    <li>disable follower mail</li>
+  @else
+    <li>enable follower mail</li>
+  @endif
+
+  @if($settings->enable_newcomment = "yes")
+    <li>disable new post mail</li>
+  @else
+    <li>enable new post mail</li>
+  @endif
+
 </ul>
 
 @endsection

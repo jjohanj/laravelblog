@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Setting;
 use App\Role;
 use App\Category;
 use Auth;
@@ -102,8 +103,11 @@ if(Auth::check()){
     }
   public function settings(){
     $user =  Auth::user();
+    $settings = $user->settings()->get();
+    
+
     $role = $user->roles->first();
-    return view ('settings', compact ('user', 'role'));
+    return view ('settings', compact ('user', 'role', 'settings'));
 
 
   }

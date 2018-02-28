@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Setting;
 use App\Role;
 use App\Mail\Welcome;
 use App\Http\Controllers\Controller;
@@ -76,6 +77,14 @@ class RegisterController extends Controller
             'total_blogposts' => 0,
         ]);
         $user->roles()->sync($free_user);
+        $user_id = $user->id;
+        $settings = Setting::create([
+              'user_id' => $user_id,
+              'enable_newcomment' => $'yes',
+              'enable_newfollower' => 'yes',
+              'enable_newpost' => 'yes',
+
+          ]);
         \Mail::to($user)->send(new Welcome($user));
 
         return $user;

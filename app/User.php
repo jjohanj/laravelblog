@@ -55,7 +55,10 @@ public function followings()
     return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
 }
 
-
+public function settings()
+{
+    return $this->hasMany(Setting::class);
+}
 
 
 
