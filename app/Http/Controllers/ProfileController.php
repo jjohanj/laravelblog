@@ -6,7 +6,7 @@ use App\Post;
 use App\User;
 use App\Setting;
 use App\Paymentdetails;
-
+use App\Mail\payment;
 use App\Role;
 use App\Category;
 use Auth;
@@ -169,6 +169,14 @@ if(Auth::check()){
 
         return $pdf->download('myblogs.pdf');
         }
-      
 
+        public function paymentNotification(){
+
+          $premium_users = User::withRole('premium_user')->get();
+          foreach ($premium_users as $premium_user){
+
+            \Mail::to($premium_user)->send(new payment($premium_user));
+          }
+
+        }
     }
