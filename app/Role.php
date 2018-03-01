@@ -8,10 +8,6 @@ use Zizaco\Entrust\EntrustRole;
 
 class Role extends EntrustRole
 {
-<<<<<<< HEAD
-=======
-
->>>>>>> edffae01fec25e8e00f9abf4631693aa9914e2ab
 
   public function AttachRole($id){
 
