@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use App\Setting;
-<<<<<<< HEAD
 use App\Paymentdetails;
 
-=======
->>>>>>> 143bc02fb95a32babc0b2829c9fe3f16af40b711
 use App\Role;
 use App\Category;
 use Auth;

@@ -12,16 +12,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class payment extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user;
+    public $premium_user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($premium_user)
     {
 
-        $this->user = $user;
+        $this->premium_user = $premium_user;
     }
 
     /**
@@ -31,6 +31,6 @@ class payment extends Mailable
      */
     public function build()
     {
-        return $this->view('view.paymentnotification');
+        return $this->view('emails.payment');
     }
 }

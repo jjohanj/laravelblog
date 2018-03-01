@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Paymentdetails;
 use App\Role;
+use App\Mail\payment;
 use Auth;
 
 
@@ -29,12 +30,7 @@ class RoleController extends Controller
 
     public function upgrade(){
 
-      $user =  Auth::user();
-      $premium_user = Role::find(2);
-      $user->roles()->sync($premium_user);
 
-      $role = $user->roles->first();
-      return redirect()->action('ProfileController@settings');
 
 
 
@@ -81,7 +77,15 @@ return redirect()->action('ProfileController@settings');
 
 
 
+public function paymentNotification(){
 
+  $premium_users = User::withRole('premium_user')->get();
+  foreach ($premium_users as $premium_user){
+
+    \Mail::to($premium_user)->send(new payment($premium_user));
+  }
+
+}
 
 
 
@@ -92,7 +96,7 @@ return redirect()->action('ProfileController@settings');
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
-         dd($filename);
+
            $spreadsheet = new Spreadsheet();
            $sheet = $spreadsheet->getActiveSheet();
            $sheet->setCellValue('A1', 'Bedrag');
@@ -111,38 +115,6 @@ return redirect()->action('ProfileController@settings');
 
            $writer->save('php://output');
 
-      /*$users =  User::get();
-      $payingusers = User::withRole('premium_user')->get();
-
-      $cellNr = 2;
-        $cell = 'A' . $cellNr;
-
-      foreach ($payingusers as $payinguser){
-        $details = Paymentdetails::where('user_id',$payinguser->id)->get();
-        $BIC = $details[0]->BIC;
-        $IBAN = $details[0]->IBAN;
-        $fullName = $details[0]->fullName;
-        $country = $details[0]->country;
-
-
-        $detailsarray = array(
-          'Bedrag' => '9,99',
-          'Machtiging Nr.' => 'nummer',
-          'Datum Machteging' => 'dag',
-          'BIC' => 'dwd', //$BIC
-          'IBAN' => 'dwdw', //$IBAN
-          'fullName' => 'dwd', //$fullName
-          'land' => 'dwd', //$country
-          'omschrijving' => 'beyond secure monthly subscription',
-        );
-        $sheet->fromArray(
-          $details,
-          NULL,
-          $cell
-
-        );
-        $cell+1;
-      } */
 
 
     }
