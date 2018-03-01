@@ -104,7 +104,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'key' => env('APP_KEY','='),
+=======
+    'key' => env('APP_KEY','base64:tO7BZErYUWohc6n9hppsHJ99Jl6wBRzF5NQGWs8qyQ8='),
+>>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
     'cipher' => 'AES-256-CBC',
 
@@ -160,7 +164,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+<<<<<<< HEAD
         Zizaco\Entrust\EntrustServiceProvider::class,
+=======
+
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+>>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
     ],
 
@@ -208,6 +218,7 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,

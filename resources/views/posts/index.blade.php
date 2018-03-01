@@ -4,9 +4,9 @@
 
 @include ('layouts.sidebar')
 
-@include ('layouts.success')
-
 <div class='main'>
+
+@include ('layouts.success')
 
 @foreach ($posts as $post)
   @include ('posts.articles')

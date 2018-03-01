@@ -3,7 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+<<<<<<< HEAD
 use App\Role;
+=======
+use App\Setting;
+use App\Role;
+use App\Mail\Welcome;
+>>>>>>> 197cac121c58e31b785aa133495de658041caf41
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -72,8 +78,21 @@ class RegisterController extends Controller
             'blog_name' => $data['blog_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'total_blogposts' => 0,
         ]);
         $user->roles()->sync($free_user);
+<<<<<<< HEAD
+=======
+        $user_id = $user->id;
+        $settings = Setting::create([
+              'user_id' => $user_id,
+              'enable_newcomment' => 'yes',
+              'enable_newfollower' => 'yes',
+              'enable_newpost' => 'yes',
+
+          ]);
+        \Mail::to($user)->send(new Welcome($user));
+>>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
         return $user;
     }
