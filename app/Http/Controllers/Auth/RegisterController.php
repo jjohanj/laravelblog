@@ -6,7 +6,6 @@ use App\User;
 
 use App\Role;
 use App\Setting;
-use App\Role;
 use App\Mail\Welcome;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
