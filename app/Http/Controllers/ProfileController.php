@@ -169,5 +169,6 @@ if(Auth::check()){
 
         return $pdf->download('myblogs.pdf');
         }
+      
 
     }

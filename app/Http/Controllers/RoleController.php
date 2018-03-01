@@ -96,9 +96,9 @@ public function paymentNotification(){
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
 
-           $spreadsheet = new Spreadsheet();
-           $sheet = $spreadsheet->getActiveSheet();
            $sheet->setCellValue('A1', 'Bedrag');
            $sheet->setCellValue('B1', 'Machtiging Nr.');
            $sheet->setCellValue('C1', 'Datum Machtiging');
@@ -107,6 +107,7 @@ public function paymentNotification(){
            $sheet->setCellValue('F1', 'Naam Debiteur');
            $sheet->setCellValue('G1', 'Land');
            $sheet->setCellValue('H1', 'Omschrijving');
+
            header('Content-Type: application/vnd.ms-excel');
            header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
            header('Cache-Control: max-age=0');

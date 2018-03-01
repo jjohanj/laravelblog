@@ -25,7 +25,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('App\Http\Controllers\RoleController@paymentNotification')
-                 ->monthlyOn(5, '15:00');;
+                  ->everyFiveMinutes();
+                 //->monthlyOn(5, '15:00');;
     }
 
     /**
