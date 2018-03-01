@@ -9,6 +9,7 @@ use Zizaco\Entrust\EntrustRole;
 class Role extends EntrustRole
 {
 
+
   public function AttachRole($id){
 
     $user = User::find($id)->get();
