@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "694e11cc41ca00363a05ca2ae5f1372b",
-=======
     "content-hash": "5aec68f1830f4be9bf33b843ca6e5b45",
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -1466,16 +1462,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.1.4",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "e57b3a09784f846411aa7ed664eedb73e3399078"
+                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/e57b3a09784f846411aa7ed664eedb73e3399078",
-                "reference": "e57b3a09784f846411aa7ed664eedb73e3399078",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
+                "reference": "bb87e28e7d7b8d9a7fda231d37457c9210faf6ce",
                 "shasum": ""
             },
             "require": {
@@ -1513,7 +1509,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2018-01-25T21:31:33+00:00"
+            "time": "2018-02-28T20:30:58+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2045,16 +2041,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.3.2",
+            "version": "v6.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "267935b640ac6957520ee2cb9bf8b1780e5eb0c7"
+                "reference": "7d947f3c2fc9ef23e679d6c9d396d29c32afe8ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/267935b640ac6957520ee2cb9bf8b1780e5eb0c7",
-                "reference": "267935b640ac6957520ee2cb9bf8b1780e5eb0c7",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/7d947f3c2fc9ef23e679d6c9d396d29c32afe8ac",
+                "reference": "7d947f3c2fc9ef23e679d6c9d396d29c32afe8ac",
                 "shasum": ""
             },
             "require": {
@@ -2096,7 +2092,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2018-02-28T01:28:36+00:00"
+            "time": "2018-02-28T21:13:01+00:00"
         },
         {
             "name": "studio-42/elfinder",

@@ -11,11 +11,10 @@
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-<<<<<<< HEAD
-=======
+
         "phpoffice/phpspreadsheet": "^1.1",
         "stripe/stripe-php": "^6.3",
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
+
         "zizaco/entrust": "^1.9"
     },
     "require-dev": {

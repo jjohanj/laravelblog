@@ -79,7 +79,6 @@ class PostsController extends Controller
   }
 
   public function create (){
-<<<<<<< HEAD
 
       $postTotal = Post::where('user_id', auth()->user()->id)->count();
 
@@ -90,33 +89,11 @@ class PostsController extends Controller
   }
 
   public function store (Request $request){
-    $postTotal = Post::where('user_id', auth()->user()->id)->count();
-    //$userRole = Auth::user()->role;
-    if ($postTotal <5){ //Or $userRole = "pay"
-=======
-      $user = Auth::user();
-      $user_role = 'free';
-      if ($user->hasRole('premium_user')){
-        $user_role = "premium";
-
-      }
-
-
-
-      $totalPosts = $user->total_blogposts;
-      $postsLeft = 5 - $totalPosts;
-
-
-    $categories = Category::get();
-    return view ('posts.create', compact('categories','postsLeft','user_role'));
-  }
-
-  public function store (Request $request){
     $user = Auth::user();
     $totalPosts = $user->total_blogposts;
     //$userRole = Auth::user()->role;
     if ($totalPosts <5){ //Or $userRole = "pay"
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
+
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',

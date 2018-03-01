@@ -21,41 +21,16 @@
 </ul>
 
 <ul>
-
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @else
-  <li><a href="/cancelsubscription">cancel your subscription</a></li>
-  @endif
-</ul>
-
-<ul>
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
   <li>change billing information </li>
-
-  Set Your Blog's Header Image</a>
-  <li><br />
-  <li id="setimage" onclick="sort()"><a>
+    <br />
+    <li id="setimage" onclick="sort()"><a>
+    Set Your Blog's Header Image</a>
   <li>Change blog name</li>
   <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
 <h2> Theme</h2>
 <h2>Email options</h2>
-<<<<<<< HEAD
-<ul>
-  <li>current email adress: {{$user->email}} (change)</li>
-  <li>disable comment mail</li>
-  <li>disable follower mail</li>
-  <li>disable new post mail</li>
-</ul>
-=======
-
-
-
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
-
-
 
   <p> current email adress: {{$user->email}} (change)</p>
 
