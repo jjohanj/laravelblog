@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Paymentdetails;
 use App\Role;
 use Auth;
 
@@ -77,28 +78,73 @@ return redirect()->action('ProfileController@settings');
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
+         dd($filename);
+           $spreadsheet = new Spreadsheet();
+           $sheet = $spreadsheet->getActiveSheet();
+           $sheet->setCellValue('A1', 'Bedrag');
+           $sheet->setCellValue('B1', 'Machtiging Nr.');
+           $sheet->setCellValue('C1', 'Datum Machtiging');
+           $sheet->setCellValue('D1', 'BIC');
+           $sheet->setCellValue('E1', 'IBAN');
+           $sheet->setCellValue('F1', 'Naam Debiteur');
+           $sheet->setCellValue('G1', 'Land');
+           $sheet->setCellValue('H1', 'Omschrijving');
+           header('Content-Type: application/vnd.ms-excel');
+           header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+           header('Cache-Control: max-age=0');
 
-      $spreadsheet = new Spreadsheet();
-      $sheet = $spreadsheet->getActiveSheet();
+           $writer = new Xlsx($spreadsheet);
 
-      $sheet->setCellValue('A1', 'Bedrag');
-      $sheet->setCellValue('B1', 'Machtiging Nr.');
-      $sheet->setCellValue('C1', 'Datum Machtiging');
-      $sheet->setCellValue('D1', 'BIC');
-      $sheet->setCellValue('E1', 'IBAN');
-      $sheet->setCellValue('F1', 'Naam Debiteur');
-      $sheet->setCellValue('G1', 'Land');
-      $sheet->setCellValue('H1', 'Omschrijving');
+           $writer->save('php://output');
 
-      header('Content-Type: application/vnd.ms-excel');
-      header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
-      header('Cache-Control: max-age=0');
+      /*$users =  User::get();
+      $payingusers = User::withRole('premium_user')->get();
 
-      $writer = new Xlsx($spreadsheet);
-      $writer->save('php://output');
+      $cellNr = 2;
+        $cell = 'A' . $cellNr;
+
+      foreach ($payingusers as $payinguser){
+        $details = Paymentdetails::where('user_id',$payinguser->id)->get();
+        $BIC = $details[0]->BIC;
+        $IBAN = $details[0]->IBAN;
+        $fullName = $details[0]->fullName;
+        $country = $details[0]->country;
+
+
+        $detailsarray = array(
+          'Bedrag' => '9,99',
+          'Machtiging Nr.' => 'nummer',
+          'Datum Machteging' => 'dag',
+          'BIC' => 'dwd', //$BIC
+          'IBAN' => 'dwdw', //$IBAN
+          'fullName' => 'dwd', //$fullName
+          'land' => 'dwd', //$country
+          'omschrijving' => 'beyond secure monthly subscription',
+        );
+        $sheet->fromArray(
+          $details,
+          NULL,
+          $cell
+
+        );
+        $cell+1;
+      } */
+
+
     }
 
 

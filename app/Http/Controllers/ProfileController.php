@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\User;
 use App\Setting;
+<<<<<<< HEAD
+use App\Paymentdetails;
+
+=======
+>>>>>>> 143bc02fb95a32babc0b2829c9fe3f16af40b711
 use App\Role;
 use App\Category;
 use Auth;
@@ -56,6 +61,8 @@ if ($notification->enable_newfollower == 'yes'){
   }
 
   public function show($username) {
+
+
     $authuser = Auth::user();
     $user = User::where('name' , '=', $username)->first();
     $sidebar_followings = $user ->followings()->pluck('name');
@@ -112,6 +119,10 @@ if(Auth::check()){
             });
     }
   public function settings(){
+
+
+
+
     $user =  Auth::user();
 
     $settings = Setting::where('user_id', $user->id)->get();
