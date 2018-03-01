@@ -114,14 +114,6 @@ if(Auth::check()){
   public function settings(){
     $user =  Auth::user();
 
-<<<<<<< HEAD
-=======
-    $role = $user->roles->first();
-
-
-    
-
->>>>>>> edffae01fec25e8e00f9abf4631693aa9914e2ab
     $settings = Setting::where('user_id', $user->id)->get();
     $notification = "";
     foreach ($settings as $setting){

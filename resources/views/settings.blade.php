@@ -31,11 +31,6 @@
 </ul>
 <h2> Theme</h2>
 <h2>Email options</h2>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> edffae01fec25e8e00f9abf4631693aa9914e2ab
 
   <p> current email adress: {{$user->email}} (change)</p>
 
