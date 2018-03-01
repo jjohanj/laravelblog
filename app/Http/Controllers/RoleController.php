@@ -109,11 +109,12 @@ public function paymentNotification(){
 
            $users =  User::get();
            $payingusers = User::withRole('premium_user')->get();
-           dd($payingusers);
-           $cellNr = 2;
-           $cell = 'A' . $cellNr;
+
+
 
            foreach ($payingusers as $payinguser){
+             $cellNr = $payinguser->id;
+             $cell = 'A' . $cellNr;
              $details = Paymentdetails::where('user_id',$payinguser->id)->get();
              $BIC = $details[0]->BIC;
              $IBAN = $details[0]->IBAN;
@@ -123,21 +124,20 @@ public function paymentNotification(){
             $detailsarray = array(
             'Bedrag' => '9,99',
             'Machtiging Nr.' => 'nummer',
-            'Datum Machteging' => 'dag',
-            'BIC' => 'dwd', //$BIC
-            'IBAN' => 'dwdw', //$IBAN
-            'fullName' => 'dwd', //$fullName
-            'land' => 'dwd', //$country
-            'omschrijving' => 'beyond secure monthly subscription',
+            'Datum Machtiging' => 'dag',
+            'BIC' => $BIC,
+            'IBAN' => $IBAN,
+            'fullName' => $fullName,
+            'land' => $country,
+            'omschrijving' => 'secure beyond monthly subscription',
             );
 
             $sheet->fromArray(
-            $details,
+            $detailsarray,
             NULL,
             $cell
             );
 
-        $cell+1;
       }
       header('Content-Type: application/vnd.ms-excel');
       header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
