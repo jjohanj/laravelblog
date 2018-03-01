@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-
 use App\Setting;
-
 use App\Role;
 use App\Category;
 use Auth;
+
+
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Mail\NewFollower;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 
 class ProfileController extends Controller
 {
@@ -147,16 +147,19 @@ if(Auth::check()){
              ->with('success','Blog image set');
   }
 
-  public function printblogs()
-  {
-    $dompdf = new Dompdf();
-    
-    $dompdf->loadHtml('hello world');
+  public function print()
+    {
+        $user = Auth::user();
 
-    $dompdf->setPaper('A4', 'landscape');
+        $posts = Post::where('user_id', $user->id)->get();
 
-    $dompdf->render();
+        $categories = Category::get();
 
-    $dompdf->stream();
-  }
-}
+        view()->share(['posts' => $posts, 'categories' => $categories]);
+
+        $pdf = PDF::loadView('/posts/pdfview');
+
+        return $pdf->download('myblogs.pdf');
+        }
+
+    }
