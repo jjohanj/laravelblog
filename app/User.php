@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -62,6 +63,10 @@ public function settings()
 }
 
 
+public function paymentdetails()
+{
+    return $this->hasOne(Paymentdetails::class);
+}
 
 
 

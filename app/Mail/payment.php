@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Mail;
-
 use App\User;
+use App\Role;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class subscribed extends Mailable
+class payment extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
@@ -17,12 +18,11 @@ class subscribed extends Mailable
      *
      * @return void
      */
-     public function __construct($user)
-     {
-         $this->user = $user;
+    public function __construct($user)
+    {
 
-
-     }
+        $this->user = $user;
+    }
 
     /**
      * Build the message.
@@ -31,6 +31,6 @@ class subscribed extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.subscribed');
+        return $this->view('view.paymentnotification');
     }
 }

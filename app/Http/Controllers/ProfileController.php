@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 
 use App\Setting;
+use App\Paymentdetails;
 
 use App\Role;
 use App\Category;
@@ -56,6 +57,8 @@ if ($notification->enable_newfollower == 'yes'){
   }
 
   public function show($username) {
+
+
     $authuser = Auth::user();
     $user = User::where('name' , '=', $username)->first();
     $sidebar_followings = $user ->followings()->pluck('name');
@@ -112,6 +115,10 @@ if(Auth::check()){
             });
     }
   public function settings(){
+
+
+
+
     $user =  Auth::user();
 
     $settings = Setting::where('user_id', $user->id)->get();
