@@ -30,12 +30,7 @@ class RoleController extends Controller
 
     public function upgrade(){
 
-      $user =  Auth::user();
-      $premium_user = Role::find(2);
-      $user->roles()->sync($premium_user);
 
-      $role = $user->roles->first();
-      return redirect()->action('ProfileController@settings');
 
 
 
