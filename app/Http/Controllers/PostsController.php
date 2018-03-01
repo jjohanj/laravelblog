@@ -81,19 +81,23 @@ class PostsController extends Controller
   public function create (){
 
       $postTotal = Post::where('user_id', auth()->user()->id)->count();
+      $user = Auth::user();
+        $user_role = 'free';
+        if ($user->hasRole('premium_user')){
+         $user_role = "premium";
+
+       }
 
       $postsLeft = 5 - $postTotal ;
 
     $categories = Category::get();
-    return view ('posts.create', compact('categories','postsLeft'));
+    return view ('posts.create', compact('categories','postsLeft', 'user_role'));
   }
 
   public function store (Request $request){
-    $user = Auth::user();
-    $totalPosts = $user->total_blogposts;
+    $postTotal = Post::where('user_id', auth()->user()->id)->count();
     //$userRole = Auth::user()->role;
-    if ($totalPosts <5){ //Or $userRole = "pay"
-
+    if ($postTotal <5){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
@@ -119,19 +123,14 @@ class PostsController extends Controller
 
         $settings = Setting::where('user_id', $follower->id)->get();
         $notification = "";
-        foreach ($settings as $setting){
-        $notification = $setting;
+          foreach ($settings as $setting){
+            $notification = $setting;
         }
 
-        if ($notification->enable_newpost == 'yes'){
+        if ($notification->enable_newpost =='yes'){
           \Mail::to($follower)->send(new NewPost($follower, $user));
-            };
-
-
-
-
-
-      }
+        }
+}
 
 
     return redirect('/')
@@ -140,7 +139,8 @@ class PostsController extends Controller
       redirect('/')
         ->with('success','error, max posts reached');;
     }
-  }
+
+}
 
   public function createcategory (){
     $categories = Category::get();
