@@ -117,7 +117,7 @@ if(Auth::check()){
     $role = $user->roles->first();
 
 
-    return view ('settings', compact ('user', 'role'));
+    
 
     $settings = Setting::where('user_id', $user->id)->get();
     $notification = "";

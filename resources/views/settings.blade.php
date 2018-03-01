@@ -42,18 +42,6 @@
 </ul>
 <h2> Theme</h2>
 <h2>Email options</h2>
-<<<<<<< HEAD
-<ul>
-  <li>current email adress: {{$user->email}} (change)</li>
-  <li>disable comment mail</li>
-  <li>disable follower mail</li>
-  <li>disable new post mail</li>
-</ul>
-=======
-
-
-
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
 
 
