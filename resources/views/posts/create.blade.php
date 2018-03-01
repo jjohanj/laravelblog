@@ -27,10 +27,9 @@
 @else
   <h4> You have {{$postsLeft}} posts left (<a href="/info">what is this?</a>) </h4>
 <a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
-=======
+
   <a href="/">BACK TO HOME PAGE</a><br>
 
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
   @if ($postsLeft > 0)
 
@@ -70,8 +69,7 @@
 
 </form>
 </div>
-<<<<<<< HEAD
-=======
+
 @else
 <div>
   Uh Oh, it looks like you've used all your free posts! <br/>
@@ -79,7 +77,6 @@
   Haven't posted 5 times yet? Please contact us!
 </div>
 
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
   @endif
 
 @endsection

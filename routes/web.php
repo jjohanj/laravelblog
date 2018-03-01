@@ -1,19 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-App::bind('App\Billing\Stripe', function() {
-return new \App\Billing\Stripe(config('services.stripe.secret'));
-
-});
-
-$stripe = App::make('App\Billing\Stripe');
-dd($stripe);
-
-Route::get('/', 'PostsController@index');
-Route::get('settings', 'ProfileController@settings');
-Route::get('info', 'ProfileController@info');
-Route::get('/user/{username}', 'ProfileController@show');
-Route::get('/all', 'PostsController@showAll');
 
 Route::get('/upgradesubscription', 'RoleController@showUpgrade');
 Route::post('/upgradesubscription', 'RoleController@upgrade');
@@ -24,14 +10,12 @@ Route::get('posts/create', 'PostsController@create');
 
 Route::post('/posts', 'PostsController@store');
 
-=======
 
 //read/show posts
 Route::get('/', 'PostsController@index');
 
 Route::get('/all', 'PostsController@showAll');
 
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
 Route::get('posts/show/{id}', 'PostsController@show');
 
 Route::get('posts/user/{id}', 'PostsController@FromUser');

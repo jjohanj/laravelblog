@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <h2> Monthly plan: <h2>
 <p> unlimited posts and custom themes, for $4,99/month </p>
 
@@ -18,7 +17,7 @@
     <button class="btn btn-primary" type="submit">Upgrade my account!</button></br>
 
 </form>
-=======
+
 @extends ('layout')
 
 @section ('content')
@@ -70,4 +69,3 @@
 <script src="{{ URL::to('js/upgrade.js') }}"></script>
 
 @endsection
->>>>>>> 197cac121c58e31b785aa133495de658041caf41

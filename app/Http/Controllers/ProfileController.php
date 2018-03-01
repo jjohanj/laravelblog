@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-<<<<<<< HEAD
-=======
+
 use App\Setting;
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
+
 use App\Role;
 use App\Category;
 use Auth;
@@ -114,12 +113,12 @@ if(Auth::check()){
     }
   public function settings(){
     $user =  Auth::user();
-<<<<<<< HEAD
+
     $role = $user->roles->first();
 
 
     return view ('settings', compact ('user', 'role'));
-=======
+
     $settings = Setting::where('user_id', $user->id)->get();
     $notification = "";
 foreach ($settings as $setting){
@@ -143,7 +142,7 @@ foreach ($settings as $setting){
       request()->validate([
         'blogimage' => 'required',
       ]);
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
+
 
       $user = Auth::user();
       $user->blogimage = request('blogimage');

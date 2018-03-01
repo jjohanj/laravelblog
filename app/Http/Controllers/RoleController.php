@@ -7,14 +7,12 @@ use App\User;
 use App\Role;
 use Auth;
 
-<<<<<<< HEAD
-=======
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 require '../vendor/autoload.php';
 
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
 class RoleController extends Controller
 {
 
@@ -29,14 +27,14 @@ class RoleController extends Controller
   }
 
     public function upgrade(){
-<<<<<<< HEAD
+
       $user =  Auth::user();
       $premium_user = Role::find(2);
       $user->roles()->sync($premium_user);
 
       $role = $user->roles->first();
       return redirect()->action('ProfileController@settings');
-=======
+
 
 
 
@@ -68,7 +66,6 @@ $user->roles()->sync($premium_user);
 
 $role = $user->roles->first();
 return redirect()->action('ProfileController@settings');
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
 
     }
     public function downgrade(){
@@ -80,15 +77,13 @@ return redirect()->action('ProfileController@settings');
 
     }
 
-<<<<<<< HEAD
-=======
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
 
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
-      
+
       $sheet->setCellValue('A1', 'Bedrag');
       $sheet->setCellValue('B1', 'Machtiging Nr.');
       $sheet->setCellValue('C1', 'Datum Machtiging');
@@ -105,6 +100,6 @@ return redirect()->action('ProfileController@settings');
       $writer = new Xlsx($spreadsheet);
       $writer->save('php://output');
     }
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
+
 
 }

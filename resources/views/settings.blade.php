@@ -12,7 +12,6 @@
 
 <h2> {{$user->name}} Account Settings</h2>
 <h3> You are a {{$role->display_name}} </h3>
-<<<<<<< HEAD
 <ul>
   @if ($role->name == 'free_user')
   <li><a href="/upgradesubscription">upgrade account</a></li>
@@ -23,7 +22,6 @@
 
 <ul>
 
-=======
 <ul>
   @if ($role->name == 'free_user')
   <li><a href="/upgradesubscription">upgrade account</a></li>
@@ -34,12 +32,11 @@
 
 <ul>
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
->>>>>>> 197cac121c58e31b785aa133495de658041caf41
   <li>change billing information </li>
-  <li id="setimage" onclick="sort()"><a>
+
   Set Your Blog's Header Image</a>
   <li><br />
-  <li>Change header image</li>
+  <li id="setimage" onclick="sort()"><a>
   <li>Change blog name</li>
   <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
