@@ -73,6 +73,8 @@ Route::patch('/profile/image', 'ProfileController@update');
 
 Route::get('/profile/excel', 'RoleController@createExcel');
 
+Route::get('/profile/export', 'ProfileController@print');
+
 Auth::routes();
 
 //User settings

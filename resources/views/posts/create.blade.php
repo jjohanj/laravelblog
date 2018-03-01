@@ -30,7 +30,7 @@
   {{ csrf_field() }}
 
   <div id="inputfield"></div>
-    <input placeholder="Title" name="title" type="text" id="title" >{{ old('title') }}</br>
+    <input placeholder="Title" name="title" type="text" id="title" value="{{ old('title') }}"></br>
     <br>
     Category/categories <br/>
   @foreach ($categories as $category)

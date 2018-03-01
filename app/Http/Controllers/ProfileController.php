@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-
 use App\Setting;
+<<<<<<< HEAD
 use App\Paymentdetails;
 
+=======
+>>>>>>> 143bc02fb95a32babc0b2829c9fe3f16af40b711
 use App\Role;
 use App\Category;
 use Auth;
+
+
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Mail\NewFollower;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 
 class ProfileController extends Controller
 {
@@ -154,4 +158,19 @@ if(Auth::check()){
              ->with('success','Blog image set');
   }
 
-}
+  public function print()
+    {
+        $user = Auth::user();
+
+        $posts = Post::where('user_id', $user->id)->get();
+
+        $categories = Category::get();
+
+        view()->share(['posts' => $posts, 'categories' => $categories]);
+
+        $pdf = PDF::loadView('/posts/pdfview');
+
+        return $pdf->download('myblogs.pdf');
+        }
+
+    }

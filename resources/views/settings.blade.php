@@ -24,8 +24,9 @@
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
   <li>change billing information </li>
     <br />
-    <li id="setimage" onclick="sort()"><a>
+    <li role="presentation" onclick="sort()"><a>
     Set Your Blog's Header Image</a>
+    <li role="presentation"><a href="/profile/export"> Download Your Blogs</a></li>
   <li>Change blog name</li>
   <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
