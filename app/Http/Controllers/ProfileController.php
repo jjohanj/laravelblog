@@ -147,4 +147,16 @@ if(Auth::check()){
              ->with('success','Blog image set');
   }
 
+  public function printblogs()
+  {
+    $dompdf = new Dompdf();
+    
+    $dompdf->loadHtml('hello world');
+
+    $dompdf->setPaper('A4', 'landscape');
+
+    $dompdf->render();
+
+    $dompdf->stream();
+  }
 }
