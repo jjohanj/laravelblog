@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "45b38efdabe2ad7948123a9ef5bf638f",
-    
+    "content-hash": "5aec68f1830f4be9bf33b843ca6e5b45",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
