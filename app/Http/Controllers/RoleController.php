@@ -96,7 +96,6 @@ public function paymentNotification(){
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
-
            $spreadsheet = new Spreadsheet();
            $sheet = $spreadsheet->getActiveSheet();
            $sheet->setCellValue('A1', 'Bedrag');
@@ -107,13 +106,47 @@ public function paymentNotification(){
            $sheet->setCellValue('F1', 'Naam Debiteur');
            $sheet->setCellValue('G1', 'Land');
            $sheet->setCellValue('H1', 'Omschrijving');
-           header('Content-Type: application/vnd.ms-excel');
-           header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
-           header('Cache-Control: max-age=0');
 
-           $writer = new Xlsx($spreadsheet);
+           $users =  User::get();
+           $payingusers = User::withRole('premium_user')->get();
+           dd($payingusers);
+           $cellNr = 2;
+           $cell = 'A' . $cellNr;
 
-           $writer->save('php://output');
+           foreach ($payingusers as $payinguser){
+             $details = Paymentdetails::where('user_id',$payinguser->id)->get();
+             $BIC = $details[0]->BIC;
+             $IBAN = $details[0]->IBAN;
+             $fullName = $details[0]->fullName;
+             $country = $details[0]->country;
+
+            $detailsarray = array(
+            'Bedrag' => '9,99',
+            'Machtiging Nr.' => 'nummer',
+            'Datum Machteging' => 'dag',
+            'BIC' => 'dwd', //$BIC
+            'IBAN' => 'dwdw', //$IBAN
+            'fullName' => 'dwd', //$fullName
+            'land' => 'dwd', //$country
+            'omschrijving' => 'beyond secure monthly subscription',
+            );
+
+            $sheet->fromArray(
+            $details,
+            NULL,
+            $cell
+            );
+
+        $cell+1;
+      }
+      header('Content-Type: application/vnd.ms-excel');
+      header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+      header('Cache-Control: max-age=0');
+
+      $writer = new Xlsx($spreadsheet);
+
+      $writer->save('php://output');
+
 
 
 
