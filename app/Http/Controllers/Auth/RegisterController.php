@@ -79,11 +79,17 @@ $name = $data['name'];
             'total_blogposts' => 0,
         ]);
 
-        $user= User::where('name',$name)->first();
+        $user=User::where('name',$name)->first();
         $user->roles()->sync($free_user);
 
+      
+        $user_id = $user->id;
+        $yes = 'yes';
+        Setting::create([
+              'user_id' => $user_id,
 
 
+          ]);
         \Mail::to($user)->send(new Welcome($user));
 
 
