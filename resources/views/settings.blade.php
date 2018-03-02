@@ -22,19 +22,34 @@
 
 <ul>
 
-@if ($role->name == 'admin')
+<ul>
+  @if ($role->name == 'free_user')
+  <li><a href="/upgradesubscription">upgrade account</a></li>
+  @else
+  <li><a href="/cancelsubscription">@lang('messages.cancelsub')</a></li>
+  @endif
+</ul>
+
 <ul>
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
   <li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-@endif
-
+  <li>change billing information </li>
+  <li role="presentation"><a href="/profile/export"> Print Blogs</a></li>
 
   <li><br />
   <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a>
   <li></li>
   <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
   <li><br />
-
+  s
+</ul>
+  @if ($role->name == 'admin')
+<h2> Administrator options:</h2>
+<ul>
+<li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
+<li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
+</ul>
+@endif
 
 <h2>Email options:</h2>
   <p> current email adress: {{$user->email}}</p>
