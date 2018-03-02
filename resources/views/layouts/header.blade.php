@@ -18,6 +18,8 @@
 @endif
   </div>
   <ul class="nav nav-pills pull-right">
+    <li role="presentation"><a href="/de"> Deutsch </a></li>
+    <li role="presentation"><a href="/en"> English </a></li>
     <li role="presentation"><a href="/info"> About Blogs </a></li>
     @if(Auth::check())
       <li role="presentation"><a href="/settings"> Settings </a></li>
