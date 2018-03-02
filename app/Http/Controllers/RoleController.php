@@ -42,7 +42,7 @@ public function showpayment(){
       'IBAN' => 'required|max:34|unique:paymentdetails',
       'Country' => 'required',
     ]);
-
+    $user = Auth:;user();
     $user_id = Auth::user()->id;
     $fullName= request('fullName');
     $BIC = request('BIC');
@@ -56,8 +56,11 @@ public function showpayment(){
         'country' => $country,
 
     ]);
+    $premium_user = Role::find(2);
+    $user->roles()->sync($premium_user);
+
     \Mail::to($user)->send(new subscribed($user , $paymentdetails));
-return view('upgrade');
+    return view('upgrade');
   }
 
 
