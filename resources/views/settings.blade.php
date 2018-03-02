@@ -9,18 +9,10 @@
 <a href="/">Home</a>
 </div>
 
-<<<<<<< HEAD
-<div class="main">
-<h1>Settings</h1>
-
-<h2> Account Settings:</h2>
-<h3> {{$user->name}}, you are a/an {{$role->display_name}} </h3>
-=======
 <h1> @lang('messages.settings') </h1>
 
 <h2> {{$user->name}} Account @lang('messages.settings')</h2>
 <h3> You are a {{$role->display_name}} </h3>
->>>>>>> [W7-008] localization
 <ul>
   @if ($role->name == 'free_user')
   <li><a href="/upgradesubscription">upgrade account</a></li>
@@ -49,7 +41,7 @@
   <li></li>
   <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
   <li><br />
-  
+  s
 </ul>
   @if ($role->name == 'admin')
 <h2> Administrator options:</h2>

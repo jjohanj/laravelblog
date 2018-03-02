@@ -8,7 +8,7 @@
 
     @if(Auth::check())
 
-    <h2> Change your Password </h2>
+    <h2> @lang('messages.changepwd') </h2>
 
     @include ('layouts.errors')
 
@@ -32,7 +32,7 @@
           <br>
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">Change Password</button>
+            <button type="submit" class="btn btn-primary">@lang('messages.changepwd')</button>
           </div>
         </div>
   <div>
