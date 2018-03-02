@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
           'blog_name' => 'admin',
           'email' => 'admin@admin.com',
           'password' => bcrypt('admin'),
-          'total_blogposts' => 0;
+          'total_blogposts' => 0,
       ]);
 
 
