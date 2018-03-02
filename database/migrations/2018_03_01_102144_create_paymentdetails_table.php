@@ -21,7 +21,7 @@ class CreatePaymentdetailsTable extends Migration
             $table->string('fullName');
             $table->string('country');
             $table->timestamps();
-          
+
         });
     }
 

@@ -77,19 +77,13 @@ $name = $data['name'];
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'total_blogposts' => 0,
-        ])->roles()->sync($free_user);
+        ]);
+
+        $user= User::where('name',$name)->first();
+        $user->roles()->sync($free_user);
 
 
-        $user=User::where('name',$name)->first();
-        $user_id = $user->id;
 
-        $settings = Setting::create([
-              'user_id' => $user_id,
-              'enable_newcomment' => 'yes',
-              'enable_newfollower' => 'yes',
-              'enable_newpost' => 'yes',
-
-          ]);
         \Mail::to($user)->send(new Welcome($user));
 
 
