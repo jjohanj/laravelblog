@@ -34,9 +34,9 @@ public function showpayment(){
   }
   public function handlePayment(Request $request){
     $this->validate(request(), [
-      'fullName' => 'required|max:255',
-      'BIC' => 'required',
-      'IBAN' => 'required',
+      'fullName' => 'required|string|max:255|unique:paymentdetails',
+      'BIC' => 'required|max:11',
+      'IBAN' => 'required|max:34|unique:paymentdetails',
       'Country' => 'required',
     ]);
 
