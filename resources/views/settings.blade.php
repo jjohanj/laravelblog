@@ -22,18 +22,11 @@
 
 <ul>
 
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @else
-  <li><a href="/cancelsubscription">@lang('messages.cancelsub')</a></li>
-  @endif
-</ul>
-
+@if ($role->name == 'admin')
 <ul>
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
   <li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-  <li>change billing information </li>
+@endif
 
 
   <li><br />
