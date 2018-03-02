@@ -95,8 +95,7 @@ $charge_id = $charge->id;
 $ch = \Stripe\Charge::retrieve($charge_id );//"ch_1A9eP02eZvKYlo2CkibleoVM"
 $ch->capture();
 $user =  Auth::user();
-$premium_user = Role::find('name', 'premium_user');
-//$user->roles()->sync($premium_user);
+
 
 
 
