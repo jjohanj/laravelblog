@@ -24,12 +24,14 @@
 
 
 <ul>
-  
+
   <li role="presentation"><a href="/profile/export"> Print Blogs</a></li>
 
   <li><br />
-  <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a>
-  <li></li>
+  <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a></li>
+    <div class="headerimg">
+
+    </div>
   <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
   <li><br />
 
@@ -73,9 +75,6 @@
 </form>
 
 
-
-
-</div>
 @endsection
 
 <script>
@@ -85,7 +84,7 @@ $.ajax({
 		type: "GET", // not POST, laravel won't allow it
 		success: function(data){
 			$data = $(data); // the HTML content your controller has produced
-			$('.main').fadeOut().html($data).fadeIn();
+			$('.headerimg').fadeOut().html($data).fadeIn();
 			}
 	});
 };
