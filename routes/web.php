@@ -88,11 +88,14 @@ Route::get('settings', 'ProfileController@settings');
 
 Route::post('/updateNotifications', 'SettingsController@updatemail');
 
-Route::get('/{locale}', function ($locale) {
-    App::setLocale($locale);
-     return redirect()->back()->with('success', $locale);;
-    //
-});
+Route::get('/{locale}', 'LanguageController@switchLang');
+
+
+// function ($locale) {
+//     App::setLocale($locale);
+//      return redirect()->back()->with('success', $locale);;
+//     //
+// });
 
 //Users;followers
 Route::get('/user/{username}', 'ProfileController@show');

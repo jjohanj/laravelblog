@@ -6,7 +6,7 @@
 
     <a href="/"><h4>Return</h4></a><br>
 
-    <h2> Register </h2>
+    <h2> @lang('messages.register') </h2>
 
     @include ('layouts.errors')
 
@@ -49,7 +49,7 @@
 
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">@lang('messages.register')</button>
           </div>
         </div>
   <div>

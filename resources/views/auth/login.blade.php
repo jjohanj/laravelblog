@@ -6,7 +6,7 @@
 
     <a href="/"><h4>Return</h4></a><br>
 
-    <h2> Login </h2>
+    <h2> @lang('messages.login') </h2>
 
     @include ('layouts.errors')
 
@@ -29,14 +29,14 @@
 
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary">@lang('messages.login')</button>
           </div>
         </div>
 
   <div class="form-group row mb-0">
       <div class="col-md-6 offset-md-4">
         <a href='/password/reset'>
-          <p>Forgot Your Password?
+          <p>@lang('messages.forgotpwd')
           </a></p>
         </div>
       </div>
