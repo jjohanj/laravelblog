@@ -7,7 +7,7 @@ use App\User;
 use App\Post;
 use App\Paymentdetails;
 use App\Role;
-use App\Mail\payment;
+//use App\Mail\paymentdetails;
 use Auth;
 
 use Illuminate\Support\Facades\DB;
@@ -24,11 +24,41 @@ class RoleController extends Controller
     $this->middleware('auth');
   }
   public function showUpgrade(){
-    return view ('upgrade');
+    return view ('upgradeDetails');
   }
+
+public function showpayment(){
+  return view ('upgrade');
+}
+
   public function showDowngrade(){
     return view ('downgrade');
   }
+  public function handlePayment(Request $request){
+    $this->validate(request(), [
+      'fullName' => 'required|string|max:255|unique:paymentdetails',
+      'BIC' => 'required|max:11',
+      'IBAN' => 'required|max:34|unique:paymentdetails',
+      'Country' => 'required',
+    ]);
+
+    $user_id = Auth::user()->id;
+    $fullName= request('fullName');
+    $BIC = request('BIC');
+    $IBAN = request('IBAN');
+    $country = request('Country');
+
+    Paymentdetails::create([
+      'user_id' => $user_id,
+        'BIC' => $BIC,
+        'IBAN' => $IBAN,
+        'country' => $country,
+
+    ]);
+return view('upgrade');
+  }
+
+
 
     public function upgrade(){
 
@@ -98,8 +128,9 @@ public function paymentNotification(){
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
-           $spreadsheet = new Spreadsheet();
-           $sheet = $spreadsheet->getActiveSheet();
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+
            $sheet->setCellValue('A1', 'Bedrag');
            $sheet->setCellValue('B1', 'Machtiging Nr.');
            $sheet->setCellValue('C1', 'Datum Machtiging');
@@ -108,6 +139,12 @@ public function paymentNotification(){
            $sheet->setCellValue('F1', 'Naam Debiteur');
            $sheet->setCellValue('G1', 'Land');
            $sheet->setCellValue('H1', 'Omschrijving');
+
+
+           header('Content-Type: application/vnd.ms-excel');
+           header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+           header('Cache-Control: max-age=0');
+
 
            $users =  User::get();
            $payingusers = User::withRole('premium_user')->get();

@@ -15,10 +15,10 @@ class Role extends EntrustRole
     $user = User::find($id)->get();
 
 // role attach alias
-$user->attachRole($admin); // parameter can be an Role object, array, or id
+//$user->attachRole($admin); // parameter can be an Role object, array, or id
 
 // or eloquent's original technique
-$user->roles()->attach($admin->id); // id only
+//$user->roles()->attach($admin->id); // id only
   }
 
 }
