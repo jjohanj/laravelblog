@@ -75,10 +75,12 @@ Route::get('/profile/excel', 'RoleController@createExcel');
 
 Route::get('/profile/export', 'ProfileController@print');
 
+Route::get('/dump', 'RoleController@dump');
+
 Auth::routes();
 
 //User settings
-Route::get('settings', 'ProfileController@settings'); 
+Route::get('settings', 'ProfileController@settings');
 
 Route::post('/updateNotifications', 'SettingsController@updatemail');
 

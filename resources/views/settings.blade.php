@@ -22,6 +22,7 @@
 
 <ul>
   <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
+  <li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
   <li>change billing information </li>
     <br />
     <li role="presentation" onclick="sort()"><a>
@@ -62,7 +63,6 @@
   @endif
 <button class="btn btn-primary" type="submit">Update settings</button></br>
 </form>
-
 </div>
 
 <div class="main">
