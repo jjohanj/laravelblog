@@ -51,6 +51,7 @@ public function showpayment(){
 
     $paymentdetails = Paymentdetails::create([
       'user_id' => $user_id,
+      'fullName' => $fullName,
         'BIC' => $BIC,
         'IBAN' => $IBAN,
         'country' => $country,
