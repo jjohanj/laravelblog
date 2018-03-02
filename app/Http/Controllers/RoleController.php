@@ -33,7 +33,12 @@ public function showpayment(){
     return view ('downgrade');
   }
   public function handlePayment(Request $request){
-
+    $this->validate(request(), [
+      'fullName' => 'required|max:255',
+      'BIC' => 'required',
+      'IBAN' => 'required',
+      'Country' => 'required',
+    ]);
 
     $user_id = Auth::user()->id;
     $fullName= request('fullName');
