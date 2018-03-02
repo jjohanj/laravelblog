@@ -6,7 +6,7 @@
 
 <h2>Your payment notification is on the way <h2>
   <a href="/settings">back to settings</a></br>
-  <h3> Can't wait? enter your creditcard details below, and start continue blogging right now! </h3>
+  <h3> Enter your creditcard details below, and start continue blogging right now! </h3>
 
 
 
