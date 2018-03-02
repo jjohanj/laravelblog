@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Paymentdetails;
 use App\Role;
-use App\Mail\payment;
+//use App\Mail\paymentdetails;
 use Auth;
 
 
@@ -22,11 +22,41 @@ class RoleController extends Controller
     $this->middleware('auth');
   }
   public function showUpgrade(){
-    return view ('upgrade');
+    return view ('upgradeDetails');
   }
+
+public function showpayment(){
+  return view ('upgrade');
+}
+
   public function showDowngrade(){
     return view ('downgrade');
   }
+  public function handlePayment(Request $request){
+    $this->validate(request(), [
+      'fullName' => 'required|string|max:255|unique:paymentdetails',
+      'BIC' => 'required|max:11',
+      'IBAN' => 'required|max:34|unique:paymentdetails',
+      'Country' => 'required',
+    ]);
+
+    $user_id = Auth::user()->id;
+    $fullName= request('fullName');
+    $BIC = request('BIC');
+    $IBAN = request('IBAN');
+    $country = request('Country');
+
+    Paymentdetails::create([
+      'user_id' => $user_id,
+        'BIC' => $BIC,
+        'IBAN' => $IBAN,
+        'country' => $country,
+
+    ]);
+return view('upgrade');
+  }
+
+
 
     public function upgrade(){
 
