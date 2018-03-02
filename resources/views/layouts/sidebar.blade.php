@@ -5,12 +5,12 @@
 	<a href="/">Home</a><br />
 	  @if(Auth::check())
 
-    
-	<a href="/user/{{Auth::user()->name}}"><strong>Hello {{Auth::user()->name}}</strong></a><br />
-	<a href="/posts/create"><em>Write a new Blogpost</em></a><br />
-	<a href="/all">Show All</a><br>
+
+	<a href="/user/{{Auth::user()->name}}"><strong>@lang('messages.greeting') {{Auth::user()->name}}</strong></a><br />
+	<a href="/posts/create"><em>@lang('messages.write')</em></a><br />
+	<a href="/all">@lang('messages.showall')</a><br>
 	@else
-	<a href="/register">Register</a><br />
+	<a href="/register">@lang('messages.register')</a><br />
 	@endif
 	 <br />
 		 <form action="/?search={{ isset($search) ? $search : '' }}" method="GET">
@@ -18,13 +18,21 @@
             <div class="input-group">
                 <input type="text" class="form-control" style="width: 100%" name="search" placeholder="Search for..." value="{{ isset($search) ? $search : '' }}">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-primary" type="submit">@lang('messages.search')</button>
                 </span>
             </div>
         </form><br>
+<h2> top users </h2>
+<ul>
+	@foreach($topusers as $topuser)
+	<li><a href="/user/{{$topuser->name}} "><strong>{{$topuser->name}}</strong></a></li>
+
+	@endforeach
+
+</ul>
 
 
-	<h2> Categories </h2>
+	<h2> @lang('messages.categories') </h2>
 	@foreach ($categories as $category)
   <button class="btn btn-primary" id="catfilter" onclick="sort('{{ $category }}')">
     {{ $category }}
@@ -32,7 +40,7 @@
 
 @endforeach
 
-<h2> Archives </h2>
+<h2> @lang('messages.archive') </h2>
 
 @foreach($archives as $year => $months)
     <h6 class="mb-0">

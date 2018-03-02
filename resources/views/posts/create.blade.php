@@ -10,10 +10,16 @@
 @extends ('layout')
 
 @section ('content')
+
   <a href="/">BACK TO HOME PAGE</a><br>
 
-<a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
+  @if ($postsLeft > 0)
 
+@if ($user_role == 'free')
+  <h4> You have {{$postsLeft}} posts left (<a href="/info">what is this?</a>) </h4>
+@endif
+
+<a href=" /posts/create/category">ADD A CATEGORY</a><br><br>
 
 @include ('layouts.errors')
 
@@ -24,7 +30,7 @@
   {{ csrf_field() }}
 
   <div id="inputfield"></div>
-    <input placeholder="Title" name="title" type="text" id="title" >{{ old('title') }}</br>
+    <input placeholder="Title" name="title" type="text" id="title" value="{{ old('title') }}"></br>
     <br>
     Category/categories <br/>
   @foreach ($categories as $category)
@@ -44,5 +50,14 @@
 
 </form>
 </div>
+
+@else
+<div>
+  Uh Oh, it looks like you've used all your free posts! <br/>
+  Upgrade your account via the <a href="/settings">settings</a> menu, for unlimited posts! <br/>
+  Haven't posted 5 times yet? Please contact us!
+</div>
+
+  @endif
 
 @endsection

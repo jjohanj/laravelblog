@@ -2,20 +2,32 @@
 
 namespace App;
 
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+/*{
+
+  use EntrustUserTrait; // add this trait to your user model
+    ...
+} */
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+      use EntrustUserTrait; // add this trait to your user model
+    //  use HasRole;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'blog_name', 'email', 'password',
+        'name', 'blog_name', 'email', 'password' , 'total_blogposts', 'user_id'
     ];
 
     /**
@@ -44,5 +56,18 @@ public function followings()
     return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id')->withTimestamps();
 }
 
-   
+
+public function settings()
+{
+    return $this->hasMany(Setting::class);
+}
+
+
+public function paymentdetails()
+{
+    return $this->hasOne(Paymentdetails::class);
+}
+
+
+
 }

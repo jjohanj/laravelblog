@@ -4,10 +4,10 @@
 	<a href="/">Home</a><br />
 	  @if(Auth::check())
 	<a href="/user/{{Auth::user()->name}}"><strong>Hello {{Auth::user()->name}}</strong></a><br />
-	<a href="/posts/create"><em>Write a new Blogpost</em></a><br />
-	<a href="/all">Show All</a><br>
+	<a href="/posts/create"><em>@lang('messages.write')</em></a><br />
+	<a href="/all">@lang('messages.showall')</a><br>
 	@else
-	<a href="/register">Register</a><br />
+	<a href="/signup">@lang('messages.register')</a><br />
 	@endif
 	 <br />
 		 <form action="?search={{ isset($search) ? $search : '' }}" method="GET">
@@ -35,7 +35,7 @@
   <a href="/user/{{ $sidebar_following}}">{{$sidebar_following}} </a> <br />
 @endforeach
 </div style="max-height: 100px; overflow: scroll;">
-<h2> Archives </h2>
+<h2> @lang('messages.archives') </h2>
 
 @foreach($archives as $year => $months)
     <h6 class="mb-0">

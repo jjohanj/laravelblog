@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use App\Category;
+use App\Role;
+use App\Setting;
 use Auth;
 use Carbon\Carbon;
+use App\Mail\NewPost;
 use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
@@ -17,11 +20,17 @@ class PostsController extends Controller
     $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
 
-public function search($searchTerm){
+  public function search($searchTerm){
     $posts = Post::search($searchTerm)->get();
   }
 
   public function index(){
+    $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+
+
+
+  //$column = Input::get('orderBy', 'defaultColumn');
+  //$comments = User::find(1)->comments()->orderBy($column)->get();
 
 
     if(Auth::check()){
@@ -47,7 +56,7 @@ public function search($searchTerm){
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives','user'));
+    return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
     }
 
     $posts = Post::latest()
@@ -57,17 +66,19 @@ public function search($searchTerm){
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+    return view('posts.index', compact('posts', 'categories', 'archives','topusers'));
   }
 
   public function showAll(){
+    $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+    return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
   }
 
   public function show($id){
@@ -76,31 +87,69 @@ public function search($searchTerm){
   }
 
   public function create (){
+
+      $postTotal = Post::where('user_id', auth()->user()->id)->count();
+      $user = Auth::user();
+        $user_role = 'free';
+        if ($user->hasRole('premium_user')){
+         $user_role = "premium";
+
+       }
+
+      $postsLeft = 5 - $postTotal ;
+
     $categories = Category::get();
-    return view ('posts.create', compact('categories'));
+    return view ('posts.create', compact('categories','postsLeft', 'user_role'));
   }
 
   public function store (Request $request){
+    $postTotal = Post::where('user_id', auth()->user()->id)->count();
 
+    $user = Auth::user();
+    if ($postTotal <5 || $user->hasRole('premium_user') || $user->hasRole('admin')){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
       'category' => 'required'
     ]);
 
+    $user = Auth::user();
     $user_id = Auth::user()->id;
     $title=request('title');
+    User::find($user_id)->increment('total_blogposts');
+
     $categories = $request->category;
     $post = Post::create([
         'title' => request('title'),
         'body' => request('body'),
         'disable_comments' => request('disable_comments'),
-        'user_id' => $user_id
+        'user_id' => auth()->id()
       ])->categories()->attach($categories);;
+
+
+      $followers = $user ->followers()->get();
+      foreach ($followers as $follower){
+
+        $settings = Setting::where('user_id', $follower->id)->get();
+        $notification = "";
+          foreach ($settings as $setting){
+            $notification = $setting;
+        }
+
+        if ($notification->enable_newpost =='yes'){
+          \Mail::to($follower)->send(new NewPost($follower, $user));
+        }
+}
+
 
     return redirect('/')
       ->with('success','Blogpost posted successfully');;
-  }
+    }else {
+      redirect('/')
+        ->with('success','error, max posts reached');;
+    }
+
+}
 
   public function createcategory (){
     $categories = Category::get();
@@ -148,4 +197,14 @@ public function search($searchTerm){
 
             });
   }
+  private function topusers(){
+    return User::get()
+          ->sortByDesc(function(User $user) {
+            return $user->followers>count();
+          });
+
+
+  }
+
+
 }

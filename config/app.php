@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +104,10 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+
+    'key' => env('APP_KEY','='),
+
+    'key' => env('APP_KEY','='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -150,7 +153,8 @@ return [
         /*
          * Package Service Providers...
          */
-         Barryvdh\Elfinder\ElfinderServiceProvider::class,
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -159,6 +163,14 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
+        Zizaco\Entrust\EntrustServiceProvider::class,
+
+
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+
 
     ],
 
@@ -187,6 +199,7 @@ return [
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
         'DB' => Illuminate\Support\Facades\DB::class,
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
@@ -205,9 +218,11 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

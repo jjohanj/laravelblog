@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'write' => 'Schreibe einen Blogeintrag',
+    'greeting' => 'Gutentag',
+    'info' => 'über Secure Beyond',
+    'settings' => 'Einstellungen',
+    'logout' => 'Ausloggen',
+    'showall' => 'Zeige alles',
+    'search' => 'Suche',
+    'topusers' => 'Top-Benutzer',
+    'archive' => 'Archive',
+    'cancelsub' => 'kündigen Sie Ihr Abonnement',
+    'headerimg' => 'ändere dein Blogbild',
+    'changepwd' => 'Passwort ändern',
+    'emailopt' => 'E-Mail-Optionen',
+    'disablecommentmail' => 'Kommentar-Mail Deaktivieren',
+    'disablefollowermail' => 'Follower-Mail Deaktivieren',
+    'disablepostmail' => 'Neue Blog-Mail Deaktivieren',
+    'update' => 'Aktualisieren',
+    'login' => 'Einloggen',
+    'register' => 'Registrieren',
+    'forgotpwd' => 'Ihr Passwort vergessen?',
+    'createpost' => 'Einsenden',
+    'categories' => 'Kategorien',
+];

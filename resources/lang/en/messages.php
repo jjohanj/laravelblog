@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'write' => 'Write a new Blog post',
+    'greeting' => 'Hello',
+    'info' => 'about Secure Beyond',
+    'settings' => 'Settings',
+    'logout' => 'Logout',
+    'showall' => 'Show all',
+    'search' => 'Search',
+    'topusers' => 'Top Users',
+    'archive' => 'Archives',
+    'cancelsub' => 'Cancel your subscription',
+    'headerimg' => 'Set the header image of your blog',
+    'changepwd' => 'Change your password',
+    'emailopt' => 'Email options',
+    'disablecommentmail' => 'Disable comment mail',
+    'disablefollowermail' => 'Disable new follower mail',
+    'disablepostmail' => 'Disable new posts mail',
+    'update' => 'Update',
+    'login' => 'Login',
+    'register' => 'Register',
+    'forgotpwd' => 'Forgot your password?',
+    'createpost' => 'Submit',
+    'categories' => 'Categories',
+];
