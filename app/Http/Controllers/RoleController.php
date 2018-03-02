@@ -56,7 +56,7 @@ public function showpayment(){
         'country' => $country,
 
     ]);
-    $premium_user = Role::find(2);
+    $premium_user = Role::where('name', 'premium_user')->get();
     $user->roles()->sync($premium_user);
 
     \Mail::to($user)->send(new subscribed($user , $paymentdetails));
@@ -95,7 +95,7 @@ $charge_id = $charge->id;
 $ch = \Stripe\Charge::retrieve($charge_id );//"ch_1A9eP02eZvKYlo2CkibleoVM"
 $ch->capture();
 $user =  Auth::user();
-$premium_user = Role::find(2);
+$premium_user = Role::find('name', 'premium_user');
 $user->roles()->sync($premium_user);
 
 $role = $user->roles->first();
@@ -105,7 +105,7 @@ return redirect()->action('ProfileController@settings');
     }
     public function downgrade(){
         $user =  Auth::user();
-      $free_user = Role::find(1);
+      $free_user = Role::where('name','free_user')->get();
       $user->roles()->sync($free_user);
       $role = $user->roles->first();
       Paymentdetails::where('user_id', $user->id)->delete();
@@ -135,7 +135,7 @@ public function paymentNotification(){
     public function createExcel()
     {
       $admin = Auth::user();
-      if ($admin->hasRole(3)){
+      if ($admin->hasRole('admin')){
       $filename = 'securebeyondincassos';
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
@@ -198,7 +198,7 @@ public function paymentNotification(){
     public function dump()
     {
       $admin = Auth::user();
-      if ($admin->hasRole(3)){
+      if ($admin->hasRole('admin')){
     $command;
     $dbConnection = env('DB_CONNECTION');
     $dbName = env('DB_DATABASE');

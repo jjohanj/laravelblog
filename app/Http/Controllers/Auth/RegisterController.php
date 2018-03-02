@@ -68,17 +68,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      $free_user = Role::find(1);
+      $free_user = Role::where('name','free_user')->get();
+$name = $data['name'];
 
-      $user =   User::create([
+      $newuser =  User::create([
             'name' => $data['name'],
             'blog_name' => $data['blog_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'total_blogposts' => 0,
-        ]);
-        $user->roles()->sync($free_user);
+        ])->roles()->sync($free_user);
+
+
+        $user=User::where('name',$name)->first();
         $user_id = $user->id;
+
         $settings = Setting::create([
               'user_id' => $user_id,
               'enable_newcomment' => 'yes',
