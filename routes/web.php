@@ -78,7 +78,7 @@ Route::get('/profile/export', 'ProfileController@print');
 Auth::routes();
 
 //User settings
-Route::get('settings', 'ProfileController@settings'); 
+Route::get('settings', 'ProfileController@settings');
 
 Route::post('/updateNotifications', 'SettingsController@updatemail');
 
