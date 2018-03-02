@@ -61,6 +61,10 @@ Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/upgradesubscription', 'RoleController@showUpgrade');
 
+Route::post('/paymentdetails', 'RoleController@handlePayment');
+
+Route::get('/upgradepayment', 'RoleController@showpayment');
+
 Route::post('/upgradesubscription', 'RoleController@upgrade');
 
 Route::get('/cancelsubscription', 'RoleController@showDowngrade');
