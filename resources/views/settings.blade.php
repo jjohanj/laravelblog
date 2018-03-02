@@ -7,47 +7,35 @@
 <div class="menu">
 
 <a href="/">Home</a>
+</div>
 
-<h1> settings </h1>
+<div class="main">
+<h1>Settings</h1>
 
-<h2> {{$user->name}} Account Settings</h2>
-<h3> You are a {{$role->display_name}} </h3>
+<h2> Account Settings:</h2>
+<h3> {{$user->name}}, you are a/an {{$role->display_name}} </h3>
 <ul>
   @if ($role->name == 'free_user')
   <li><a href="/upgradesubscription">upgrade account</a></li>
-  @else
+  @elseif ($role->name == 'premium_user')
   <li><a href="/cancelsubscription">cancel your subscription</a></li>
   @endif
-</ul>
 
-<ul>
-
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @else
-  <li><a href="/cancelsubscription">cancel your subscription</a></li>
-  @endif
-</ul>
-
-<ul>
-  <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-  <li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-  <li>change billing information </li>
-
-  Set Your Blog's Header Image</a>
   <li><br />
-  <li id="setimage" onclick="sort()"><a>
+  <li id="setimage" onclick="sort()"><a>Set Your Blog's Header Image</a></li>
   <li>Change blog name</li>
   <li role="presentation"><a href="/changepassword"> Change Password</a></li>
 </ul>
-<h2> Theme</h2>
-<h2>Email options</h2>
+  @if ($role->name == 'admin')
+<h2> Administrator options:</h2>
+<ul>
+<li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
+<li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
+</ul>
+@endif
 
-
-
-  <p> current email adress: {{$user->email}} (change)</p>
-
+<h2>Email options:</h2>
+  <p> current email adress: {{$user->email}}</p>
     <form action="/updateNotifications" method="POST">
       {{ csrf_field() }}
       @if($notification->enable_newcomment == "yes")
@@ -75,9 +63,9 @@
   @endif
 <button class="btn btn-primary" type="submit">Update settings</button></br>
 </form>
-</div>
 
-<div class="main">
+
+
 
 </div>
 @endsection

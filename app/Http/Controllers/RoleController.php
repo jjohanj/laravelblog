@@ -7,7 +7,8 @@ use App\User;
 use App\Post;
 use App\Paymentdetails;
 use App\Role;
-//use App\Mail\paymentdetails;
+use App\Mail\subscribed;
+use App\Mail\unsubscribed;
 use Auth;
 
 use Illuminate\Support\Facades\DB;
@@ -48,13 +49,14 @@ public function showpayment(){
     $IBAN = request('IBAN');
     $country = request('Country');
 
-    Paymentdetails::create([
+    $paymentdetails = Paymentdetails::create([
       'user_id' => $user_id,
         'BIC' => $BIC,
         'IBAN' => $IBAN,
         'country' => $country,
 
     ]);
+    \Mail::to($user)->send(new subscribed($user , $paymentdetails));
 return view('upgrade');
   }
 
@@ -94,6 +96,7 @@ $premium_user = Role::find(2);
 $user->roles()->sync($premium_user);
 
 $role = $user->roles->first();
+
 return redirect()->action('ProfileController@settings');
 
     }
@@ -102,6 +105,7 @@ return redirect()->action('ProfileController@settings');
       $free_user = Role::find(1);
       $user->roles()->sync($free_user);
       $role = $user->roles->first();
+      Paymentdetails::where('user_id', $user->id)->delete();
       return redirect()->action('ProfileController@settings');
 
     }
@@ -127,6 +131,8 @@ public function paymentNotification(){
 
     public function createExcel()
     {
+      $admin = Auth::user();
+      if ($admin->hasRole(3)){
       $filename = 'securebeyondincassos';
       $spreadsheet = new Spreadsheet();
       $sheet = $spreadsheet->getActiveSheet();
@@ -183,11 +189,13 @@ public function paymentNotification(){
       $writer = new Xlsx($spreadsheet);
 
       $writer->save('php://output');
-
+}
     }
 
     public function dump()
     {
+      $admin = Auth::user();
+      if ($admin->hasRole(3)){
     $command;
     $dbConnection = env('DB_CONNECTION');
     $dbName = env('DB_DATABASE');
@@ -209,6 +217,7 @@ public function paymentNotification(){
 
 
    return response()->download('blogdump.sql')->deleteFileAfterSend(true);
+ }
     }
 
     // function dumpB()

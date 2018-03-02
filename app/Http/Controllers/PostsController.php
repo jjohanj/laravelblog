@@ -96,8 +96,9 @@ class PostsController extends Controller
 
   public function store (Request $request){
     $postTotal = Post::where('user_id', auth()->user()->id)->count();
-    //$userRole = Auth::user()->role;
-    if ($postTotal <5){ //Or $userRole = "pay"
+
+    $user = Auth::user();
+    if ($postTotal <5 || $user->hasRole('premium_user') || $user->hasRole('admin')){ //Or $userRole = "pay"
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
