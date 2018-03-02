@@ -96,8 +96,9 @@ public function paymentNotification(){
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
-      $spreadsheet = new Spreadsheet();
-      $sheet = $spreadsheet->getActiveSheet();
+
+           $spreadsheet = new Spreadsheet();
+           $sheet = $spreadsheet->getActiveSheet();
 
            $sheet->setCellValue('A1', 'Bedrag');
            $sheet->setCellValue('B1', 'Machtiging Nr.');
@@ -108,13 +109,52 @@ public function paymentNotification(){
            $sheet->setCellValue('G1', 'Land');
            $sheet->setCellValue('H1', 'Omschrijving');
 
+
            header('Content-Type: application/vnd.ms-excel');
            header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
            header('Cache-Control: max-age=0');
 
-           $writer = new Xlsx($spreadsheet);
 
-           $writer->save('php://output');
+           $users =  User::get();
+           $payingusers = User::withRole('premium_user')->get();
+
+
+
+           foreach ($payingusers as $payinguser){
+             $cellNr = $payinguser->id;
+             $cell = 'A' . $cellNr;
+             $details = Paymentdetails::where('user_id',$payinguser->id)->get();
+             $BIC = $details[0]->BIC;
+             $IBAN = $details[0]->IBAN;
+             $fullName = $details[0]->fullName;
+             $country = $details[0]->country;
+
+            $detailsarray = array(
+            'Bedrag' => '9,99',
+            'Machtiging Nr.' => 'nummer',
+            'Datum Machtiging' => 'dag',
+            'BIC' => $BIC,
+            'IBAN' => $IBAN,
+            'fullName' => $fullName,
+            'land' => $country,
+            'omschrijving' => 'secure beyond monthly subscription',
+            );
+
+            $sheet->fromArray(
+            $detailsarray,
+            NULL,
+            $cell
+            );
+
+      }
+      header('Content-Type: application/vnd.ms-excel');
+      header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+      header('Cache-Control: max-age=0');
+
+      $writer = new Xlsx($spreadsheet);
+
+      $writer->save('php://output');
+
 
 
 
