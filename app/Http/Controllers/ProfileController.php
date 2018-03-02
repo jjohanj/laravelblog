@@ -83,7 +83,7 @@ if(Auth::check()){
       $isfollowing=TRUE;
     }
 
-    $posts = User::find($userid)->posts()->get();
+    $posts = User::find($userid)->posts()->latest()->get();
     $categories = Category::get();
 
     if ($authuser->id == $userid) {
