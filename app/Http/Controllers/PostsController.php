@@ -25,6 +25,12 @@ class PostsController extends Controller
   }
 
   public function index(){
+    $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+
+
+
+  //$column = Input::get('orderBy', 'defaultColumn');
+  //$comments = User::find(1)->comments()->orderBy($column)->get();
 
 
     if(Auth::check()){
@@ -50,7 +56,7 @@ class PostsController extends Controller
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives','user'));
+    return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
     }
 
     $posts = Post::latest()
@@ -60,17 +66,19 @@ class PostsController extends Controller
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+    return view('posts.index', compact('posts', 'categories', 'archives','topusers'));
   }
 
   public function showAll(){
+    $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+
     $posts = Post::latest()
     ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
 
     $categories = Category::get();
     $archives = $this->archives();
-    return view('posts.index', compact('posts', 'categories', 'archives'));
+    return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
   }
 
   public function show($id){
@@ -188,6 +196,14 @@ class PostsController extends Controller
                   });
 
             });
+  }
+  private function topusers(){
+    return User::get()
+          ->sortByDesc(function(User $user) {
+            return $user->followers>count();
+          });
+
+
   }
 
 

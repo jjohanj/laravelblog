@@ -22,6 +22,14 @@
                 </span>
             </div>
         </form><br>
+<h2> top users </h2>
+<ul>
+	@foreach($topusers as $topuser)
+	<li><a href="/user/{{$topuser->name}} "><strong>{{$topuser->name}}</strong></a></li>
+
+	@endforeach
+
+</ul>
 
 
 	<h2> Categories </h2>
