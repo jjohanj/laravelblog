@@ -41,15 +41,7 @@
   <li></li>
   <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
   <li><br />
-  s
-</ul>
-  @if ($role->name == 'admin')
-<h2> Administrator options:</h2>
-<ul>
-<li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-<li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-</ul>
-@endif
+
 
 <h2>Email options:</h2>
   <p> current email adress: {{$user->email}}</p>
