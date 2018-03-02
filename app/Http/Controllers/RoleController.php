@@ -96,8 +96,14 @@ public function paymentNotification(){
     public function createExcel()
     {
       $filename = 'securebeyondincassos';
+<<<<<<< HEAD
            $spreadsheet = new Spreadsheet();
            $sheet = $spreadsheet->getActiveSheet();
+=======
+      $spreadsheet = new Spreadsheet();
+      $sheet = $spreadsheet->getActiveSheet();
+
+>>>>>>> features/db-dump
            $sheet->setCellValue('A1', 'Bedrag');
            $sheet->setCellValue('B1', 'Machtiging Nr.');
            $sheet->setCellValue('C1', 'Datum Machtiging');
@@ -106,6 +112,13 @@ public function paymentNotification(){
            $sheet->setCellValue('F1', 'Naam Debiteur');
            $sheet->setCellValue('G1', 'Land');
            $sheet->setCellValue('H1', 'Omschrijving');
+<<<<<<< HEAD
+=======
+
+           header('Content-Type: application/vnd.ms-excel');
+           header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+           header('Cache-Control: max-age=0');
+>>>>>>> features/db-dump
 
            $users =  User::get();
            $payingusers = User::withRole('premium_user')->get();

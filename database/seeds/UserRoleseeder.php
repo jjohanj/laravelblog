@@ -14,8 +14,19 @@ class UserRoleseeder extends Seeder
      {
          $users = User::get();
          $free_user = Role::find(1);
+         $admin_user = Role::find(3);
          foreach($users as $user){
-           $user->roles()->attach($free_user);
+           if ($user->name == 'admin'){
+             $user->roles()->attach($admin_user);
+
+           }
+           if ($user->name != 'admin'){
+ $user->roles()->attach($free_user);
+
+           }
+
          }
+
+
      }
 }
