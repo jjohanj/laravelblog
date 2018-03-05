@@ -2,14 +2,24 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script> window.Laravel = { csrfToken: '{{ csrf_token() }}'} </script>
 @section('scripts')
   @include ('layouts.texteditexpand')
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
 @endsection
 
 @extends ('layout')
 
 @section ('content')
+
+<div id="app">
+ <test> </test>
+</div>
+
+
+
 
   <a href="/">BACK TO HOME PAGE</a><br>
 
