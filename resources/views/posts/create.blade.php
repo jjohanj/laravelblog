@@ -48,7 +48,7 @@
       <input type='checkbox' value='{{$category->id}}' name='category[]'> {{$category->name}} <br/>
 @endforeach
      <div id='textexpander'>
-       Tip: typ '@' in het tekstveld om de text expander te gebruiken
+       Tip: type '@' to use the text expander. 
      </div>
      <br><br>
     <textarea rows="20" name="body" type="text">{{ old('body') }}</textarea></br>
