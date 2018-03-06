@@ -13,56 +13,47 @@
     <body>
 
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-  <a class="navbar-brand" href="/info">Secure Beyond</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      @if(auth::check())
-      <li class="nav-item">
-        <a class="nav-link" href="/settings">@lang('messages.settings')</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/posts/create">@lang('messages.write')</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">@lang('messages.logout')</a>
-      </li>
-@else
-      <li class="nav-item">
-        <a class="nav-link" href="/login">@lang('messages.login')</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register"> @lang('messages.register')</a>
-      </li>
-@endif
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          languages
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" role="presentation" href="/de">Deutsch</a>
-          <a class="dropdown-item" role="presentation" href="/en">English</a>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link" href="/">Home</a>
+                  </li>
+                  @if(Auth::check())
+                  <li class="nav-item">
+                      <a class="nav-link" href="/posts/create">@lang('messages.write')</a>
+                  </li>
+                  @endif
 
 
-        </div>
-      </li>
-
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
+              </ul>
+          </div>
+          <div class="mx-auto order-0">
+              <a class="navbar-brand mx-auto" href="/info">Secure Beyond</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+          </div>
+          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+              <ul class="navbar-nav ml-auto">
+                  @if(Auth::check())
+                  <li class="nav-item">
+                      <a class="nav-link" href="/settings">@lang('messages.settings')</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/logout">@lang('messages.logout')</a>
+                  </li>
+                  @else
+                  <li class="nav-item">
+                      <a class="nav-link" href="/login">@lang('messages.login')</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/register">@lang('messages.register')</a>
+                  </li>
+                  @endif
+              </ul>
+          </div>
+      </nav>
 
 
 
