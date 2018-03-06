@@ -39,6 +39,12 @@
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/de">Deutsch</a>
+              </li>
+              <li class="nav-item" style="margin-right:25px">
+                <a class="nav-link" href="/en">English</a>
+              </li>
                 @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link" href="/settings">@lang('messages.settings')</a>
