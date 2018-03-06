@@ -1,16 +1,5 @@
 <?php
 
-
-Route::get('/upgradesubscription', 'RoleController@showUpgrade');
-Route::post('/upgradesubscription', 'RoleController@upgrade');
-Route::get('/cancelsubscription', 'RoleController@showDowngrade');
-Route::post('/cancelsubscription', 'RoleController@downgrade');
-
-Route::get('posts/create', 'PostsController@create');
-
-Route::post('/posts', 'PostsController@store');
-
-
 //read/show posts
 Route::get('/', 'PostsController@index');
 
@@ -51,8 +40,6 @@ Route::delete('/posts/delete/{id}', [
 //User
 Route::get('info', 'ProfileController@info');
 
-
-
 Route::get('/changepassword', 'SessionsController@changepassword');
 
 Route::post('/changepassword', 'RegistrationController@edit');
@@ -75,12 +62,6 @@ Route::get('/profile/image', 'ProfileController@setImage');
 
 Route::patch('/profile/image', 'ProfileController@update');
 
-Route::get('/profile/excel', 'RoleController@createExcel');
-
-Route::get('/profile/export', 'ProfileController@print');
-
-Route::get('/dump', 'RoleController@dump');
-
 Auth::routes();
 
 //User settings
@@ -91,12 +72,6 @@ Route::post('/updateNotifications', 'SettingsController@updatemail');
 Route::get('/{locale}', 'LanguageController@switchLang');
 
 
-// function ($locale) {
-//     App::setLocale($locale);
-//      return redirect()->back()->with('success', $locale);;
-//     //
-// });
-
 //Users;followers
 Route::get('/user/{username}', 'ProfileController@show');
 
@@ -104,7 +79,14 @@ Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name(
 
 Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
 
+//Admin/Owner
+Route::get('/profile/excel', 'RoleController@createExcel');
 
+Route::get('/profile/export', 'ProfileController@print');
+
+Route::get('/dump', 'RoleController@dump');
+
+Route::get('/settings/analytics', 'TrackerController@show');
 
 //Route::get('/login', 'LoginController@create');
 //Route::get('/register', 'RegistrationController@create');
