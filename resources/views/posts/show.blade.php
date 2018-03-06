@@ -1,60 +1,70 @@
-@extends ('layout')
+@extends ('layouts.viewposts')
 
 @section ('content')
-<a href="/">BACK TO MAIN MENU</a><br />
 
 
-<div class='main'>
-@foreach ($posts as $post)
 
- <h3> {{$post->title}}</h3>
 
-<div class='articles'>{!!$post->body!!} </div>
 
-<div class='category'>
-  @foreach ($posts as $post)
-  {{ $post->categories->pluck('name') }}
-  @endforeach
+<div class="card" style="width:100%; border:none">
+  <div class="card-body">
+    <h4 class="card-title">{{$post->title}}</h4>
+
+    <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary">{{$post->user->name}}</a> posted on {{$post->created_at}}</h5>
+    @foreach ($post->categories->pluck('name') as $value) <span class="badge badge-success">{{$value}}</span> @endforeach
+    <div class="card-text">{!!$post->body!!} </div>
+    <div style='float:right;'> @if(Auth::check())
+    @if (Auth::user()->id == $post->user_id)
+    <form action="/edit/post/{{ $post->id }}" method="get">
+
+        {!! csrf_field() !!}
+        <button class="btn btn-info">Edit/Delete</button>
+    </form>
+    @endif
+    @endif </div>
+  </div>
 </div>
 
-@endforeach
 
-@if(Auth::check())
-@if (Auth::user()->id == $post->user_id)
-<a href="/edit/post/{{ $post->id }}"> Edit or Delete this Post</a><br />
-@endif
-@endif
 <hr>
+
+
+
+
 @if ($post->disable_comments == 'no')
- <div class="comments">
-	<ul class="list-group">
+
+
+
+
 	@foreach ($post->comments as $comment)
-	<li class="list-group-item">
 
-		<strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong>
-		{{$comment->body}} &nbsp
-@if(Auth::check())
-@if (Auth::user()->id == $post->user_id)
+  <div class="card w-100" style='margin-bottom:5px;'>
+    <div class="card-body">
+      <div>
+      <h5 class="card-title"><strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong></h5>
+      <p class="card-text">{{$comment->body}}</p>
+    </div>
 
-<form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
-    <input type="hidden" name="_method" value="delete" />
-    {!! csrf_field() !!}
-    <button class="commentsdel">Delete</button>
-</form><br />
-@endif
-@endif
-
-
-	</li>
+      @if(Auth::check())
+      @if (Auth::user()->id == $post->user_id)
+      <div style="float:right">
+      <form action="{{ route('delete_comment_path', $comment->id) }}" method="post">
+          <input type="hidden" name="_method" value="delete" />
+          {!! csrf_field() !!}
+          <button class="btn btn-danger">Delete</button>
+      </form>
+      </div>
+      @endif
+      @endif
+    </div>
+  </div>
 	@endforeach
-</ul>
 
-
-</div>
+<br/>
 
 @if(Auth::check())
 
-<div class="card">
+<div class="card" style="border:none;">
 	<div class="card-block">
 		<form method="POST" action="/posts/show/{{$post->id}}/comments">
 			{{ csrf_field() }}
@@ -62,7 +72,7 @@
 				<textarea name='body' placeholder="Add your comment here" class="form-control"  required></textarea>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Add comment</button>
+				<button type="submit" class="btn btn-success">Add comment</button>
 			</div>
 
 		</form>
