@@ -1,58 +1,39 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-@extends ('layout')
+@extends ('layouts.info')
 
 @section ('content')
+<br/>
 
-<div class="menu">
+<div class="settings">
+<div class="card w-100" style='margin-bottom:5px;'>
+  <div class="card-header">
+  <h3 class="mb-0">{{$user->name}} Account @lang('messages.settings')</h3>
+  <p class="card-text"> You are a  {{$role->display_name}}</p>
+</div>
+  <div class="card-body">
+    <ul>
+      @if ($role->name == 'free_user')
+      <li><a href="/upgradesubscription">upgrade account</a></li>
+      @else
+      <li><a href="/cancelsubscription">@lang('messages.cancelsub')</a></li>
+      @endif
 
-<a href="/">Home</a>
+      <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a></li>
+
+      <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
+
+    </ul>
+  </div>
 </div>
 
-<h1> @lang('messages.settings') </h1>
 
-<h2> {{$user->name}} Account @lang('messages.settings')</h2>
-<h3> You are a {{$role->display_name}} </h3>
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @elseif ($role->name == 'premium_user')
-  <li><a href="/cancelsubscription">cancel your subscription</a></li>
-  @endif
-
-<ul>
-
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @else
-  <li><a href="/cancelsubscription">@lang('messages.cancelsub')</a></li>
-  @endif
-</ul>
-
-<ul>
-  <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-  <li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-  <li>change billing information </li>
-
-
-  <li><br />
-  <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a>
-  <li></li>
-  <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
-  <li><br />
-  s
-</ul>
-  @if ($role->name == 'admin')
-<h2> Administrator options:</h2>
-<ul>
-<li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-<li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
-</ul>
-@endif
-
-<h2>Email options:</h2>
-  <p> current email adress: {{$user->email}}</p>
+<div class="card w-100" style='margin-bottom:5px;'>
+    <div class="card-header">
+  <h3 class="mb-0">Email options</h3>
+  <p class="card-text">current email adress: {{$user->email}}</p>
+</div>
+  <div class="card-body">
     <form action="/updateNotifications" method="POST">
       {{ csrf_field() }}
       @if($notification->enable_newcomment == "yes")
@@ -78,14 +59,26 @@
   <input type='hidden' value='no' name='enable_postsmail'><br/>
     <input type='checkbox' value='yes' name='enable_postsmail'> enable new follower mail <br/>
   @endif
-<button class="btn btn-primary" type="submit">@lang('messages.update')</button></br>
+  <br/>
+<button class="btn btn-success" type="submit">@lang('messages.update')</button></br>
 </form>
-
-
-
-
+  </div>
 </div>
-@endsection
+
+
+
+  <div class="card w-100" style='margin-bottom:5px;'>
+      <div class="card-header">
+    <h6 class="mb-0"><strong>Administrator options:</strong></h6>
+</div>
+    <div class="card-body">
+      <button type="button" class="btn btn-info"><a href="/profile/excel" style="color:inherit;text-decoration:inherit;"> Generate Excel</a></button>
+      <button type="button" class="btn btn-danger"><a href="/dump" style="color:inherit;text-decoration:inherit;"> Database Dump</a></button>
+
+
+    </div>
+  </div>
+</div>
 
 <script>
 function sort(){
@@ -94,8 +87,9 @@ $.ajax({
 		type: "GET", // not POST, laravel won't allow it
 		success: function(data){
 			$data = $(data); // the HTML content your controller has produced
-			$('.main').fadeOut().html($data).fadeIn();
+			$('.settings').fadeOut().html($data).fadeIn();
 			}
 	});
 };
 </script>
+@endsection

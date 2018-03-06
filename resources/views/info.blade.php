@@ -1,9 +1,8 @@
-@extends ('layout')
+@extends ('layouts.info')
 
 @section ('content')
 
-<a href="/">Home</a>
-<div>
+
 <div>
 <h1> @lang('messages.info')  </h1>
 Secure Beyond is a platform where bloggers can share their articles with visitors and other users. As a Secure Beyond blogger you can post your views, opinions and findings in your own blog posts, read your favorite users posts, or comment with your thought on other articles. <br/>

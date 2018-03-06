@@ -3,15 +3,14 @@
 @section ('content')
 
 
-
-
-
 <div class="card" style="width:100%; border:none">
   <div class="card-body">
-    <h4 class="card-title">{{$post->title}}</h4>
+    <h1 class="card-title" style="text-align:center;">{{$post->title}}</h1>
+    <hr>
 
-    <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary">{{$post->user->name}}</a> posted on {{$post->created_at}}</h5>
+    <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary btn-sm">{{$post->user->name}}</a> posted on {{$post->created_at}}</h5>
     @foreach ($post->categories->pluck('name') as $value) <span class="badge badge-success">{{$value}}</span> @endforeach
+    <hr>
     <div class="card-text">{!!$post->body!!} </div>
     <div style='float:right;'> @if(Auth::check())
     @if (Auth::user()->id == $post->user_id)
@@ -41,7 +40,7 @@
   <div class="card w-100" style='margin-bottom:5px;'>
     <div class="card-body">
       <div>
-      <h5 class="card-title"><strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong></h5>
+      <h6 class="card-title"><strong>{{$comment->created_at->diffForHumans()}}, {{$comment->user->name}} said:</strong></h6>
       <p class="card-text">{{$comment->body}}</p>
     </div>
 

@@ -12,59 +12,7 @@
 
     </head>
     <body>
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="/">Home</a>
-                  </li>
-                  @if(Auth::check())
-                  <li class="nav-item">
-                      <a class="nav-link" href="/posts/create">@lang('messages.write')</a>
-                  </li>
-                  @endif
-
-
-              </ul>
-          </div>
-          <div class="mx-auto order-0">
-              <a class="navbar-brand mx-auto" href="/info">Secure Beyond</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-          </div>
-          <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="/de">Deutsch</a>
-                </li>
-                <li class="nav-item" style="margin-right:25px">
-                  <a class="nav-link" href="/en">English</a>
-                </li>
-                  @if(Auth::check())
-                  <li class="nav-item">
-                      <a class="nav-link" href="/settings">@lang('messages.settings')</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/logout">@lang('messages.logout')</a>
-                  </li>
-                  @else
-                  <li class="nav-item">
-                      <a class="nav-link" href="/login">@lang('messages.login')</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/register">@lang('messages.register')</a>
-                  </li>
-                  @endif
-              </ul>
-          </div>
-      </nav>
-
-
-
-
-
-
+      @include('layouts.navbar')
 
     <div class="card bg-dark text-dark" width="100%" style=' border: none;'>
       <img class="card-img" src="https://www.warrenphotographic.co.uk/photography/bigs/04338-Ginger-cat-running-white-background.jpg" alt="Card image cap"  height="200">
@@ -73,12 +21,6 @@
 
       </div>
     </div>
-
-
-
-
-
-
 
 <div class='container-fluid' width='100%'>
    <div class="row">
@@ -90,14 +32,14 @@
         <div class='col-3'style="padding:0">
 
            <div class="card">
-             @if (!empty ($user->blogimage))
-             <img class="card-img-top" src="{{$user->blogimage}}" alt="Header Image" width="75">
-             @else
-              <img class="card-img-top" src="http://www.pixempire.com/images/preview/new-user-icon.jpg" alt="Header Image" >
+             <h3 class="card-title" style="text-align:center; margin-top:10px; margin-bottom:0px;">{{$user->name}}</h3>
+             <div class="card-body"style="padding-top:0px;">
+               @if (!empty ($user->blogimage))
+               <img class="card-img-top" src="{{$user->blogimage}}" alt="Header Image" width="75">
+               @else
+                <img class="card-img-top" src="http://www.pixempire.com/images/preview/new-user-icon.jpg" alt="Header Image" >
 
-             @endif
-             <div class="card-body">
-               <h5 class="card-title">{{$user->name}}</h5>
+               @endif
                @if (Auth::check())
 
                 @if ( Auth::user()->id  !=  $user->id)
