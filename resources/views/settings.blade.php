@@ -5,26 +5,65 @@
 @section ('content')
 
 <div class="settings">
+  @include ('layouts.success')
 <div class="card w-100" style='margin-top:1rem;'>
   <div class="card-header">
   <h3 class="mb-0">{{$user->name}} Account @lang('messages.settings')</h3>
   <p class="card-text"> You are a  {{$role->display_name}}</p>
 </div>
   <div class="card-body">
-    <ul>
+
       @if ($role->name == 'free_user')
-      <li><a href="/upgradesubscription">upgrade account</a></li>
+
+    <a href="/upgradesubscription"  style="color:#28a745">upgrade account</a>
       @else
-      <li><a href="/cancelsubscription">@lang('messages.cancelsub')</a></li>
+      <a href="/cancelsubscription" style="color:#28a745">@lang('messages.cancelsub')</a>
       @endif
+<hr>
+      <a href="/changepassword" style="color:#28a745"> @lang('messages.changepwd')</a>
 
-      <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a></li>
+      </div>
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-success" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Update profile/header images
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          @include ('layouts.errors')
 
-      <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
+          <form method="post" action="/profile/image" style="width:50%">
+          {{csrf_field()}}
+            <input name="_method" type="hidden" value="PATCH">
+          <div class="form-group">
+              <label for="profileImage">Set Your Profile Picture</label>
+              <input id="ProfileImage" type="text" class="form-control" name="blogimage" placeholder="clipart-library.com/images/8cAbXKoXi.png" required>
+              <small id="profileImage" class="form-text text-muted">it will be set to 150x150</small>
+              <button type="submit" class="btn btn-success">Update Profile Picture</button>
+            </div>
+          </form>
 
-    </ul>
-  </div>
+          <form method="post" action="/profile/header" style="width:50%">
+          {{csrf_field()}}
+            <input name="_method" type="hidden" value="PATCH">
+          <div class="form-group">
+              <label for="headerImage">Set Your Header Image</label>
+              <input id="headerImage" type="text" class="form-control" name="blogheader" placeholder="clipart-library.com/images/8cAbXKoXi.png" required>
+              <small id="headerImage" class="form-text text-muted">Height will automatically be set to 200px</small>
+              <button type="submit" class="btn btn-success">Update Header Image</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
 </div>
+
+
+
 
 
 <div class="card w-100" style='margin-top:1rem;'>
@@ -65,10 +104,10 @@
 </div>
 
 
-
+    @if ($role->name == 'admin')
   <div class="card w-100" style='margin-top:1rem;'>
       <div class="card-header">
-    <h6 class="mb-0"><strong>Administrator options:</strong></h6>
+    <h3 class="mb-0"><strong>Administrator options</strong></h3>
 </div>
     <div class="card-body">
       <button type="button" class="btn btn-info"><a href="/profile/excel" style="color:inherit;text-decoration:inherit;"> Generate Excel</a></button>
@@ -77,6 +116,7 @@
 
     </div>
   </div>
+  @endif
 </div>
 
 <script>

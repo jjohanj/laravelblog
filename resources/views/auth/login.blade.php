@@ -28,13 +28,13 @@
 
       <div class="form-group">
 
-              <button type="submit" class="btn btn-primary">@lang('messages.login')</button>
+              <button type="submit" class="btn btn-success">@lang('messages.login')</button>
 
           </div>
 
     <div class="form-group">
 
-          <a href='/password/reset'>
+          <a href='/password/reset'style="color:#28a745">
             <p>@lang('messages.forgotpwd')</a></p>
 
         </div>

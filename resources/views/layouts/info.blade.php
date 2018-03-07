@@ -13,14 +13,19 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <script> window.Laravel = { csrfToken: '{{ csrf_token() }}'} </script>
 
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="{{ URL::to('js/upgrade.js') }}"></script>
+
     <title>Secure Beyond</title>
 
   </head>
   <body style="background-color:#b2b4b7;">
         @include('layouts.navbar')
 
-        <div class='container-fluid' width='100%'>
-  @yield('content')
+        <div id='container' class='container-fluid' width='100%'>
+          @yield('content')
+
+          @yield('scripts')
           <div>
   </body>
 </html>

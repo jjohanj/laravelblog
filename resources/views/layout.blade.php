@@ -7,9 +7,16 @@
         <title>The Title</title>
 
     </head>
-    <body>
+    <body style="background-color:#b2b4b7;">
+      <nav class="navbar navbar-inverse">
+
+  <a href="/" class="navbar-brand">Home</a>
+  <a href="/settings" class="navbar-brand">back to settings</a>
+
+</nav>
+
       <div id='container'>
-      @include ('layouts.header')
+
 
         @yield('content')
 

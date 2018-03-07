@@ -13,14 +13,18 @@
     </head>
       <body style="background-color:#b2b4b7;">
       @include('layouts.navbar')
+      <div class="card bg-dark text-dark" width="100%" style=' border: none;'>
+        @if (!empty ($user->blogheader))
+        <img class="card-img-top" src="{{$user->blogheader}}" alt="Header Image" style="height:200px;width=100%">
+        @else
+         <img class="card-img-top" src="https://i.imgur.com/mdD8zMX.jpg?2" alt="Header Image" style="height:200px;width=100%">
+@endif
+        <div class="card-img-overlay">
+          <h1 class="display-2" style='text-align:center'>{{$user->blog_name}}</h1>
 
-    <div class="card bg-dark text-dark" width="100%" style=' border: none;'>
-      <img class="card-img" src="https://www.warrenphotographic.co.uk/photography/bigs/04338-Ginger-cat-running-white-background.jpg" alt="Card image cap"  height="200">
-      <div class="card-img-overlay">
-        <h1 class="display-2" style='text-align:center'>{{$user->blog_name}}</h1>
-
+        </div>
       </div>
-    </div>
+
 
 <div class='container-fluid' width='100%'>
    <div class="row">

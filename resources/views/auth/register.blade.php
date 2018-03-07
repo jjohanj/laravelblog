@@ -49,7 +49,7 @@
 
     <div class="form-group">
 
-            <button type="submit" class="btn btn-primary">@lang('messages.register')</button>
+            <button type="submit" class="btn btn-success">@lang('messages.register')</button>
           </div>
 
 

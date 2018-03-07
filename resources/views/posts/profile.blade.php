@@ -5,7 +5,7 @@
 
 
 
-<div >
+<div>
 
 @foreach ($posts as $post)
   @include ('posts.articles')

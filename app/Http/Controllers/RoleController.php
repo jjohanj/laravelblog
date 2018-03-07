@@ -42,7 +42,7 @@ public function showpayment(){
       'IBAN' => 'required|max:34|unique:paymentdetails',
       'Country' => 'required',
     ]);
-    $user = Auth:;user();
+    $user = Auth::user();
     $user_id = Auth::user()->id;
     $fullName= request('fullName');
     $BIC = request('BIC');
@@ -54,6 +54,7 @@ public function showpayment(){
         'BIC' => $BIC,
         'IBAN' => $IBAN,
         'country' => $country,
+        'fullName' => $fullName,
 
     ]);
     $premium_user = Role::find(2);
