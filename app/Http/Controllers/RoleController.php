@@ -225,7 +225,12 @@ public function paymentNotification(){
 
     public function stats()
     {
+      $admin = Auth::user();
+      if ($admin->hasRole('admin')){
       return view('stats');
+    } else {
+      return redirect('settings');
+    }
     }
 
     // function dumpB()

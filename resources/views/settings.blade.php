@@ -40,7 +40,8 @@
 <h2> Administrator options:</h2>
 <ul>
 <li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-<li class='btn btn-danger' role="presentation"><a href="/dump"> Database Dump</a></li>
+<li role="presentation"><a href="/dump"> Database Dump</a></li>
+<li role="presentation"><a href="/settings/stats"> Analytics</a></li>
 </ul>
 @endif
 
