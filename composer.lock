@@ -1307,6 +1307,7 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v5.6.9",
             "source": {
                 "type": "git",
@@ -1317,6 +1318,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/98fdbb098cf52a74441fe949be121c18e3dbbe6a",
                 "reference": "98fdbb098cf52a74441fe949be121c18e3dbbe6a",
+
                 "shasum": ""
             },
             "require": {
@@ -1441,7 +1443,9 @@
                 "framework",
                 "laravel"
             ],
+
             "time": "2018-03-07T14:04:49+00:00"
+
         },
         {
             "name": "laravel/tinker",
@@ -2078,6 +2082,7 @@
                 "xlsx"
             ],
             "time": "2018-03-04T20:41:15+00:00"
+
         },
         {
             "name": "phpseclib/phpseclib",
@@ -2170,6 +2175,7 @@
                 "x509"
             ],
             "time": "2018-02-19T04:29:13+00:00"
+
         },
         {
             "name": "psr/cache",
@@ -2656,6 +2662,7 @@
                 "spatie"
             ],
             "time": "2018-03-05T23:49:28+00:00"
+
         },
         {
             "name": "spatie/laravel-analytics",
@@ -2723,6 +2730,7 @@
                 "spatie"
             ],
             "time": "2018-02-08T09:39:06+00:00"
+
         },
         {
             "name": "spatie/laravel-backup",

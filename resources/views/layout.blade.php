@@ -23,13 +23,22 @@
       <title>Secure Beyond</title>
 
     </head>
-    <body>
-      <!-- Google Tag Manager (noscript) -->
+
+    <body style="background-color:#b2b4b7;">
+    <!-- Google Tag Manager (noscript) -->
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NGBRHV7"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
+      <nav class="navbar navbar-inverse">
+  
+  <a href="/" class="navbar-brand">Home</a>
+  <a href="/settings" class="navbar-brand">back to settings</a>
+
+</nav>
+
+
       <div id='container'>
-      @include ('layouts.header')
+
 
         @yield('content')
 

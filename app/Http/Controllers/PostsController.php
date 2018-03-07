@@ -82,8 +82,11 @@ class PostsController extends Controller
   }
 
   public function show($id){
-    $posts = Post::where('id', $id)->get();
-    return view ('posts.show', compact('posts'));
+    $post = Post::where('id', $id)->first();
+
+    $user_id = $post->user_id;
+    $user = User::find($user_id);
+    return view ('posts.show', compact('post', 'user'));
   }
 
   public function create (){

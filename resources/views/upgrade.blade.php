@@ -2,44 +2,39 @@
 
 @section ('content')
 
+<div class="panel panel-default">
+  <div class="panel-heading"><h2>Your payment notification is on the way <h2>
+    <h2> <small>Can't wait? enter your creditcard details below, and start continue blogging right now!</small> </h2></div>
+  <div class="panel-body">
 
 
-<h2>Your payment notification is on the way <h2>
-  <a href="/settings">back to settings</a></br>
-  <h3> Can't wait? enter your creditcard details below, and start continue blogging right now! </h3>
+    <form action="/upgradesubscription" method="post" id="payment-form">
+      <div class="form-group">
+        <label for="name"> Username</label>
+          <input class="form-control" placeholder="Your username" name="Name" type="text" id="name" ></br>
+
+          <label for="Cardname">Name Cardholder</label>
+            <input class="form-control" placeholder="Cardholder name" name="CardName" type="text" id="Cardname" ></br>
+
+        <label for="card-element">
+          Credit or debit card
+        </label>
+        <div id="card-element">
+          <!-- A Stripe Element will be inserted here. -->
+        </div>
+
+        <!-- Used to display Element errors. -->
+        <div id="card-errors" role="alert"></div>
+
+        </div>
+
+      <button class="btn btn-success">Complete payment</button>
+        {{ csrf_field() }}
+    </form>
 
 
-
-<form action="/upgradesubscription" method="post" id="payment-form">
-  <div class="form-row">
-    <label for="card-element">
-      Username
-    </label> <br/>
-      <input placeholder="Your username" name="Name" type="text" id="name" ></br>
-
-      <label for="card-element">
-        Name Cardholder
-      </label><br/>
-        <input placeholder="Cardholder name" name="CardName" type="text" id="Cardname" ></br>
-
-    <label for="card-element">
-      Credit or debit card
-    </label>
-    <div id="card-element">
-      <!-- A Stripe Element will be inserted here. -->
-    </div>
-
-    <!-- Used to display Element errors. -->
-    <div id="card-errors" role="alert"></div>
-
-    </div>
-
-  <button>PAY UP</button>
-    {{ csrf_field() }}
-</form>
-
-
-
+  </div>
+</div>
 
 
 

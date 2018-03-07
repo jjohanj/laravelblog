@@ -1,52 +1,79 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-@extends ('layout')
+@extends ('layouts.info')
 
 @section ('content')
 
-<div class="menu">
+<div class="settings">
+  @include ('layouts.success')
+<div class="card w-100" style='margin-top:1rem;'>
+  <div class="card-header">
+  <h3 class="mb-0">{{$user->name}} Account @lang('messages.settings')</h3>
+  <p class="card-text"> You are a  {{$role->display_name}}</p>
+</div>
+  <div class="card-body">
 
-<a href="/">Home</a>
+      @if ($role->name == 'free_user')
+
+    <a href="/upgradesubscription"  style="color:#28a745">upgrade account</a>
+      @else
+      <a href="/cancelsubscription" style="color:#28a745">@lang('messages.cancelsub')</a>
+      @endif
+<hr>
+      <a href="/changepassword" style="color:#28a745"> @lang('messages.changepwd')</a>
+
+      </div>
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-success" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Update profile/header images
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          @include ('layouts.errors')
+
+          <form method="post" action="/profile/image" style="width:50%">
+          {{csrf_field()}}
+            <input name="_method" type="hidden" value="PATCH">
+          <div class="form-group">
+              <label for="profileImage">Set Your Profile Picture</label>
+              <input id="ProfileImage" type="text" class="form-control" name="blogimage" placeholder="clipart-library.com/images/8cAbXKoXi.png" required>
+              <small id="profileImage" class="form-text text-muted">it will be set to 150x150</small>
+              <button type="submit" class="btn btn-success">Update Profile Picture</button>
+            </div>
+          </form>
+
+          <form method="post" action="/profile/header" style="width:50%">
+          {{csrf_field()}}
+            <input name="_method" type="hidden" value="PATCH">
+          <div class="form-group">
+              <label for="headerImage">Set Your Header Image</label>
+              <input id="headerImage" type="text" class="form-control" name="blogheader" placeholder="clipart-library.com/images/8cAbXKoXi.png" required>
+              <small id="headerImage" class="form-text text-muted">Height will automatically be set to 200px</small>
+              <button type="submit" class="btn btn-success">Update Header Image</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
 </div>
 
-<h1> @lang('messages.settings') </h1>
-
-<h2> {{$user->name}} Account @lang('messages.settings')</h2>
-<h3> You are a {{$role->display_name}} </h3>
-<ul>
-  @if ($role->name == 'free_user')
-  <li><a href="/upgradesubscription">upgrade account</a></li>
-  @elseif ($role->name == 'premium_user')
-  <li><a href="/cancelsubscription">cancel your subscription</a></li>
-  @endif
-
-<ul>
 
 
-<ul>
 
-  <li role="presentation"><a href="/profile/export"> Print Blogs</a></li>
 
-  <li><br />
-  <li id="setimage" onclick="sort()"><a>@lang('messages.headerimg')</a></li>
-    <div class="headerimg">
 
-    </div>
-  <li role="presentation"><a href="/changepassword"> @lang('messages.changepwd')</a></li>
-  <li><br />
+<div class="card w-100" style='margin-top:1rem;'>
+    <div class="card-header">
+  <h3 class="mb-0">Email options</h3>
+  <p class="card-text">current email adress: {{$user->email}}</p>
+</div>
+  <div class="card-body">
 
-</ul>
-  @if ($role->name == 'admin')
-<h2> Administrator options:</h2>
-<ul>
-<li role="presentation"><a href="/profile/excel"> Generate Excel</a></li>
-<li role="presentation"><a href="/dump"> Database Dump</a></li>
-<li role="presentation"><a href="/settings/stats"> Analytics</a></li>
-</ul>
-@endif
-
-<h2>Email options:</h2>
-  <p> current email adress: {{$user->email}}</p>
     <form action="/updateNotifications" method="POST">
       {{ csrf_field() }}
       @if($notification->enable_newcomment == "yes")
@@ -72,21 +99,29 @@
   <input type='hidden' value='no' name='enable_postsmail'><br/>
     <input type='checkbox' value='yes' name='enable_postsmail'> enable new follower mail <br/>
   @endif
-<button class="btn btn-primary" type="submit">@lang('messages.update')</button></br>
+  <br/>
+<button class="btn btn-success" type="submit">@lang('messages.update')</button></br>
 </form>
+  </div>
+</div>
+
+
+
+    @if ($role->name == 'admin')
+  <div class="card w-100" style='margin-top:1rem;'>
+      <div class="card-header">
+    <h3 class="mb-0"><strong>Administrator options</strong></h3>
+</div>
+    <div class="card-body">
+     <a href="/profile/excel" class="btn btn-info""> Generate Excel</a>
+     <a href="/dump" style="color:inherit;text-decoration:inherit;"> Database Dump</a>
+     <a href="/settings/stats" class="btn btn-warning"> Analytics</a></button>
+
+    </div>
+  </div>
+  @endif
+</div>
+
 
 
 @endsection
-
-<script>
-function sort(){
-$.ajax({
-		url: '/profile/image',
-		type: "GET", // not POST, laravel won't allow it
-		success: function(data){
-			$data = $(data); // the HTML content your controller has produced
-			$('.headerimg').fadeOut().html($data).fadeIn();
-			}
-	});
-};
-</script>

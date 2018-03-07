@@ -13,13 +13,13 @@ class CategoriesController extends Controller
   {
     $posts = $category->posts;
     $archives = $this->archives();
-    
+
     return view ('posts.category', compact('posts'));
   }
 
   public function create ()
   {
-    $categories = Category::get();
+    $categories = Category::orderBy('name')->get();
 
     return view ('posts.createcategory', compact('categories'));
   }
@@ -31,21 +31,21 @@ class CategoriesController extends Controller
     return redirect ('/posts/create');
   }
 
-  private function archives() 
+  private function archives()
    {
       return Post::orderBy('created_at', 'desc')
         ->whereNotNull('created_at')
         ->get()
-        ->groupBy(function(Post $post) 
+        ->groupBy(function(Post $post)
         {
           return $post->created_at->format('F');
         })
-        
-        ->map(function ($item) 
+
+        ->map(function ($item)
         {
           return $item
           ->sortByDesc('created_at')
-          ->groupBy( function ( $item ) 
+          ->groupBy( function ( $item )
           {
             return $item->created_at->format('Y');
           });

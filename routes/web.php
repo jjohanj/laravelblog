@@ -58,9 +58,7 @@ Route::get('/cancelsubscription', 'RoleController@showDowngrade');
 
 Route::post('/cancelsubscription', 'RoleController@downgrade');
 
-Route::get('/profile/image', 'ProfileController@setImage');
 
-Route::patch('/profile/image', 'ProfileController@update');
 
 Auth::routes();
 
@@ -68,6 +66,12 @@ Auth::routes();
 Route::get('settings', 'ProfileController@settings');
 
 Route::post('/updateNotifications', 'SettingsController@updatemail');
+
+
+Route::patch('/profile/image', 'ProfileController@updateImage');
+
+
+Route::patch('/profile/header', 'ProfileController@updateHeader');
 
 Route::get('/{locale}', 'LanguageController@switchLang');
 

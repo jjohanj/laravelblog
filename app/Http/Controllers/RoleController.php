@@ -55,6 +55,7 @@ public function showpayment(){
         'BIC' => $BIC,
         'IBAN' => $IBAN,
         'country' => $country,
+        'fullName' => $fullName,
 
     ]);
     $premium_user = Role::where('name', 'premium_user')->get();

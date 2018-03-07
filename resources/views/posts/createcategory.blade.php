@@ -1,28 +1,59 @@
 
-@extends ('layout')
+@extends ('layouts.create')
 
 @section ('content')
-  <a href="/">BACK TO HOME PAGE</a><br />
-  <a href="/posts/create">SUBMIT A POST</a><br />
+  <div class="container">
+    <div class="row">
+      <div class="col"style="margin-top:1rem">
 
-  <br>
-  Existing categories:
-<div id="form">
-  <ul>
- @foreach ($categories as $category)
-     <li> {{$category->name}}</li>
-@endforeach
-<ul>
+        <div class="card">
+          <div class="card-header">
+              <h3 class="card-title">Add a custom category</h3>
+          </div>
+          <div class="card-body">
+            <form action="/posts/create/category" method="POST">
+              {{ csrf_field() }}
+              <div class="form-group">
+                <label for="name">Category name</label>
+                <input type="text" class="form-control" name="name" id="name" aria-describedby="name" placeholder="category" required>
 
-<form action="/posts/create/category" method="POST">
-  {{ csrf_field() }}
+              </div>
 
-  <div id="inputfield"></div>
-    <input placeholder="category" name="name" type="name" id="title" required></br>
+              <button type="submit" class="btn btn-success">Add category</button>
+            </form>
+          </div>
+        </div>
 
-    <button class="btn btn-primary" type="submit">Add category!</button></br> 
+
+      </div>
+      <div class="col-4" style="margin-top:1rem">
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">existing categories</h3>
+          </div>
+          <div class="card-body"style="max-height:500px;overflow:hidden">
+
+            <div class="container" style='width:100%;height:100%;overflow-y:auto;padding-right:17px;'>
+            <ul class="list-group list-group-flush">
+              @foreach ($categories as $category)
+                  <li class="list-group-item">{{$category->name}}</li>
+             @endforeach
+            </ul>
+
+        </div>
+
+
+          </div>
+        </div>
+
+
+    </div>
   </div>
-</form>
 
-</div>
+
+
+
+
+
 @endsection
