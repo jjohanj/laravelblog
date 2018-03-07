@@ -1,25 +1,30 @@
-<script>
-(function(w,d,s,g,js,fs){
-  g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
-  js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
-  js.src='https://apis.google.com/js/platform.js';
-  fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
-}(window,document,'script'));
-</script>
+<!doctype html>
+<html>
+    <head>
 
-<h2> Secure Beyond Statistics </h2>
-<h4><a href="/settings"> Return </a></h4>
+    <script>
+    (function(w,d,s,g,js,fs){
+      g=w.gapi||(w.gapi={});g.analytics={q:[],ready:function(f){this.q.push(f);}};
+      js=d.createElement(s);fs=d.getElementsByTagName(s)[0];
+      js.src='https://apis.google.com/js/platform.js';
+      fs.parentNode.insertBefore(js,fs);js.onload=function(){g.load('analytics');};
+    }(window,document,'script'));
+    </script>
+  </head>
+<body>
+  <h2> Secure Beyond Statistics </h2>
+  <h4><a href="/settings"> Return </a></h4>
 
-<hr size="10px" noshade>
-<div id="embed-api-auth-container" style="display: none;"></div>
-<div id="chart-1-container"></div>
-<hr size="10px" noshade>
-<div id="chart-2-container" style="float: left; margin-left: 20%"></div>
-<div id="chart-3-container" style="float: right; margin-right: 20%"></div>
-<div id="view-selector-1-container" style="display: none;"></div>
-<div id="view-selector-2-container" style="display: none;"></div>
-<div id="view-selector-3-container" style="display: none;"></div>
-
+  <hr size="10px" noshade>
+  <div id="embed-api-auth-container" style="display: none;"></div>
+  <div id="chart-1-container"></div>
+  <hr size="10px" noshade>
+  <div id="chart-2-container" style="float: left; margin-left: 20%"></div>
+  <div id="chart-3-container" style="float: right; margin-right: 20%"></div>
+  <div id="view-selector-1-container" style="display: none;"></div>
+  <div id="view-selector-2-container" style="display: none;"></div>
+  <div id="view-selector-3-container" style="display: none;"></div>
+</body>
 <script>
 
 gapi.analytics.ready(function() {
