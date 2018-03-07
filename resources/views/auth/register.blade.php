@@ -1,14 +1,14 @@
-@extends ('layout')
+@extends ('layouts.info')
 
 @section ('content')
 
-<div class="col-sm-8">
+<div class="col" style="text-align:center;margin-top:1rem">
 
-    <a href="/"><h4>Return</h4></a><br>
-
-    <h2> @lang('messages.register') </h2>
-
-    @include ('layouts.errors')
+  <div class="card" style="width:50%; margin:auto">
+  <div class="card-header">
+<h5 class="card-title">@lang('messages.register')</h5>
+  </div>
+  <div class="card-body">
 
     <form method="POST" action="/register">
     {{csrf_field()}}
@@ -47,11 +47,22 @@
         name="password_confirmation">
     </div>
 
-    <div class="form-group row mb-0">
-        <div class="col-md-6 offset-md-4">
+    <div class="form-group">
+
             <button type="submit" class="btn btn-primary">@lang('messages.register')</button>
           </div>
-        </div>
-  <div>
+
+
+      </form>
+
+  </div>
+</div>
+
+</div>
+
+    @include ('layouts.errors')
+
+
+
 
 @endsection

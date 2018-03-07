@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    
+
         <title>Secure Beyond</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -15,17 +15,17 @@
 
     <title>Secure Beyond</title>
   </head>
-  <body>
+  <body style="background-color:#b2b4b7;">
     @include('layouts.navbar')
 
 
     <div class='container-fluid' width='100%'>
        <div class="row" >
           <div class='col-3' style="padding:0">
-            <div class="card">
+            <div class="card" style="margin-bottom:0.5rem;margin-top:1rem;">
                 @if(Auth::check())
               <div class="card-header">
-                <h5 class="mb-0"><a href="/user/{{Auth::user()->name}}" style="text-decoration: none;"> <strong>@lang('messages.greeting') {{Auth::user()->name}}</strong></a></h5>
+                <h5 class="mb-0"><a href="/user/{{Auth::user()->name}}" style="text-decoration:none;color:#28a745"> <strong>@lang('messages.greeting') {{Auth::user()->name}}</strong></a></h5>
               </div>
               @endif
               <div class="card-content">
@@ -39,7 +39,7 @@
             </div>
             </div>
             </div>
-            <div class="card">
+            <div class="card"style="margin-bottom:0.5rem;">
                 <div class="card-header">
                   <h5 class="mb-0">top users</h5>
                 </div>
@@ -51,7 +51,7 @@
                   </div>
 
               </div>
-              <div class="card">
+              <div class="card"style="margin-bottom:0.5rem;">
                 <div class="card-header">
                   <h5 class="mb-0"> @lang('messages.categories') </h5>
                 </div>
@@ -68,8 +68,8 @@
              <div class="card-body">
               @foreach($archives as $year => $months)
                   <h6 class="mb-0">
-                    <a href="?month={{$year}}">
-                      {{ $year }}
+                    <a href="?month={{$year}}" style="text-decoration:none;color:#28a745">
+                      <strong>{{ $year }}</strong>
                     </a><br>
                   </h6>
               @endforeach
@@ -79,7 +79,7 @@
 
 
 
-      <div class ="col">
+      <div class ="col" style="margin-top:1rem">
         @yield('content')
       </div>
 

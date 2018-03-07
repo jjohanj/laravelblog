@@ -11,7 +11,7 @@
         <script> window.Laravel = { csrfToken: '{{ csrf_token() }}'} </script>
 
     </head>
-    <body>
+      <body style="background-color:#b2b4b7;">
       @include('layouts.navbar')
 
     <div class="card bg-dark text-dark" width="100%" style=' border: none;'>
@@ -24,14 +24,14 @@
 
 <div class='container-fluid' width='100%'>
    <div class="row">
-  <div class="col">
+  <div class="col" style="margin-top:1rem;">
         @yield('content')
       </div>
 
 
         <div class='col-3'style="padding:0">
 
-           <div class="card">
+           <div class="card" style="margin-top:1rem;">
              <h3 class="card-title" style="text-align:center; margin-top:10px; margin-bottom:0px;">{{$user->name}}</h3>
              <div class="card-body"style="padding-top:0px;">
                @if (!empty ($user->blogimage))

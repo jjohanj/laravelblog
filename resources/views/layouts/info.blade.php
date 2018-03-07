@@ -16,7 +16,7 @@
     <title>Secure Beyond</title>
 
   </head>
-  <body>
+  <body style="background-color:#b2b4b7;">
         @include('layouts.navbar')
 
         <div class='container-fluid' width='100%'>

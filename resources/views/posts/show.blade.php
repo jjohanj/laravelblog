@@ -8,7 +8,7 @@
     <h1 class="card-title" style="text-align:center;">{{$post->title}}</h1>
     <hr>
 
-    <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary btn-sm">{{$post->user->name}}</a> posted on {{$post->created_at}}</h5>
+    <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary btn-sm">{{$post->user->name}}</a> <small>{{$post->created_at->diffForHumans()}}</small></h5>
     @foreach ($post->categories->pluck('name') as $value) <span class="badge badge-success">{{$value}}</span> @endforeach
     <hr>
     <div class="card-text">{!!$post->body!!} </div>
@@ -32,8 +32,8 @@
 
 @if ($post->disable_comments == 'no')
 
-
-
+<div class="container-fluid" style="max-height:500px;overflow:hidden">
+<div class="container" style='width:100%;height:100%;overflow-y:auto;padding-right:17px;'>
 
 	@foreach ($post->comments as $comment)
 
@@ -59,12 +59,15 @@
   </div>
 	@endforeach
 
-<br/>
-
+</div>
+</div>
 @if(Auth::check())
 
 <div class="card" style="border:none;">
-	<div class="card-block">
+  <div class="card-header">
+      <h3 class="card-title" style="text-align:center;">Join the discussion!</h3>
+</div>
+	<div class="card-body">
 		<form method="POST" action="/posts/show/{{$post->id}}/comments">
 			{{ csrf_field() }}
 			<div class="form-group">
