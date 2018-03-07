@@ -16,9 +16,9 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('enable_newcomment');
-            $table->string('enable_newfollower');
-            $table->string('enable_newpost');
+            $table->string('enable_newcomment')->default('yes');
+            $table->string('enable_newfollower')->default('yes');
+            $table->string('enable_newpost')->default('yes');
             $table->timestamps();
         });
     }

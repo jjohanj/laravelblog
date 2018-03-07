@@ -66,12 +66,14 @@
 
 
 
+
 <div class="card w-100" style='margin-top:1rem;'>
     <div class="card-header">
   <h3 class="mb-0">Email options</h3>
   <p class="card-text">current email adress: {{$user->email}}</p>
 </div>
   <div class="card-body">
+
     <form action="/updateNotifications" method="POST">
       {{ csrf_field() }}
       @if($notification->enable_newcomment == "yes")
@@ -104,31 +106,22 @@
 </div>
 
 
+
     @if ($role->name == 'admin')
   <div class="card w-100" style='margin-top:1rem;'>
       <div class="card-header">
     <h3 class="mb-0"><strong>Administrator options</strong></h3>
 </div>
     <div class="card-body">
-      <button type="button" class="btn btn-info"><a href="/profile/excel" style="color:inherit;text-decoration:inherit;"> Generate Excel</a></button>
-      <button type="button" class="btn btn-danger"><a href="/dump" style="color:inherit;text-decoration:inherit;"> Database Dump</a></button>
-
+     <a href="/profile/excel" class="btn btn-info""> Generate Excel</a>
+     <a href="/dump" style="color:inherit;text-decoration:inherit;"> Database Dump</a>
+     <a href="/settings/stats" class="btn btn-warning"> Analytics</a></button>
 
     </div>
   </div>
   @endif
 </div>
 
-<script>
-function sort(){
-$.ajax({
-		url: '/profile/image',
-		type: "GET", // not POST, laravel won't allow it
-		success: function(data){
-			$data = $(data); // the HTML content your controller has produced
-			$('.settings').fadeOut().html($data).fadeIn();
-			}
-	});
-};
-</script>
+
+
 @endsection
