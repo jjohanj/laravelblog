@@ -3,10 +3,9 @@
 @extends ('layouts.info')
 
 @section ('content')
-<br/>
 
 <div class="settings">
-<div class="card w-100" style='margin-bottom:5px;'>
+<div class="card w-100" style='margin-top:1rem;'>
   <div class="card-header">
   <h3 class="mb-0">{{$user->name}} Account @lang('messages.settings')</h3>
   <p class="card-text"> You are a  {{$role->display_name}}</p>
@@ -28,7 +27,7 @@
 </div>
 
 
-<div class="card w-100" style='margin-bottom:5px;'>
+<div class="card w-100" style='margin-top:1rem;'>
     <div class="card-header">
   <h3 class="mb-0">Email options</h3>
   <p class="card-text">current email adress: {{$user->email}}</p>
@@ -67,7 +66,7 @@
 
 
 
-  <div class="card w-100" style='margin-bottom:5px;'>
+  <div class="card w-100" style='margin-top:1rem;'>
       <div class="card-header">
     <h6 class="mb-0"><strong>Administrator options:</strong></h6>
 </div>
