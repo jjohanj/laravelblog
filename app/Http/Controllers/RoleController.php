@@ -223,6 +223,11 @@ public function paymentNotification(){
  }
     }
 
+    public function stats()
+    {
+      return view('stats');
+    }
+
     // function dumpB()
     // {
     // $users = User::all();

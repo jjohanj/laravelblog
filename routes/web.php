@@ -86,7 +86,7 @@ Route::get('/profile/export', 'ProfileController@print');
 
 Route::get('/dump', 'RoleController@dump');
 
-Route::get('/settings/analytics', 'TrackerController@show');
+Route::get('/settings/stats', 'RoleController@stats');
 
 //Route::get('/login', 'LoginController@create');
 //Route::get('/register', 'RegistrationController@create');
