@@ -141,7 +141,7 @@
              </div>
 <div class="card">
   <div class="card-header">
-   <h5 class="mb-0">@lang('messages.archives') </h5>
+   <h5 class="mb-0">@lang('messages.archive') </h5>
 <div class="card-body">
 @foreach($archives as $year => $months)
     <h6 class="mb-0">

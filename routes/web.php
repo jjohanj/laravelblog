@@ -11,6 +11,8 @@ Route::get('posts/user/{id}', 'PostsController@FromUser');
 
 Route::post('/posts/search/', 'PostsController@search' );
 
+Route::get('sitemap', 'SitemapController@show');
+
 //create update delete blogposts
 Route::post('/posts', 'PostsController@store');
 
@@ -91,6 +93,8 @@ Route::get('/profile/export', 'ProfileController@print');
 Route::get('/dump', 'RoleController@dump');
 
 Route::get('/settings/stats', 'RoleController@stats');
+
+
 
 //Route::get('/login', 'LoginController@create');
 //Route::get('/register', 'RegistrationController@create');
