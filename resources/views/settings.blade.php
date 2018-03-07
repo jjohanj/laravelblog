@@ -113,9 +113,9 @@
     <h3 class="mb-0"><strong>Administrator options</strong></h3>
 </div>
     <div class="card-body">
-     <a href="/profile/excel" class="btn btn-info""> Generate Excel</a>
-     <a href="/dump" style="color:inherit;text-decoration:inherit;"> Database Dump</a>
-     <a href="/settings/stats" class="btn btn-warning"> Analytics</a></button>
+     <a href="/profile/excel" class="btn btn-info"> Generate Excel</a> <a href="/dump" class="btn btn-danger"> Database Dump</a> <a href="/settings/stats" class="btn btn-warning"> Analytics</a>
+
+
 
     </div>
   </div>
