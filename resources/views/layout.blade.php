@@ -30,7 +30,7 @@
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
       <nav class="navbar navbar-inverse">
-  
+
   <a href="/" class="navbar-brand">Home</a>
   <a href="/settings" class="navbar-brand">back to settings</a>
 

@@ -72,7 +72,7 @@ gapi.analytics.ready(function() {
     query: {
       metrics: 'ga:pageviews, ga:uniquePageviews, ga:timeOnPage, ga:bounces, ga:entrances, ga:exits',
       dimensions: 'ga:pagePath',
-      'start-date': 'yesterday',
+      'start-date': '7daysAgo',
       'end-date': 'today',
       sort: '-ga:pageviews',
     },
@@ -89,7 +89,7 @@ gapi.analytics.ready(function() {
     query: {
       metrics: 'ga:entrances',
       dimensions: 'ga:landingPagePath, ga:secondPagePath',
-      'start-date': 'yesterday',
+      'start-date': '7daysAgo',
       'end-date': 'today',
       sort: '-ga:entrances',
     },
@@ -106,7 +106,7 @@ gapi.analytics.ready(function() {
     query: {
       metrics: 'ga:exits',
       dimensions: 'ga:previousPagePath, ga:exitPagePath',
-      'start-date': 'yesterday',
+      'start-date': '7daysAgo',
       'end-date': 'today',
       sort: '-ga:exits',
     },
