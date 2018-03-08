@@ -8,6 +8,7 @@
     <div class="card-header">
             <h3 class="card-title"> @lang('messages.login')</h3>
     </div>
+    @include ('layouts.errors')
     <div class="card-body">
       <form method="POST" action="/login">
       {{csrf_field()}}
@@ -43,11 +44,5 @@
     </div>
   </div>
 </div>
-
-
-    @include ('layouts.errors')
-
-
-
 
 @endsection

@@ -70,7 +70,7 @@ gapi.analytics.ready(function() {
    */
   var dataChart1 = new gapi.analytics.googleCharts.DataChart({
     query: {
-      metrics: 'ga:pageviews, ga:uniquePageviews, ga:timeOnPage, ga:bounces, ga:entrances, ga:exits',
+      metrics: 'ga:pageviews, ga:uniquePageviews, ga:avgTimeOnPage, ga:bounces, ga:entrances, ga:exits',
       dimensions: 'ga:pagePath',
       'start-date': '7daysAgo',
       'end-date': 'today',
@@ -80,7 +80,7 @@ gapi.analytics.ready(function() {
       container: 'chart-1-container',
       type: 'TABLE',
       options: {
-        width: '100%'
+        width: '100%',
       }
     }
   });
