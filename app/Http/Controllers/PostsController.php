@@ -64,7 +64,7 @@ return back();
       $posts = '';
 
       if($followings->count() == 0){
-        $posts = Post::latest()
+        $posts = $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
         ->filter(request()->only(['month', 'year', 'user','search']))
         ->get();
       }else{

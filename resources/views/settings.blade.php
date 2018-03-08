@@ -7,7 +7,7 @@
 @include ('layouts.success')
 
 <div class="settings">
-  @include ('layouts.success')
+
 <div class="card w-100" style='margin-top:1rem;'>
   <div class="card-header">
   <h3 class="mb-0">{{$user->name}} Account @lang('messages.settings')</h3>
