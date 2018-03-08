@@ -130,7 +130,7 @@ return back();
     $viewer = Auth::user();
 
     $vote = $viewer->vote()->where('post_id',$id)->first();
-
+    $average_score = round($average_score, 1);
 
     return view ('posts.show', compact('post', 'user','total_votes','average_score' ,'vote'));
   }
