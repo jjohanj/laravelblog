@@ -31,6 +31,9 @@ Route::get('posts/create/category', 'CategoriesController@create');
 
 Route::post('posts/create/category', 'CategoriesController@store');
 
+//ratings and votes
+Route::post('show/vote','PostsController@vote');
+
 //comments
 Route::post('/posts/show/{id}/comments', 'CommentsController@store' );
 
