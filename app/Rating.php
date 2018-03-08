@@ -11,4 +11,5 @@ class Rating extends Model
     {
       return $this->belongsTo(Post::class);
     }
+  
 }

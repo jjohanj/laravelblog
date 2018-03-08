@@ -95,9 +95,11 @@ return back();
   public function showAll(){
     $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
 
-    $posts = Post::latest()
+    $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
     ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
+
+  //$top_posts = Post::->get();
 
     $categories = Category::get();
     $archives = $this->archives();
@@ -248,6 +250,23 @@ $post_id =Post::where('title',$post_title)->first()->id;
     return User::get()
           ->sortByDesc(function(User $user) {
             return $user->followers>count();
+          });
+
+
+  }
+
+  private function topposts(){
+    return POST::get()
+          ->sortByDesc(function(User $rating) {
+            $totalscore = $post->rating()>first()->total_rating;
+            $votes = $post->rating()->first()->total_votes;
+            $score = '';
+            if ($votes == 0){
+              $score = 0;
+            }else{
+              $score = $total_score / $votes;
+            }
+            return $score;
           });
 
 
