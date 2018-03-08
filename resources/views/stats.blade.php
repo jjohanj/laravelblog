@@ -17,7 +17,7 @@
 <a href="/"> Home</a>
 
   <hr size="10px" noshade>
-  <div id="embed-api-auth-container" style="display: none;"></div>
+  <div id="embed-api-auth-container" ></div>
   <div id="chart-1-container"></div>
   <hr size="10px" noshade>
   <div id="chart-2-container" style="float: left; margin: auto"></div>
