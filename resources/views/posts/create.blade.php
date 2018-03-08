@@ -42,7 +42,7 @@
       <div class="form-group">
     <label class="form-check-label" for="posttext">Content</label><br>
     <small id="expanderHelp" class="form-text text-muted">Tip: type '@' to use the text expander.</small>
- <textarea id="posttext" class="form-control" rows="20" name="body" type="text">{{ old('body') }}</textarea></br>
+ <textarea readonly id="posttext" class="form-control" rows="1" name="body" type="text">{{ old('body') }}</textarea></br>
  </div>
 <div class="form-group">
  <input type='hidden' value='no' name='disable_comments'>

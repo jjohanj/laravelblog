@@ -34,7 +34,7 @@
       <div class="form-group">
 
     <label for="description">Content</label>
-      <textarea cols="5" rows="5" class="form-control" name="body">{{$post->body}}</textarea>
+      <textarea readonly cols="5" rows="5" class="form-control" name="body">{{$post->body}}</textarea>
  </div>
 <div class="form-group">
 
