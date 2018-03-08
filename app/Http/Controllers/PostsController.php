@@ -47,7 +47,8 @@ return back();
     $searchTerm =  request('search');
 
 
-    $posts = Post::where('title', 'LIKE', $searchTerm)->orWhere('body', 'LIKE', $searchTerm)->get();
+    $posts = Post::where('title', 'LIKE', '%'.$searchTerm.'%')->orWhere('body', 'LIKE', '%'.$searchTerm.'%')->get();
+
     $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
     $categories = Category::get();
     $archives = $this->archives();
@@ -60,7 +61,7 @@ if(Auth::check()){
 }
 
 public function archive ($archive){
-  
+
   $posts = Post::whereMonth('created_at', Carbon::parse($archive)->month)->latest()->get();
   $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
   $categories = Category::get();
