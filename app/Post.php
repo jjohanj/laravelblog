@@ -10,7 +10,7 @@ class Post extends Model
 {
 
 
-	Protected $fillable =['user_id', 'title','body','disable_comments'];
+	Protected $fillable =['user_id', 'title','body','disable_comments','post_id'];
 
 	public function comments()
 	{

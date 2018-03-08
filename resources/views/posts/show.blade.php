@@ -4,23 +4,148 @@
 
 
 <div class="card" style="width:100%; border:none">
+  <div class="card-header">
+  <h1 class="card-title" style="text-align:center;float:left">{{$post->title}}</h1>
+  <div style="float:right">
+  @if($average_score == 0)
+
+      <button type="button" class="btn btn-primary" >
+    <strong>NA&nbsp;</strong><span class="badge badge-light">{{$total_votes}}</span>
+    </button>
+        @elseif($average_score < 4)
+
+      <button type="button" class="btn btn-danger" >
+    <strong>{{$average_score}}&nbsp;</strong><span class="badge badge-light">{{$total_votes}}</span>
+    </button>
+          @elseif($average_score >6 )
+
+          <button type="button" class="btn btn-success">
+        <strong>{{$average_score}}&nbsp;</strong><span class="badge badge-light">{{$total_votes}}</span>
+        </button>
+
+
+      @else
+      <button type="button" class="btn btn-warning" >
+    <strong>{{$average_score}}&nbsp;</strong><span class="badge badge-light">{{$total_votes}}</span>
+    </button>
+  @endif
+</div>
+</div>
   <div class="card-body">
-    <h1 class="card-title" style="text-align:center;">{{$post->title}}</h1>
-    <hr>
+
 
     <h5 class="card-subtitle mb-2 text-muted"><a href="/user/{{ $post->user->name}}" class="btn btn-secondary btn-sm">{{$post->user->name}}</a> <small>{{$post->created_at->diffForHumans()}}</small></h5>
     @foreach ($post->categories->pluck('name') as $value) <span class="badge badge-success">{{$value}}</span> @endforeach
     <hr>
     <div class="card-text">{!!$post->body!!} </div>
-    <div style='float:right;'> @if(Auth::check())
+
+    <hr>
+<div class="container-fluid"style="text-align:center;">
+    <h3 class="card-title" style="text-align:center;">Ratings</h3>
+@if ($vote == NULL)
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"style="margin:auto">
+<div class="btn-group mr-2" role="group" aria-label="First group" style="margin-left:auto">
+  <form action="posts/vote" method="post">
+      {!! csrf_field() !!}
+<input type='hidden' value='{{$post->id}}' name='post_id'>
+<input type='hidden' value='1' name='score'>
+<button type="submit" class="btn btn-danger">1</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='2' name='score'>
+<button type="submit" class="btn btn-danger">2</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='3' name='score'>
+<button type="submit" class="btn btn-danger">3</button>
+</form>
+</div>
+<div class="btn-group mr-2" role="group" aria-label="Second group" >
+    <form action="/show/vote" method="post">
+      {!! csrf_field() !!}
+      <input type='hidden' value='{{$post->id}}' name='post_id'>
+      <input type='hidden' value='4' name='score'>
+<button type="submit" class="btn btn-warning">4</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='5' name='score'>
+<button type="submit" class="btn btn-warning">5</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='6' name='score'>
+<button type="submit" class="btn btn-warning">6</button>
+</form>
+</div>
+<div class="btn-group" role="group" aria-label="Third group" style="margin-right:auto">
+  <form action="/show/vote" method="post">
+      {!! csrf_field() !!}
+      <input type='hidden' value='{{$post->id}}' name='post_id'>
+      <input type='hidden' value='7' name='score'>
+<button type="submit" class="btn btn-success">7</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='8' name='score'>
+<button type="submit" class="btn btn-success">8</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='9' name='score'>
+<button type="submit" class="btn btn-success">9</button>
+</form>
+  <form action="/show/vote" method="post">
+    {!! csrf_field() !!}
+    <input type='hidden' value='{{$post->id}}' name='post_id'>
+    <input type='hidden' value='10' name='score'>
+<button type="submit" class="btn btn-success">10</button>
+</form>
+</div>
+</div>
+@else
+    <div class="card-text">Your score:
+
+          @if($vote->vote < 4)
+
+        <button type="button" class="btn btn-danger">
+      {{$vote->vote}}
+      </button>
+            @elseif($vote->vote >6 )
+
+            <button type="button" class="btn btn-success">
+          {{$vote->vote}}
+          </button>
+
+
+        @else
+        <button type="button" class="btn btn-warning">
+      {{$vote->vote}}
+      </button>
+    @endif </div>
+    @endif
+</div>
+
+      @if(Auth::check())
     @if (Auth::user()->id == $post->user_id)
+    <br>
+        <div style='float:right;'>
     <form action="/edit/post/{{ $post->id }}" method="get">
 
         {!! csrf_field() !!}
         <button class="btn btn-info">Edit/Delete</button>
     </form>
+    </div>
     @endif
-    @endif </div>
+    @endif
   </div>
 </div>
 
