@@ -43,17 +43,39 @@ return back();
 
 }
 
-  public function search($searchTerm){
-    $posts = Post::search($searchTerm)->get();
+  public function search(){
+    $searchTerm =  request('search');
+
+
+    $posts = Post::where('title', 'LIKE', $searchTerm)->orWhere('body', 'LIKE', $searchTerm)->get();
+    $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+    $categories = Category::get();
+    $archives = $this->archives();
+if(Auth::check()){
+  $user = Auth::user();
+  return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
+
+
+  }return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
+}
+
+public function archive ($archive){
+  
+  $posts = Post::whereMonth('created_at', Carbon::parse($archive)->month)->latest()->get();
+  $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
+  $categories = Category::get();
+  $archives = $this->archives();
+  if(Auth::check()){
+  $user = Auth::user();
+  return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
+
+
+  }return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
   }
+
 
   public function index(){
     $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
-
-
-
-  //$column = Input::get('orderBy', 'defaultColumn');
-  //$comments = User::find(1)->comments()->orderBy($column)->get();
 
 
     if(Auth::check()){
@@ -64,8 +86,8 @@ return back();
       $posts = '';
 
       if($followings->count() == 0){
-        $posts = $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
-        ->filter(request()->only(['month', 'year', 'user','search']))
+        $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
+
         ->get();
       }else{
       $posts = array();
@@ -89,9 +111,8 @@ return back();
     return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
     }
 
-    $posts = Post::latest()
-    ->filter(request()->only(['month', 'year', 'user','search']))
-    ->latest()
+    $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
+
     ->get();
 
     $categories = Category::get();
@@ -103,10 +124,10 @@ return back();
     $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
 
     $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
-    ->filter(request()->only(['month', 'year', 'user','search']))
+
     ->get();
 
-  //$top_posts = Post::->get();
+
 
     $categories = Category::get();
     $archives = $this->archives();

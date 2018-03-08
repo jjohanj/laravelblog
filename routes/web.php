@@ -11,7 +11,8 @@ Route::get('posts/show/{id}', 'PostsController@show');
 
 Route::get('posts/user/{id}', 'PostsController@FromUser');
 
-Route::post('/posts/search/', 'PostsController@search' );
+Route::post('search', 'PostsController@search' );
+Route::get('archive/{archive}', 'PostsController@archive' );
 
 Route::get('sitemap', 'SitemapController@show');
 
@@ -85,6 +86,7 @@ Route::get('/{locale}', 'LanguageController@switchLang');
 
 //Users;followers
 Route::get('/user/{username}', 'ProfileController@show');
+Route::get('/user/{username}/{archive}', 'ProfileController@archive' );
 
 Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
 

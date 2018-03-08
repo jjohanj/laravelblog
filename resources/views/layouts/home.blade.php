@@ -57,8 +57,9 @@
 
               <a href="/all" class="list-group-item list-group-item-action" style="border-left:0;border-right:0"><strong>@lang('messages.showall')</strong></a>
               <div style="margin-top:5px;margin-bottom:5px">
-              <form class="form-inline my-2 my-lg-0" action="/?search={{ isset($search) ? $search : '' }}" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search for.." aria-label="Search" value="{{ isset($search) ? $search : '' }}">
+              <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
+                  {{ csrf_field() }}
+                <input class="form-control mr-sm-2" type="text" placeholder="Search for.." aria-label="Search" name="search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@lang('messages.search')</button>
               </form>
             </div>
@@ -93,7 +94,7 @@
              <div class="card-body">
               @foreach($archives as $year => $months)
                   <h6 class="mb-0">
-                    <a href="?month={{$year}}" style="text-decoration:none;color:#28a745">
+                    <a href="/archive/{{$year}}" style="text-decoration:none;color:#28a745">
                       <strong>{{ $year }}</strong>
                     </a><br>
                   </h6>

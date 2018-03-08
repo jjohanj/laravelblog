@@ -98,6 +98,48 @@ if(Auth::check()){
     return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
 
   }
+  public function archive ($username, $archive){
+
+        $authuser = Auth::user();
+        $user = User::where('name' , '=', $username)->first();
+        $sidebar_followings = $user ->followings()->pluck('name');
+        $sidebar_followers = $user ->followers()->get();
+        $userid = $user->id;
+
+        $posts = User::find($userid)->posts()->latest()
+                  ->filter(request()->only(['month', 'year']))
+          ->get();
+          $archives = $this->archives();
+
+    if(Auth::check()){
+
+      $followings = $authuser->followings()->pluck('leader_id');
+      $followed=array();
+      $isfollowing=FALSE;
+        foreach ($followings as $following){
+          $followed[]=$following;
+        }
+        if (in_array($userid, $followed)) {
+          $isfollowing=TRUE;
+        }
+
+          $posts = Post::whereMonth('created_at', Carbon::parse($archive)->month)->latest()->get();
+        $categories = Category::get();
+
+        if ($authuser->id == $userid) {
+
+          return view('posts.profile', compact('posts', 'categories', 'archives','user','sidebar_followings','sidebar_followers'));
+         }
+
+      return view('posts.profile', compact('posts', 'categories', 'archives','user', 'isfollowing', 'sidebar_followings','sidebar_followers'));
+
+      }
+
+        return view('posts.profile', compact('posts', 'categories', 'archives','user', 'sidebar_followings','sidebar_followers'));
+
+
+
+}
 
   private function archives(){
         return Post::orderBy('created_at', 'desc')

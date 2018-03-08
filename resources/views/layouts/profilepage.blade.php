@@ -147,7 +147,7 @@
 <div class="card-body">
 @foreach($archives as $year => $months)
     <h6 class="mb-0">
-      <a href="?month={{$year}}" style="text-decoration:none;color:#28a745">
+      <a href="/user/{{$user->name}}/{{$year}}" style="text-decoration:none;color:#28a745">
         <strong>{{ $year }}</strong>
       </a><br>
     </h6>
