@@ -7,6 +7,8 @@ use App\Post;
 use App\User;
 use App\Category;
 use App\Role;
+use App\Vote;
+use App\Rating;
 use App\Setting;
 use Auth;
 use Carbon\Carbon;
@@ -19,6 +21,27 @@ class PostsController extends Controller
   public function __construct(){
     $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
+
+public function vote(Request $request){
+  $post_id = $request->post_id;
+  $score = $request->score;
+  $user_id = Auth::user()->id;
+
+$rating = Rating::where('post_id',$post_id)->first();
+$rating->total_rating += $score;
+$rating->total_votes += 1;
+  $rating->save();
+
+$vote = Vote::create([
+  'user_id'=> $user_id,
+  'post_id'=> $post_id,
+  'vote' => $score,
+]);
+
+return back();
+
+
+}
 
   public function search($searchTerm){
     $posts = Post::search($searchTerm)->get();
@@ -38,7 +61,13 @@ class PostsController extends Controller
       $user = User::find($userid);
       $followers = $user->followers;
       $followings = $user->followings()->get();
+      $posts = '';
 
+      if($followings->count() == 0){
+        $posts = Post::latest()
+        ->filter(request()->only(['month', 'year', 'user','search']))
+        ->get();
+      }else{
       $posts = array();
 
       foreach ($followings as $following){
@@ -49,10 +78,11 @@ class PostsController extends Controller
         }
 
       }
+
     $posts = array_reverse(array_sort($posts, function ($value) {
       return $value['created_at'];
     }));
-
+};
 
     $categories = Category::get();
     $archives = $this->archives();
@@ -72,9 +102,11 @@ class PostsController extends Controller
   public function showAll(){
     $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
 
-    $posts = Post::latest()
+    $posts = Post::with('rating')->join('ratings', 'ratings.post_id','=','posts.id')->orderBy('total_votes','desc')
     ->filter(request()->only(['month', 'year', 'user','search']))
     ->get();
+
+  //$top_posts = Post::->get();
 
     $categories = Category::get();
     $archives = $this->archives();
@@ -82,8 +114,25 @@ class PostsController extends Controller
   }
 
   public function show($id){
-    $posts = Post::where('id', $id)->get();
-    return view ('posts.show', compact('posts'));
+    $post = Post::where('id', $id)->first();
+
+    $user_id = $post->user_id;
+    $user = User::find($user_id);
+
+    $total_rating = $post->rating()->first()->total_rating;
+    $total_votes = $post->rating()->first()->total_votes;
+    $average_score = '';
+    if ($total_votes == 0){
+      $average_score= 0;
+    }else {
+      $average_score = $total_rating / $total_votes;
+    }
+    $viewer = Auth::user();
+
+    $vote = $viewer->vote()->where('post_id',$id)->first();
+
+
+    return view ('posts.show', compact('post', 'user','total_votes','average_score' ,'vote'));
   }
 
   public function create (){
@@ -106,7 +155,7 @@ class PostsController extends Controller
     $postTotal = Post::where('user_id', auth()->user()->id)->count();
 
     $user = Auth::user();
-    if ($postTotal <5 || $user->hasRole('premium_user') || $user->hasRole('admin')){ //Or $userRole = "pay"
+    if ($postTotal <5 || $user->hasRole('premium_user') || $user->hasRole('admin')){
     $this->validate(request(), [
       'title' => 'required|max:255',
       'body' => 'required',
@@ -119,13 +168,20 @@ class PostsController extends Controller
     User::find($user_id)->increment('total_blogposts');
 
     $categories = $request->category;
+
     $post = Post::create([
         'title' => request('title'),
         'body' => request('body'),
         'disable_comments' => request('disable_comments'),
         'user_id' => auth()->id()
-      ])->categories()->attach($categories);;
-
+      ])->categories()->attach($categories);
+      $post_title = request('title');
+$post_id =Post::where('title',$post_title)->first()->id;
+      $rating = Rating::create([
+        'post_id' => $post_id,
+        'total_rating' => 0,
+        'total_votes'=>0,
+      ]);
 
       $followers = $user ->followers()->get();
       foreach ($followers as $follower){
@@ -201,6 +257,23 @@ class PostsController extends Controller
     return User::get()
           ->sortByDesc(function(User $user) {
             return $user->followers>count();
+          });
+
+
+  }
+
+  private function topposts(){
+    return POST::get()
+          ->sortByDesc(function(User $rating) {
+            $totalscore = $post->rating()>first()->total_rating;
+            $votes = $post->rating()->first()->total_votes;
+            $score = '';
+            if ($votes == 0){
+              $score = 0;
+            }else{
+              $score = $total_score / $votes;
+            }
+            return $score;
           });
 
 

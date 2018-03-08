@@ -105,9 +105,9 @@ return [
     */
 
 
-    'key' => env('APP_KEY','='),
+    'key' => env('APP_KEY','base64:EFblh8kWAH2ipnT+slr613aqEoJFqZMt6huOrhzRJUY='),
 
-    'key' => env('APP_KEY','='),
+    'key' => env('APP_KEY','base64:EFblh8kWAH2ipnT+slr613aqEoJFqZMt6huOrhzRJUY='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -155,6 +155,8 @@ return [
          */
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Spatie\Analytics\AnalyticsServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -223,6 +225,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+
 
     ],
 

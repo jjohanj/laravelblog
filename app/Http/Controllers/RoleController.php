@@ -55,6 +55,7 @@ public function showpayment(){
         'BIC' => $BIC,
         'IBAN' => $IBAN,
         'country' => $country,
+        'fullName' => $fullName,
 
     ]);
     $premium_user = Role::where('name', 'premium_user')->get();
@@ -221,6 +222,16 @@ public function paymentNotification(){
 
    return response()->download('blogdump.sql')->deleteFileAfterSend(true);
  }
+    }
+
+    public function stats()
+    {
+      $admin = Auth::user();
+      if ($admin->hasRole('admin')){
+      return view('stats');
+    } else {
+      return redirect('settings');
+    }
     }
 
     // function dumpB()

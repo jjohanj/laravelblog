@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Post;
 use App\Setting;
 use App\Role;
 Use Auth;

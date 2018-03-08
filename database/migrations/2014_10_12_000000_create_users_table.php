@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('blog_name')->unique();
             $table->string('blogimage')->nullable();
+            $table->string('blogheader')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('total_blogposts');

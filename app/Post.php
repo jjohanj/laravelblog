@@ -10,12 +10,16 @@ class Post extends Model
 {
 
 
-	Protected $fillable =['user_id', 'title','body','disable_comments'];
+	Protected $fillable =['user_id', 'title','body','disable_comments','post_id'];
 
 	public function comments()
 	{
 		return $this->hasMany(Comment::class);
 
+	}
+	public function rating()
+	{
+			return $this->hasOne(Rating::class);
 	}
 	public function user()
     {

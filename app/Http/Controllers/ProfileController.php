@@ -135,12 +135,8 @@ if(Auth::check()){
 
   }
 
-  public function setImage()
-  {
-    return view('layouts.headerimage');
-  }
 
-  public function update()
+  public function updateImage()
   {
       request()->validate([
         'blogimage' => 'required',
@@ -151,9 +147,27 @@ if(Auth::check()){
       $user->blogimage = request('blogimage');
       $user->save();
 
-      return redirect('/')
-             ->with('success','Blog image set');
+      return redirect('/settings')
+             ->with('success','profile picture updated');
   }
+
+
+
+  public function updateHeader()
+  {
+      request()->validate([
+        'blogheader' => 'required',
+      ]);
+
+
+      $user = Auth::user();
+      $user->blogheader = request('blogheader');
+      $user->save();
+
+      return redirect('/settings')
+             ->with('success','header image updates');
+  }
+
 
   public function print()
     {
