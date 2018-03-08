@@ -127,11 +127,13 @@ return back();
     }else {
       $average_score = $total_rating / $total_votes;
     }
+$average_score = round($average_score, 1);
+      if(Auth::check()){
     $viewer = Auth::user();
 
     $vote = $viewer->vote()->where('post_id',$id)->first();
-    $average_score = round($average_score, 1);
 
+}else{$vote= NULL;}
     return view ('posts.show', compact('post', 'user','total_votes','average_score' ,'vote'));
   }
 

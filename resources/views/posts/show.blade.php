@@ -40,6 +40,7 @@
     <div class="card-text">{!!$post->body!!} </div>
 
     <hr>
+    @if(Auth::check())
 <div class="container-fluid"style="text-align:center;">
     <h3 class="card-title" style="text-align:center;">Ratings</h3>
 @if ($vote == NULL)
@@ -133,7 +134,7 @@
     @endif </div>
     @endif
 </div>
-
+@endif
       @if(Auth::check())
     @if (Auth::user()->id == $post->user_id)
     <br>
