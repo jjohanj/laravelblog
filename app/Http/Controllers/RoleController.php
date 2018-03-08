@@ -209,13 +209,13 @@ public function paymentNotification(){
         $dbPassword = env('DB_PASSWORD');
         switch ($dbConnection) {
           case "mysql":
-              $command = "mysqldump --user=$dbUsername --password=$dbPassword --host=$dbHost --port$dbPort $dbName > database_backup.sql";
+              $command = "mysqldump --user=$dbUsername --password=$dbPassword --host=$dbHost --port=$dbPort $dbName > database_backup.sql";
               break;
           case "pgsql":
               $command = "PGPASSWORD='$dbPassword' pg_dump -h $dbHost -p $dbPort -U $dbUsername $dbName > database_backup.sql";
               break;
         }
-        
+
         exec($command);
 
         return response()->download('database_backup.sql')->deleteFileAfterSend(true);
@@ -224,5 +224,15 @@ public function paymentNotification(){
           return redirect('/settings');
         }
       }
+
+    public function stats()
+    {
+      $admin = Auth::user();
+      if ($admin->hasRole('admin')){
+      return view('stats');
+    } else {
+      return redirect('settings');
+      }
+    }
 
 }
