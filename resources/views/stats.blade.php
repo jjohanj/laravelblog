@@ -37,7 +37,7 @@ gapi.analytics.ready(function() {
    */
   gapi.analytics.auth.authorize({
     container: 'embed-api-auth-container',
-    clientid: '857647485425-55a218bhbr00v6a9vj4urmi2vs8qpf6i.apps.googleusercontent.com'
+    clientid: '415329145441-tiacr50t2blf8jh3l6naseahmm7vfc0v.apps.googleusercontent.com'
   });
 
 
