@@ -4,6 +4,8 @@
 
 @section ('content')
 
+@include ('layouts.success')
+
 <div class="settings">
   @include ('layouts.success')
 <div class="card w-100" style='margin-top:1rem;'>
