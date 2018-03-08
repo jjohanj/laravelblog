@@ -20,8 +20,8 @@
   <div id="embed-api-auth-container" style="display: none;"></div>
   <div id="chart-1-container"></div>
   <hr size="10px" noshade>
-  <div id="chart-2-container" style="float: left; margin-left: 10%"></div>
-  <div id="chart-3-container" style="float: right; margin-right: 10%"></div>
+  <div id="chart-2-container" style="float: left; margin: auto"></div>
+  <div id="chart-3-container" style="float: right; margin: auto"></div>
   <div id="view-selector-1-container" style="display: none;"></div>
   <div id="view-selector-2-container" style="display: none;"></div>
   <div id="view-selector-3-container" style="display: none;"></div>
