@@ -75,7 +75,7 @@
 
                    <form action="{{ route('user.unfollow', $user->id) }}" method="post">
                           {!! csrf_field() !!}
-                       <button class="btn btn-primary">unfollow {{$user->name}}</button>
+                       <button class="btn btn-success">unfollow {{$user->name}}</button>
                    </form><br />
 
                    @endif
@@ -83,7 +83,7 @@
 
                		<form action="{{ route('user.follow', $user->id) }}" method="post">
                		      {!! csrf_field() !!}
-               		    <button class="btn btn-primary">Follow {{$user->name}}</button>
+               		    <button class="btn btn-danger">Follow {{$user->name}}</button>
                		</form><br />
 
                		@endif
