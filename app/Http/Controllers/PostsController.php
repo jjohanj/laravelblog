@@ -61,7 +61,13 @@ return back();
       $user = User::find($userid);
       $followers = $user->followers;
       $followings = $user->followings()->get();
+      $posts = '';
 
+      if($followings->count() == 0){
+        $posts = Post::latest()
+        ->filter(request()->only(['month', 'year', 'user','search']))
+        ->get();
+      }else{
       $posts = array();
 
       foreach ($followings as $following){
@@ -72,10 +78,11 @@ return back();
         }
 
       }
+
     $posts = array_reverse(array_sort($posts, function ($value) {
       return $value['created_at'];
     }));
-
+};
 
     $categories = Category::get();
     $archives = $this->archives();
