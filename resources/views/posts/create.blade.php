@@ -19,7 +19,8 @@
 
   </div>
   <div class="card-body">
-      @if ($postsLeft > 0)
+
+      @if ($postsLeft > 0 || $user_role != 'free')
 <p class="card-text"><a href=" /posts/create/category" class="btn btn-success">Add a category</a></p>
 
 <form action="/posts" method="POST">
