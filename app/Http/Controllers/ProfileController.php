@@ -21,7 +21,7 @@ use PDF;
 class ProfileController extends Controller
 {
   public function __construct(){
-    $this->middleware('auth')->except(['info', 'show']);
+    $this->middleware('auth')->except(['info', 'show' , ' archive']);
   }
 
   public function info()

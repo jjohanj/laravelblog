@@ -19,7 +19,7 @@ class PostsController extends Controller
 {
 
   public function __construct(){
-    $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser']);
+    $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser',' archive']);
   }
 
 public function vote(Request $request){
