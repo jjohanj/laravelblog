@@ -45,7 +45,7 @@
 @if ($vote == NULL)
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups"style="margin:auto">
 <div class="btn-group mr-2" role="group" aria-label="First group" style="margin-left:auto">
-  <form action="posts/vote" method="post">
+  <form action="/show/vote" method="post">
       {!! csrf_field() !!}
 <input type='hidden' value='{{$post->id}}' name='post_id'>
 <input type='hidden' value='1' name='score'>
