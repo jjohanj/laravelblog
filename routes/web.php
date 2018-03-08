@@ -1,5 +1,7 @@
 <?php
 
+Route::get('/dump', 'RoleController@dump');
+
 //read/show posts
 Route::get('/', 'PostsController@index');
 
