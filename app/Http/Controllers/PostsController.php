@@ -19,7 +19,7 @@ class PostsController extends Controller
 {
 
   public function __construct(){
-    $this->middleware('auth')->except(['index', 'show', 'sort','search', 'showAll', 'fromUser',' archive']);
+    $this->middleware('auth')->except(['archiveSort', 'index', 'show', 'sort','search', 'showAll', 'fromUser']);
   }
 
 public function vote(Request $request){
@@ -60,9 +60,9 @@ if(Auth::check()){
   }return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
 }
 
-public function archive ($archive){
-
+public function archiveSort ($archive){
   $posts = Post::whereMonth('created_at', Carbon::parse($archive)->month)->latest()->get();
+
   $topusers = User::get()->sortByDesc(function(user $user){ return $user->followers->count();})->take(5);
   $categories = Category::get();
   $archives = $this->archives();
@@ -71,7 +71,7 @@ public function archive ($archive){
   return view('posts.index', compact('posts', 'categories', 'archives','user', 'topusers'));
 
 
-  }return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
+  } return view('posts.index', compact('posts', 'categories', 'archives', 'topusers'));
   }
 
 

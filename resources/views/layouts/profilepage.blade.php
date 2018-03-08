@@ -67,6 +67,7 @@
                 <img class="card-img-top" src="http://www.pixempire.com/images/preview/new-user-icon.jpg" alt="Header Image" >
 
                @endif
+
                @if (Auth::check())
 
                 @if ( Auth::user()->id  !=  $user->id)
@@ -75,7 +76,7 @@
 
                    <form action="{{ route('user.unfollow', $user->id) }}" method="post">
                           {!! csrf_field() !!}
-                       <button class="btn btn-success">unfollow {{$user->name}}</button>
+                       <button class="btn btn-success" style="margin-top:1rem">unfollow {{$user->name}}</button>
                    </form><br />
 
                    @endif
@@ -83,8 +84,8 @@
 
                		<form action="{{ route('user.follow', $user->id) }}" method="post">
                		      {!! csrf_field() !!}
-               		    <button class="btn btn-danger">Follow {{$user->name}}</button>
-               		</form><br />
+               		    <button class="btn btn-danger"style="margin-top:1rem">Follow {{$user->name}}</button>
+               		</form>
 
                		@endif
                	@endif

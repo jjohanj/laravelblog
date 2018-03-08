@@ -12,7 +12,7 @@ Route::get('posts/show/{id}', 'PostsController@show');
 Route::get('posts/user/{id}', 'PostsController@FromUser');
 
 Route::post('search', 'PostsController@search' );
-Route::get('archive/{archive}', 'PostsController@archive' );
+Route::get('archive/{archive}', 'PostsController@archiveSort' );
 
 Route::get('sitemap', 'SitemapController@show');
 
